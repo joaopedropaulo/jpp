@@ -1,7 +1,7 @@
 FROM node:10.18.1-alpine3.11
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /usr/server
 
 # Copy 
 COPY package*.json ./
@@ -10,9 +10,9 @@ COPY package*.json ./
 RUN npm install
 
 # Copy server app code
-COPY . .
+COPY ./src ./src
 
 EXPOSE 5000
 
 # Run development script
-CMD [ "node", "server.js" ]
+CMD [ "npm", "run", "server" ]
