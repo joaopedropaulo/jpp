@@ -12,6 +12,9 @@ RUN npm install
 # Copy server app code
 COPY ./src ./src
 
+# Copy configs
+COPY ./config ./config
+
 EXPOSE 5000
 
 # Run development script
