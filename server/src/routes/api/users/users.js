@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-const signToken = require("../../utils/authUtils");
+const signToken = require("../../../utils/authUtils");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 
 const { check, validationResult } = require("express-validator");
 
-const User = require("../../models/User");
+const User = require("../../../models/User");
 
 // @route POST api/users
 // @desc Register User - if a user already exists in the DB, then it is not possible to register another one.

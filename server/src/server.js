@@ -9,9 +9,9 @@ connectDB();
 app.use(express.json({ extended: false }));
 
 // Define Routes
-app.use("/api/auth", require("./routes/api/auth"));
-app.use("/api/profile", require("./routes/api/profile"));
-app.use("/api/users", require("./routes/api/users"));
+app.use("/api/auth", require("./routes/api/auth/auth"));
+app.use("/api/profile", require("./routes/api/profile/index"));
+app.use("/api/users", require("./routes/api/users/users"));
 
 app.get("/", (req, res) => {
   res.send("API is work");

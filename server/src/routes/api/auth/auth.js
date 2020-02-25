@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-const signToken = require("../../utils/authUtils");
+const signToken = require("../../../utils/authUtils");
 
 const { check, validationResult } = require("express-validator");
 

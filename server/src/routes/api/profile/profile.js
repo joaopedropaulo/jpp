@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const auth = require("../../middleware/tokenAuthentication");
+const auth = require("../../../middleware/tokenAuthentication");
 const { check, validationResult } = require("express-validator");
 
-const Profile = require("../../models/Profile");
-const User = require("../../models/User");
+const Profile = require("../../../models/Profile");
+const User = require("../../../models/User");
 
 // @route GET api/profile
 // @desc Gets the profile of the registered user
@@ -47,19 +47,6 @@ router.post(
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
-    }
-
-    try {
-      let user = await User.findById(req.user.id);
-
-      if (!user) {
-        return res.status(404).json({ errors: [{ msg: "User not found." }] });
-      }
-    } catch (err) {
-      console.error(err.message);
-      return res
-        .status(500)
-        .json({ errors: [{ msg: "Internal Server Error." }] });
     }
 
     const {
@@ -114,8 +101,14 @@ router.post(
     }
 
     try {
-      let profile = await Profile.findOne({ user: req.user.id });
+      // Check whether user exists
+      let user = await User.findById(req.user.id);
+      if (!user) {
+        return res.status(404).json({ errors: [{ msg: "User not found." }] });
+      }
 
+      // Check whether there is a profile already
+      let profile = await Profile.findOne({ user: req.user.id });
       if (profile) {
         //Update
         profile = await Profile.findOneAndUpdate(
@@ -129,6 +122,7 @@ router.post(
       // Create
       profile = new Profile(profileFields);
       await profile.save();
+
       return res.json(profile);
     } catch (err) {
       console.error(err.message);
@@ -138,5 +132,38 @@ router.post(
     }
   }
 );
+
+// @route DELETE api/profile
+// @desc Delete user profile
+// @access Private
+router.delete("/", auth, async (req, res) => {
+  try {
+    let user = await User.findById(req.user.id);
+    // Check whether user exists
+    if (!user) {
+      return res.status(404).json({ errors: [{ msg: "User not found." }] });
+    }
+
+    let profile = await Profile.findOne({ user: req.user.id });
+    // Check whether there is a profile
+    if (!profile) {
+      return res
+        .status(404)
+        .json({ errors: [{ msg: "Profile does not exist." }] });
+    }
+
+    // Remove profile
+    await Profile.findOneAndRemove({
+      user: req.user.id
+    });
+
+    return res.json({ msg: "User profile deleted." });
+  } catch (err) {
+    console.error(err.message);
+    return res
+      .status(500)
+      .json({ errors: [{ msg: "Internal Server Error." }] });
+  }
+});
 
 module.exports = router;
