@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
+const signToken = require("../../utils/authUtils");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 
@@ -27,8 +28,8 @@ router.post(
     let user = await User.findOne();
     if (user) {
       return res
-        .status(400)
-        .json({ errors: [{ msg: "A user has been registered already." }] });
+        .status(500)
+        .json({ errors: [{ msg: "Internal Server Error." }] });
     }
 
     const errors = validationResult(req);
@@ -59,21 +60,11 @@ router.post(
         }
       };
 
-      // Create JSON Web Token
-      jwt.sign(
-        payload,
-        config.get("jwtSecret"),
-        { expiresIn: config.get("tokenExpirationTime") },
-        (err, token) => {
-          if (err) {
-            throw err;
-          }
-          res.json({ token });
-        }
-      );
+      // Create token
+      signToken(payload, res);
     } catch (err) {
       console.error(err.message);
-      res.status(500).send("Internal Server Error.");
+      res.status(500).json({ errors: [{ msg: "Internal Server Error." }] });
     }
   }
 );
