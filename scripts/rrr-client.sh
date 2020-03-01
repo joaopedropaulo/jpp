@@ -1,8 +1,15 @@
 #!/bin/sh
 
 echo Stopping running containers...
-cd ../../
 docker-compose down
+echo Done.
+
+echo Deleting existing images...
+docker image rm jpp_client
+echo Done.
+
+echo Building new images...
+docker-compose build jpp_client
 echo Done.
 
 echo Starting containers again...

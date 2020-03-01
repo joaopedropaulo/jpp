@@ -8,3 +8,11 @@ services:
       - "5000:5000"
     volumes:
       - ./server/src:/usr/server/src
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client/src:/usr/client/src
