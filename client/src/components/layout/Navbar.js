@@ -18,9 +18,15 @@ const Navbar = () => {
   return (
     <AppBar position="static">
       <Toolbar className={classes.root}>
-        <Button color="inherit">Home</Button>
-        <Button color="inherit">About me</Button>
-        <Button color="inherit">CV</Button>
+        <Button href={"/"} color="inherit">
+          Home
+        </Button>
+        <Button href={"/about"} color="inherit">
+          About me
+        </Button>
+        <Button href={"/profile"} color="inherit">
+          Profile
+        </Button>
       </Toolbar>
     </AppBar>
   );

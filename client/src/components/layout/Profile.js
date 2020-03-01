@@ -2,13 +2,13 @@ import React from "react";
 
 import Navbar from "./Navbar";
 
-const Landing = () => {
+const Profile = () => {
   return (
     <div>
       <Navbar />
-      Landed
+      Profile
     </div>
   );
 };
 
-export default Landing;
+export default Profile;
