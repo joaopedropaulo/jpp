@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Paper,
@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text.secondary
   },
   padding: {
-    padding: theme.spacing.unit
+    padding: theme.spacing(1)
   },
   icons: {
     alignSelf: "flex-end"
@@ -33,51 +33,66 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Login = () => {
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const onSubmit = e => {
+    console.log("Username: " + username + ", Password: " + password);
+    e.preventDefault();
+  };
+
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs></Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}>
-            <Grid container spacing={12} className={classes.padding}>
-              <Grid item xs className={classes.icons}>
-                <Face />
+          <form onSubmit={onSubmit}>
+            <Paper className={classes.paper}>
+              <Grid container spacing={12} className={classes.padding}>
+                <Grid item xs className={classes.icons}>
+                  <Face />
+                </Grid>
+                <Grid item xs={11}>
+                  <TextField
+                    id="username"
+                    label="Username"
+                    type="email"
+                    fullWidth
+                    autoFocus
+                    value={username}
+                    onChange={e => setUsername(e.target.value)}
+                    required
+                  />
+                </Grid>
               </Grid>
-              <Grid item xs={11}>
-                <TextField
-                  id="username"
-                  label="Username"
-                  type="email"
-                  fullWidth
-                  autoFocus
-                  required
-                />
+              <Grid container spacing={12} className={classes.padding}>
+                <Grid item xs className={classes.icons}>
+                  <Fingerprint />
+                </Grid>
+                <Grid item xs={11}>
+                  <TextField
+                    id="password"
+                    label="Password"
+                    type="password"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    fullWidth
+                    required
+                  />
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid container spacing={12} className={classes.padding}>
-              <Grid item xs className={classes.icons}>
-                <Fingerprint />
-              </Grid>
-              <Grid item xs={11}>
-                <TextField
-                  id="username"
-                  label="Password"
-                  type="password"
-                  fullWidth
-                  required
-                />
-              </Grid>
-            </Grid>
 
-            <Button
-              variant="contained"
-              color="primary"
-              style={{ textTransform: "none", marginTop: "24px" }}
-            >
-              Login
-            </Button>
-          </Paper>
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ textTransform: "none", marginTop: "24px" }}
+                type="submit"
+              >
+                Login
+              </Button>
+            </Paper>
+          </form>
         </Grid>
         <Grid item xs></Grid>
       </Grid>
