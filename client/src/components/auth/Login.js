@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { setAlert } from "../../actions/alert";
+import { PropTypes } from "prop-types";
 
 import {
   Paper,
@@ -32,12 +35,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Login = () => {
+const Login = ({ setAlert }) => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
 
   const onSubmit = e => {
-    console.log("Username: " + username + ", Password: " + password);
+    setAlert("Username: " + username + ", Password: " + password, "success");
     e.preventDefault();
   };
 
@@ -101,4 +104,8 @@ const Login = () => {
   );
 };
 
-export default Login;
+Login.propTypes = {
+  setAlert: PropTypes.func.isRequired
+};
+
+export default connect(null, { setAlert })(Login);

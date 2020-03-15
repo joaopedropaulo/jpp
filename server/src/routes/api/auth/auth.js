@@ -3,7 +3,26 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const signToken = require("../../../utils/authUtils");
 
+const auth = require("../../../middleware/tokenAuthentication");
+
+const User = require("../../../models/User");
+
 const { check, validationResult } = require("express-validator");
+
+// @route GET api/auth
+// @desc Test route
+// @access Public
+router.get("/", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    return res.json(user);
+  } catch (err) {
+    console.error(err);
+    return res
+      .status(500)
+      .json({ errors: [{ msg: "Internal Server Error." }] });
+  }
+});
 
 // @route POST api/auth
 // @desc Authenticate User and get token
@@ -47,10 +66,12 @@ router.post(
       };
 
       // Create token
-      signToken(payload, res);
+      return signToken(payload, res);
     } catch (err) {
       console.error(err.message);
-      res.status(500).json({ errors: [{ msg: "Internal Server Error." }] });
+      return res
+        .status(500)
+        .json({ errors: [{ msg: "Internal Server Error." }] });
     }
   }
 );
