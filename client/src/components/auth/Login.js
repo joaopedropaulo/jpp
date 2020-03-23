@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { setAlert } from "../../actions/alert";
 import { PropTypes } from "prop-types";
+import { login } from "../../actions/auth";
 
 import {
   Paper,
@@ -35,16 +36,21 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Login = ({ setAlert }) => {
-  const [username, setUsername] = React.useState("");
+const Login = ({ login, isAuthenticated }) => {
+  const classes = useStyles();
+
+  const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
   const onSubmit = e => {
-    setAlert("Username: " + username + ", Password: " + password, "success");
     e.preventDefault();
+    login(email, password);
   };
 
-  const classes = useStyles();
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
@@ -58,13 +64,13 @@ const Login = ({ setAlert }) => {
                 </Grid>
                 <Grid item xs={11}>
                   <TextField
-                    id="username"
-                    label="Username"
+                    id="email"
+                    label="Email"
                     type="email"
                     fullWidth
                     autoFocus
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                     required
                   />
                 </Grid>
@@ -105,7 +111,12 @@ const Login = ({ setAlert }) => {
 };
 
 Login.propTypes = {
-  setAlert: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired,
+  isAutenticated: PropTypes.bool
 };
 
-export default connect(null, { setAlert })(Login);
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { login })(Login);
