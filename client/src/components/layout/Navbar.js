@@ -5,7 +5,9 @@ import AppBar from "@material-ui/core/AppBar";
 //import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
+
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import PersonIcon from "@material-ui/icons/Person";
 
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -22,6 +24,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   const authLinks = (
     <div>
+      <Button href={"/dashboard"} color="inherit" startIcon={<PersonIcon />}>
+        Dashboard
+      </Button>
       <Button
         onClick={logout}
         href={"#!"}
