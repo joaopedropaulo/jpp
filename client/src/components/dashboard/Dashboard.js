@@ -1,4 +1,5 @@
 import React, { useEffect, Fragment } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Navbar from "../layout/Navbar";
 import { connect } from "react-redux";
@@ -39,7 +40,9 @@ const Dashboard = ({
       {profile !== null ? (
         <Fragment>has</Fragment>
       ) : (
-        <Fragment>has not</Fragment>
+        <Fragment>
+          <Link to="/create-profile">Create Profile</Link>
+        </Fragment>
       )}
     </div>
   );
