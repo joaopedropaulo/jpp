@@ -11,29 +11,29 @@ import {
   TextField,
   Button,
   FormControlLabel,
-  Checkbox
+  Checkbox,
 } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 
 import { Face, Fingerprint } from "@material-ui/icons";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
   },
   padding: {
-    padding: theme.spacing(1)
+    padding: theme.spacing(1),
   },
   icons: {
-    alignSelf: "flex-end"
-  }
+    alignSelf: "flex-end",
+  },
 }));
 
 const Login = ({ login, isAuthenticated }) => {
@@ -42,7 +42,7 @@ const Login = ({ login, isAuthenticated }) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     login(email, password);
   };
@@ -70,7 +70,7 @@ const Login = ({ login, isAuthenticated }) => {
                     fullWidth
                     autoFocus
                     value={email}
-                    onChange={e => setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </Grid>
@@ -85,7 +85,7 @@ const Login = ({ login, isAuthenticated }) => {
                     label="Password"
                     type="password"
                     value={password}
-                    onChange={e => setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                     fullWidth
                     required
                   />
@@ -112,11 +112,11 @@ const Login = ({ login, isAuthenticated }) => {
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  isAutenticated: PropTypes.bool
+  isAutenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { login })(Login);
