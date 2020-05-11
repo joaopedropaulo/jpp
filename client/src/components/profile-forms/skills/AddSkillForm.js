@@ -10,8 +10,6 @@ class AddSkillForm extends React.Component {
   onAddClick(e) {
     e.preventDefault();
 
-    console.log(this.skillName.value);
-
     const name = this.skillName.value;
     const experienceLevel = this.expLevel.value;
 
@@ -23,7 +21,6 @@ class AddSkillForm extends React.Component {
 
     this.skillName.value = "";
     this.expLevel.value = "";
-    //e.target.reset();
   }
   render() {
     return (
