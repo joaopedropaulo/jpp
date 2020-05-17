@@ -36,12 +36,13 @@ router.post(
     auth,
     [
       check("skills", "Skills are not properly formatted.").isArray(),
+      check("skills", "Skills cannot be empty.").notEmpty(),
       check("skills.*.name", "Skill name is required.").notEmpty(),
       check(
         "skills.*.experienceLevel",
         "Experience level must be a number between 1 and 5."
-      ).isIn([1, 2, 3, 4, 5])
-    ]
+      ).isIn([1, 2, 3, 4, 5]),
+    ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -59,7 +60,7 @@ router.post(
       facebook,
       twitter,
       instagram,
-      linkedin
+      linkedin,
     } = req.body;
 
     // Build profile object
@@ -154,7 +155,7 @@ router.delete("/", auth, async (req, res) => {
 
     // Remove profile
     await Profile.findOneAndRemove({
-      user: req.user.id
+      user: req.user.id,
     });
 
     return res.json({ msg: "User profile deleted." });

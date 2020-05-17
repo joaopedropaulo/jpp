@@ -28,11 +28,12 @@ class AddSkillForm extends React.Component {
         <TextField
           inputRef={(ir) => (this.skillName = ir)}
           label="Skill Name"
-          required
+          //required
         />
         <TextField
           inputRef={(ir) => (this.expLevel = ir)}
           label="Experience Level"
+          type="number"
         />
         <Button color="secondary" variant="outlined" onClick={this.onAddClick}>
           Add Skill

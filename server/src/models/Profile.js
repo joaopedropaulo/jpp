@@ -4,138 +4,139 @@ const ProfileSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user"
+      ref: "user",
     },
     currentCompany: {
-      type: String
+      type: String,
     },
     location: {
-      type: String
+      type: String,
     },
     currentJobTitle: {
-      type: String
+      type: String,
     },
     skills: [
       {
         name: {
           type: String,
-          required: true
+          required: true,
         },
         experienceLevel: {
-          type: Number
-        }
-      }
+          type: Number,
+          required: true,
+        },
+      },
     ],
     bio: {
-      type: String
+      type: String,
     },
     experience: [
       {
         jobTitle: {
           type: String,
-          required: true
+          required: true,
         },
         company: {
           type: String,
-          required: true
+          required: true,
         },
         companyIcon: {
-          type: String
+          type: String,
         },
         location: {
-          type: String
+          type: String,
         },
         from: {
           type: Date,
-          required: true
+          required: true,
         },
         to: {
-          type: Date
+          type: Date,
         },
         current: {
           type: Boolean,
-          default: false
+          default: false,
         },
         description: {
-          type: String
-        }
-      }
+          type: String,
+        },
+      },
     ],
     education: [
       {
         school: {
           type: String,
-          required: true
+          required: true,
         },
         degree: {
           type: String,
-          required: true
+          required: true,
         },
         fieldOfStudy: {
           type: String,
-          required: true
+          required: true,
         },
         from: {
           type: Date,
-          required: true
+          required: true,
         },
         to: {
-          type: Date
+          type: Date,
         },
         current: {
           type: Boolean,
-          default: false
+          default: false,
         },
         description: {
-          type: String
-        }
-      }
+          type: String,
+        },
+      },
     ],
     social: {
       youtube: {
-        type: String
+        type: String,
       },
       twitter: {
-        type: String
+        type: String,
       },
       facebook: {
-        type: String
+        type: String,
       },
       linkedin: {
-        type: String
+        type: String,
       },
       instagram: {
-        type: String
+        type: String,
       },
       github: {
-        type: String
-      }
+        type: String,
+      },
     },
     genericSections: [
       {
         title: {
           type: String,
-          required: true
+          required: true,
         },
         subtitle: {
-          type: String
+          type: String,
         },
         body: {
           type: String,
-          required: true
+          required: true,
         },
         media: [
           {
             image: {
-              type: String
+              type: String,
             },
             video: {
-              type: String
-            }
-          }
-        ]
-      }
-    ]
+              type: String,
+            },
+          },
+        ],
+      },
+    ],
   },
   { timestamps: true }
 );

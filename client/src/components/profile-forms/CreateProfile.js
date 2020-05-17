@@ -1,14 +1,17 @@
 import React, { useState, Fragment } from "react";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import connect from "react-redux";
+import { connect } from "react-redux";
 import { Typography, TextField, Button, Link } from "@material-ui/core";
+
+import { createProfile } from "../../actions/profile";
 
 import AddSkillForm from "./skills/AddSkillForm";
 import SkillList from "./skills/SkillList";
 
 import CreateUpdateSocialMediaInputs from "./social-media/CreateUpdateSocialMediaInputs";
 
-const CreateProfile = (props) => {
+const CreateProfile = ({ createProfile, history }) => {
   // States
   const [formData, setFormData] = useState({
     currentCompany: "",
@@ -48,10 +51,15 @@ const CreateProfile = (props) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+    createProfile(formData, history);
+  };
+
   return (
     <Fragment>
       <Typography variant="h3">Create Profile</Typography>
-      <form>
+      <form onSubmit={(e) => onSubmit(e)}>
         <div>
           <Typography variant="h6">Current Company</Typography>
           <TextField
@@ -123,6 +131,8 @@ const CreateProfile = (props) => {
   );
 };
 
-CreateProfile.propTypes = {};
+CreateProfile.propTypes = {
+  createProfile: PropTypes.func.isRequired,
+};
 
-export default CreateProfile;
+export default connect(null, { createProfile })(withRouter(CreateProfile));
