@@ -9,8 +9,15 @@ import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import TwitterIcon from "@material-ui/icons/Twitter";
 
 class CreateUpdateSocialMediaInputs extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
-    const { youtube, instagram, linkedin, twitter, github, facebook } = "";
+    const { youtube, instagram, linkedin, twitter, github, facebook } = this
+      .props.social
+      ? this.props.social
+      : "";
 
     return (
       <Fragment>

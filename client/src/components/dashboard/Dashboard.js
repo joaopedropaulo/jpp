@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Navbar from "../layout/Navbar";
 import { connect } from "react-redux";
+
 import { getCurrentProfile } from "../../actions/profile";
+import DashboardActions from "./DashboardActions";
 
 import Spinner from "../layout/Spinner";
 import { Typography } from "@material-ui/core";
@@ -38,7 +40,9 @@ const Dashboard = ({
       <Navbar />
       {dashboardHeader}
       {profile !== null ? (
-        <Fragment>has</Fragment>
+        <Fragment>
+          <DashboardActions />
+        </Fragment>
       ) : (
         <Fragment>
           <Link to="/create-profile">Create Profile</Link>

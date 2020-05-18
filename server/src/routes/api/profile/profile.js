@@ -68,7 +68,7 @@ router.post(
 
     profileFields.user = req.user.id;
     if (currentCompany) {
-      profileFields.company = company;
+      profileFields.currentCompany = currentCompany;
     }
     if (location) {
       profileFields.location = location;

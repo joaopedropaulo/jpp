@@ -1,17 +1,22 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Typography, TextField, Button, Link } from "@material-ui/core";
 
-import { createUpdateProfile } from "../../actions/profile";
+import { createUpdateProfile, getCurrentProfile } from "../../actions/profile";
 
 import AddSkillForm from "./skills/AddSkillForm";
 import SkillList from "./skills/SkillList";
 
 import CreateUpdateSocialMediaInputs from "./social-media/CreateUpdateSocialMediaInputs";
 
-const CreateProfile = ({ createUpdateProfile, history }) => {
+const EditProfile = ({
+  profile: { profile, loading },
+  createUpdateProfile,
+  getCurrentProfile,
+  history,
+}) => {
   // States
   const [formData, setFormData] = useState({
     currentCompany: "",
@@ -28,6 +33,26 @@ const CreateProfile = ({ createUpdateProfile, history }) => {
   });
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
+
+  useEffect(() => {
+    getCurrentProfile();
+
+    setFormData({
+      currentCompany:
+        loading || !profile.currentCompany ? "" : profile.currentCompany,
+      location: loading || !profile.location ? "" : profile.location,
+      currentJobTitle:
+        loading || !profile.currentJobTitle ? "" : profile.currentJobTitle,
+      skills: loading || !profile.skills ? [] : profile.skills,
+      bio: loading || !profile.bio ? "" : profile.bio,
+      youtube: loading || !profile.social ? "" : profile.social.youtube,
+      instagram: loading || !profile.social ? "" : profile.social.instagram,
+      linkedin: loading || !profile.social ? "" : profile.social.linkedin,
+      twitter: loading || !profile.social ? "" : profile.social.twitter,
+      github: loading || !profile.social ? "" : profile.social.github,
+      facebook: loading || !profile.social ? "" : profile.social.facebook,
+    });
+  }, [loading]);
 
   const { currentCompany, location, currentJobTitle, skills, bio } = formData;
 
@@ -53,7 +78,7 @@ const CreateProfile = ({ createUpdateProfile, history }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    createUpdateProfile(formData, history);
+    createUpdateProfile(formData, history, true);
   };
 
   return (
@@ -116,6 +141,7 @@ const CreateProfile = ({ createUpdateProfile, history }) => {
         {displaySocialInputs ? (
           <CreateUpdateSocialMediaInputs
             handleValueChange={handleValueChange}
+            social={profile.social}
           />
         ) : (
           <Fragment></Fragment>
@@ -131,10 +157,17 @@ const CreateProfile = ({ createUpdateProfile, history }) => {
   );
 };
 
-CreateProfile.propTypes = {
+EditProfile.propTypes = {
   createUpdateProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
 };
 
-export default connect(null, { createUpdateProfile })(
-  withRouter(CreateProfile)
-);
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+});
+
+export default connect(mapStateToProps, {
+  createUpdateProfile,
+  getCurrentProfile,
+})(withRouter(EditProfile));
