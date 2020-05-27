@@ -12,7 +12,7 @@ import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/profile/CreateProfile";
 import EditProfile from "./components/profile/EditProfile";
-import AddExperience from "./components/profile/AddExperience";
+import AddExperience from "./components/profile/experience/AddExperience";
 import AddEducation from "./components/profile/AddEducation";
 
 import PrivateRoute from "./components/routing/PrivateRoute";

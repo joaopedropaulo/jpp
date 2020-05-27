@@ -1,9 +1,9 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addExperience } from "../../actions/profile";
-import DisplayExperienceTable from "./experience/DisplayExperienceTable";
+import { addExperience, getCurrentProfile } from "../../../actions/profile";
+import ExperienceTable from "./ExperienceTable";
 
 import {
   Typography,
@@ -20,7 +20,18 @@ import {
   Paper,
 } from "@material-ui/core";
 
-const AddExperience = ({ addExperience, history }) => {
+const AddExperience = ({
+  addExperience,
+  getCurrentProfile,
+  profile: { profile, loading },
+  history,
+}) => {
+  useEffect(() => {
+    console.log("HERE I AM - current profile");
+    getCurrentProfile();
+    console.log(profile);
+  }, [loading]);
+
   const [formData, setFormData] = useState({
     company: "",
     companyIcon: "",
@@ -44,6 +55,12 @@ const AddExperience = ({ addExperience, history }) => {
     current,
     description,
   } = formData;
+
+  const onRemoveExperience = (index) => {
+    let list = [...profile.experience];
+    list.splice(index, 1);
+    console.loge("HERE I AM");
+  };
 
   const handleValueChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -158,7 +175,10 @@ const AddExperience = ({ addExperience, history }) => {
         </form>
       </Grid>
       <Grid item xs={8}>
-        <DisplayExperienceTable />
+        <ExperienceTable
+          experienceList={loading ? [] : profile.experience}
+          onRemoveExperience={onRemoveExperience}
+        />
       </Grid>
     </Grid>
   );
@@ -166,6 +186,14 @@ const AddExperience = ({ addExperience, history }) => {
 
 AddExperience.propTypes = {
   addExperience: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
 };
 
-export default connect(null, { addExperience })(AddExperience);
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+});
+
+export default connect(mapStateToProps, { addExperience, getCurrentProfile })(
+  AddExperience
+);
