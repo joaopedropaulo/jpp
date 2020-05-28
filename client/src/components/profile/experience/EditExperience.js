@@ -2,7 +2,11 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addExperience, getCurrentProfile } from "../../../actions/profile";
+import {
+  addExperience,
+  removeExperience,
+  getCurrentProfile,
+} from "../../../actions/profile";
 import ExperienceTable from "./ExperienceTable";
 
 import {
@@ -20,16 +24,15 @@ import {
   Paper,
 } from "@material-ui/core";
 
-const AddExperience = ({
+const EditExperience = ({
   addExperience,
+  removeExperience,
   getCurrentProfile,
   profile: { profile, loading },
   history,
 }) => {
   useEffect(() => {
-    console.log("HERE I AM - current profile");
     getCurrentProfile();
-    console.log(profile);
   }, [loading]);
 
   const [formData, setFormData] = useState({
@@ -56,10 +59,21 @@ const AddExperience = ({
     description,
   } = formData;
 
+  const cleanUpForm = () => {
+    setFormData({
+      company: "",
+      companyIcon: "",
+      jobTitle: "",
+      location: "",
+      from: "",
+      to: "",
+      current: false,
+      description: "",
+    });
+  };
+
   const onRemoveExperience = (index) => {
-    let list = [...profile.experience];
-    list.splice(index, 1);
-    console.loge("HERE I AM");
+    removeExperience(profile.experience[index]._id);
   };
 
   const handleValueChange = (e) => {
@@ -69,6 +83,7 @@ const AddExperience = ({
   const onSubmit = (e) => {
     e.preventDefault();
     addExperience(formData, history);
+    cleanUpForm();
   };
 
   return (
@@ -167,10 +182,12 @@ const AddExperience = ({
             />
           </div>
           <Button type="submit" variant="contained" color="primary">
-            Submit
+            Add
           </Button>
           <Typography>
-            <Link href="/dashboard">Back</Link>
+            <Button variant="contained" color="secondary" href="/dashboard">
+              Back
+            </Button>
           </Typography>
         </form>
       </Grid>
@@ -184,8 +201,9 @@ const AddExperience = ({
   );
 };
 
-AddExperience.propTypes = {
+EditExperience.propTypes = {
   addExperience: PropTypes.func.isRequired,
+  removeExperience: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
 };
@@ -194,6 +212,8 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { addExperience, getCurrentProfile })(
-  AddExperience
-);
+export default connect(mapStateToProps, {
+  addExperience,
+  removeExperience,
+  getCurrentProfile,
+})(EditExperience);

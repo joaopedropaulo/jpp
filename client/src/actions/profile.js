@@ -45,7 +45,9 @@ export const createUpdateProfile = (formData, history, edit = false) => async (
   }
 };
 
-export const addExperience = (formData, history) => async (dispatch) => {
+export const addExperience = (formData, history, redirect = false) => async (
+  dispatch
+) => {
   try {
     const config = {
       headers: {
@@ -56,7 +58,37 @@ export const addExperience = (formData, history) => async (dispatch) => {
     dispatch({ type: UPDATE_PROFILE, payload: res.data });
     dispatch(setAlert("Experience Added.", "success"));
 
-    history.push("/dashboard");
+    if (redirect) {
+      history.push("/dashboard");
+    }
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const removeExperience = (itemId) => async (dispatch) => {
+  try {
+    //const config = {
+    //  headers: {
+    //    "Content-Type": "application/json",
+    //  },
+    //};
+    console.log(itemId);
+    const res = await axios.delete("/api/profile/experience/" + itemId);
+    console.log(res);
+    dispatch({ type: UPDATE_PROFILE, payload: res.data });
+    dispatch(setAlert("Experience Item Removed.", "success"));
+
+    //history.push("/dashboard");
   } catch (err) {
     const errors = err.response.data.errors;
 
