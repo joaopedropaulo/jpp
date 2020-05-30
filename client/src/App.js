@@ -13,7 +13,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/profile/CreateProfile";
 import EditProfile from "./components/profile/EditProfile";
 import EditExperience from "./components/profile/experience/EditExperience";
-import AddEducation from "./components/profile/AddEducation";
+import EditEducation from "./components/profile/education/EditEducation";
 
 import PrivateRoute from "./components/routing/PrivateRoute";
 
@@ -62,7 +62,7 @@ const App = () => {
             <PrivateRoute
               exact
               path="/edit-education"
-              component={AddEducation}
+              component={EditEducation}
             />
           </Switch>
         </Fragment>

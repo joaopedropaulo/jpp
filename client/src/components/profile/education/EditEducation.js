@@ -3,11 +3,11 @@ import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
-  addExperience,
-  removeExperience,
+  addEducation,
+  removeEducation,
   getCurrentProfile,
 } from "../../../actions/profile";
-import ExperienceTable from "./ExperienceTable";
+import EducationTable from "./EducationTable";
 
 import {
   Typography,
@@ -17,9 +17,9 @@ import {
   Grid,
 } from "@material-ui/core";
 
-const EditExperience = ({
-  addExperience,
-  removeExperience,
+const EditEducation = ({
+  addEducation,
+  removeEducation,
   getCurrentProfile,
   profile: { profile, loading },
   history,
@@ -29,23 +29,21 @@ const EditExperience = ({
   }, [loading]);
 
   const [formData, setFormData] = useState({
-    company: "",
-    companyIcon: "",
-    jobTitle: "",
-    location: "",
+    school: "",
+    degree: "",
+    fieldOfStudy: "",
     from: "",
     to: "",
     current: false,
     description: "",
   });
 
-  const [isCurrentJob, toggleIsCurrentJob] = useState(false);
+  const [isCurrentSchool, toggleIsCurrentSchool] = useState(false);
 
   const {
-    company,
-    companyIcon,
-    jobTitle,
-    location,
+    school,
+    degree,
+    fieldOfStudy,
     from,
     to,
     current,
@@ -54,10 +52,9 @@ const EditExperience = ({
 
   const cleanUpForm = () => {
     setFormData({
-      company: "",
-      companyIcon: "",
-      jobTitle: "",
-      location: "",
+      school: "",
+      degree: "",
+      fieldOfStudy: "",
       from: "",
       to: "",
       current: false,
@@ -65,8 +62,8 @@ const EditExperience = ({
     });
   };
 
-  const onRemoveExperience = (index) => {
-    removeExperience(profile.experience[index]._id);
+  const onRemoveEducation = (index) => {
+    removeEducation(profile.education[index]._id);
   };
 
   const handleValueChange = (e) => {
@@ -75,52 +72,42 @@ const EditExperience = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addExperience(formData, history);
+    addEducation(formData, history);
     cleanUpForm();
   };
 
   return (
     <Grid container spacing={2}>
       <Grid item xs={4}>
-        <Typography variant="h3">Edit Experience</Typography>
+        <Typography variant="h3">Edit Education</Typography>
         <form onSubmit={(e) => onSubmit(e)}>
           <div>
-            <Typography variant="h6">Job Title</Typography>
+            <Typography variant="h6">School</Typography>
             <TextField
               type="text"
-              label="Job Title"
-              id="jobTitle"
-              value={jobTitle}
+              label="School"
+              id="school"
+              value={school}
               onChange={(e) => handleValueChange(e)}
             />
           </div>
           <div>
-            <Typography variant="h6">Company</Typography>
+            <Typography variant="h6">Degree</Typography>
             <TextField
               type="text"
-              label="Company"
-              id="company"
-              value={company}
+              label="Degree"
+              id="degree"
+              value={degree}
               onChange={(e) => handleValueChange(e)}
             />
           </div>
           <div>
-            <Typography variant="h6">Company Icon URL</Typography>
+            <Typography variant="h6">Field of Study</Typography>
             <TextField
               type="text"
-              label="Company Icon URL"
-              id="companyIcon"
-              value={companyIcon}
-              onChange={(e) => handleValueChange(e)}
-            />
-          </div>
-          <div>
-            <Typography variant="h6">Location</Typography>
-            <TextField
-              type="text"
-              label="Location"
-              id="location"
-              value={location}
+              label="Field of Study"
+              id="fieldOfStudy"
+              value={fieldOfStudy}
               onChange={(e) => handleValueChange(e)}
             />
           </div>
@@ -135,19 +122,19 @@ const EditExperience = ({
           </div>
           <div>
             <Typography variant="h6" display="inline">
-              Current Job
+              Current School
             </Typography>
             <Checkbox
               checked={current}
               onChange={(e) => {
                 setFormData({ ...formData, current: !current });
-                toggleIsCurrentJob(!isCurrentJob);
+                toggleIsCurrentSchool(!isCurrentSchool);
               }}
               name="current"
               color="primary"
             />
           </div>
-          {!isCurrentJob ? (
+          {!isCurrentSchool ? (
             <div>
               <Typography variant="h6">To Date</Typography>
               <TextField
@@ -165,7 +152,7 @@ const EditExperience = ({
             <Typography variant="h6">Description</Typography>
             <TextField
               id="description"
-              label="Job Description"
+              label="Description"
               multiline
               cols={30}
               rows={5}
@@ -175,7 +162,7 @@ const EditExperience = ({
             />
           </div>
           <Button type="submit" variant="contained" color="primary">
-            Add
+            Submit
           </Button>
           <Button variant="contained" color="secondary" href="/dashboard">
             Back
@@ -183,20 +170,19 @@ const EditExperience = ({
         </form>
       </Grid>
       <Grid item xs={8}>
-        <ExperienceTable
-          experienceList={loading ? [] : profile.experience}
-          onRemoveExperience={onRemoveExperience}
+        <EducationTable
+          educationList={loading ? [] : profile.education}
+          onRemoveEducation={onRemoveEducation}
         />
       </Grid>
     </Grid>
   );
 };
 
-EditExperience.propTypes = {
-  addExperience: PropTypes.func.isRequired,
-  removeExperience: PropTypes.func.isRequired,
+EditEducation.propTypes = {
+  addEducation: PropTypes.func.isRequired,
+  removeEducation: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -204,7 +190,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addExperience,
-  removeExperience,
+  addEducation,
+  removeEducation,
   getCurrentProfile,
-})(EditExperience);
+})(EditEducation);
