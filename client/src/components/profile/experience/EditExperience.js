@@ -15,6 +15,8 @@ import {
   Button,
   Checkbox,
   Grid,
+  Container,
+  Box,
 } from "@material-ui/core";
 
 const EditExperience = ({
@@ -82,111 +84,127 @@ const EditExperience = ({
   return (
     <Grid container spacing={2}>
       <Grid item xs={4}>
-        <Typography variant="h3">Edit Experience</Typography>
-        <form onSubmit={(e) => onSubmit(e)}>
-          <div>
-            <Typography variant="h6">Job Title</Typography>
-            <TextField
-              type="text"
-              label="Job Title"
-              id="jobTitle"
-              value={jobTitle}
-              onChange={(e) => handleValueChange(e)}
-            />
-          </div>
-          <div>
-            <Typography variant="h6">Company</Typography>
-            <TextField
-              type="text"
-              label="Company"
-              id="company"
-              value={company}
-              onChange={(e) => handleValueChange(e)}
-            />
-          </div>
-          <div>
-            <Typography variant="h6">Company Icon URL</Typography>
-            <TextField
-              type="text"
-              label="Company Icon URL"
-              id="companyIcon"
-              value={companyIcon}
-              onChange={(e) => handleValueChange(e)}
-            />
-          </div>
-          <div>
-            <Typography variant="h6">Location</Typography>
-            <TextField
-              type="text"
-              label="Location"
-              id="location"
-              value={location}
-              onChange={(e) => handleValueChange(e)}
-            />
-          </div>
-          <div>
-            <Typography variant="h6">From Date</Typography>
-            <TextField
-              type="date"
-              id="from"
-              value={from}
-              onChange={(e) => handleValueChange(e)}
-            />
-          </div>
-          <div>
-            <Typography variant="h6" display="inline">
-              Current Job
-            </Typography>
-            <Checkbox
-              checked={current}
-              onChange={(e) => {
-                setFormData({ ...formData, current: !current });
-                toggleIsCurrentJob(!isCurrentJob);
-              }}
-              name="current"
-              color="primary"
-            />
-          </div>
-          {!isCurrentJob ? (
-            <div>
-              <Typography variant="h6">To Date</Typography>
+        <Container maxWidth="sm">
+          <Typography variant="h3">Edit Experience</Typography>
+        </Container>
+      </Grid>
+      <Grid item xs={8} />
+      <Grid item xs={4}>
+        <Container maxWidth="sm">
+          <form onSubmit={(e) => onSubmit(e)}>
+            <Box>
+              <Typography variant="h6">Job Title</Typography>
               <TextField
-                type="date"
-                id="to"
-                value={to}
+                fullWidth
+                type="text"
+                label="Job Title"
+                id="jobTitle"
+                value={jobTitle}
                 onChange={(e) => handleValueChange(e)}
               />
-            </div>
-          ) : (
+            </Box>
+            <Box>
+              <Typography variant="h6">Company</Typography>
+              <TextField
+                fullWidth
+                type="text"
+                label="Company"
+                id="company"
+                value={company}
+                onChange={(e) => handleValueChange(e)}
+              />
+            </Box>
+            <Box>
+              <Typography variant="h6">Company Icon URL</Typography>
+              <TextField
+                fullWidth
+                type="text"
+                label="Company Icon URL"
+                id="companyIcon"
+                value={companyIcon}
+                onChange={(e) => handleValueChange(e)}
+              />
+            </Box>
+            <Box>
+              <Typography variant="h6">Location</Typography>
+              <TextField
+                fullWidth
+                type="text"
+                label="Location"
+                id="location"
+                value={location}
+                onChange={(e) => handleValueChange(e)}
+              />
+            </Box>
+            <Box>
+              <Typography variant="h6">From Date</Typography>
+              <TextField
+                fullWidth
+                type="date"
+                id="from"
+                value={from}
+                onChange={(e) => handleValueChange(e)}
+              />
+            </Box>
+            <Box>
+              <Typography variant="h6" display="inline">
+                Current Job
+              </Typography>
+              <Checkbox
+                checked={current}
+                onChange={(e) => {
+                  setFormData({ ...formData, current: !current });
+                  toggleIsCurrentJob(!isCurrentJob);
+                }}
+                name="current"
+                color="primary"
+              />
+            </Box>
+            {!isCurrentJob ? (
+              <Box>
+                <Typography variant="h6">To Date</Typography>
+                <TextField
+                  fullWidth
+                  type="date"
+                  id="to"
+                  value={to}
+                  onChange={(e) => handleValueChange(e)}
+                />
+              </Box>
+            ) : (
+              <Fragment />
+            )}
             <Fragment />
-          )}
-          <Fragment />
-          <div>
-            <Typography variant="h6">Description</Typography>
-            <TextField
-              id="description"
-              label="Job Description"
-              multiline
-              cols={30}
-              rows={5}
-              variant="outlined"
-              value={description}
-              onChange={(e) => handleValueChange(e)}
-            />
-          </div>
-          <Button type="submit" variant="contained" color="primary">
-            Add
-          </Button>
-          <Button variant="contained" color="secondary" href="/dashboard">
-            Back
-          </Button>
-        </form>
+            <Box>
+              <Typography variant="h6">Description</Typography>
+              <TextField
+                fullWidth
+                id="description"
+                label="Job Description"
+                multiline
+                cols={30}
+                rows={5}
+                variant="outlined"
+                value={description}
+                onChange={(e) => handleValueChange(e)}
+              />
+            </Box>
+            <Button type="submit" variant="contained" color="primary">
+              Add
+            </Button>
+            <Button variant="contained" color="secondary" href="/dashboard">
+              Back
+            </Button>
+          </form>
+        </Container>
       </Grid>
       <Grid item xs={8}>
-        <ExperienceTable
-          experienceList={loading ? [] : profile.experience}
-          onRemoveExperience={onRemoveExperience}
-        />
+        <Container maxWidth="lg">
+          <ExperienceTable
+            experienceList={loading ? [] : profile.experience}
+            onRemoveExperience={onRemoveExperience}
+          />
+        </Container>
       </Grid>
     </Grid>
   );
