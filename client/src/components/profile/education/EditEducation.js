@@ -162,7 +162,7 @@ const EditEducation = ({
             />
           </div>
           <Button type="submit" variant="contained" color="primary">
-            Submit
+            Add
           </Button>
           <Button variant="contained" color="secondary" href="/dashboard">
             Back

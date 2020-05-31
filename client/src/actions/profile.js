@@ -35,7 +35,7 @@ export const createUpdateProfile = (formData, history, edit = false) => async (
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+      errors.forEach((e) => dispatch(setAlert(e.msg, "warning")));
     }
 
     dispatch({
@@ -65,7 +65,7 @@ export const addExperience = (formData, history, redirect = false) => async (
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+      errors.forEach((e) => dispatch(setAlert(e.msg, "warning")));
     }
 
     dispatch({
@@ -84,7 +84,7 @@ export const removeExperience = (itemId) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+      errors.forEach((e) => dispatch(setAlert(e.msg, "warning")));
     }
 
     dispatch({
@@ -114,7 +114,7 @@ export const addEducation = (formData, history, redirect = false) => async (
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+      errors.forEach((e) => dispatch(setAlert(e.msg, "warning")));
     }
 
     dispatch({
@@ -133,7 +133,7 @@ export const removeEducation = (itemId) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+      errors.forEach((e) => dispatch(setAlert(e.msg, "warning")));
     }
 
     dispatch({
