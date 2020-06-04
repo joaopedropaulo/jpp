@@ -24,7 +24,15 @@ class ExperienceTableItem extends React.Component {
           )}
         </TableCell>
         <TableCell>{this.props.value.location}</TableCell>
-        <TableCell>{this.props.value.description}</TableCell>
+        <TableCell
+        // style={{
+        //   whiteSpace: "normal",
+        //   wordBreak: "break-word",
+        //   overflowWrap: "break-word",
+        // }}
+        >
+          {this.props.value.description}
+        </TableCell>
         <TableCell>
           <Button
             variant="outlined"

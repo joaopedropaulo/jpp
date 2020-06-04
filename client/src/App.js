@@ -23,6 +23,10 @@ import store from "./store";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 
+import { ThemeProvider } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import themes from "./styles/themes";
+
 import "./App.css";
 
 if (localStorage.token) {
@@ -35,39 +39,46 @@ const App = () => {
   }, []);
 
   return (
-    <Provider store={store}>
-      <Router>
-        <Fragment>
-          <Route exact path="/" component={Landing} />
-          <Alert />
-          <Switch>
-            <Route exact path="/login" component={Login} />
+    <ThemeProvider theme={themes}>
+      <CssBaseline />
+      <Provider store={store}>
+        <Router>
+          <Fragment>
+            <Route exact path="/" component={Landing} />
+            <Alert />
+            <Switch>
+              <Route exact path="/login" component={Login} />
 
-            <Route exact path="/profile" component={Profile} />
+              <Route exact path="/profile" component={Profile} />
 
-            <Route exact path="/about" component={Landing} />
+              <Route exact path="/about" component={Landing} />
 
-            <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            <PrivateRoute
-              exact
-              path="/create-profile"
-              component={CreateProfile}
-            />
-            <PrivateRoute exact path="/edit-profile" component={EditProfile} />
-            <PrivateRoute
-              exact
-              path="/edit-experience"
-              component={EditExperience}
-            />
-            <PrivateRoute
-              exact
-              path="/edit-education"
-              component={EditEducation}
-            />
-          </Switch>
-        </Fragment>
-      </Router>
-    </Provider>
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute
+                exact
+                path="/create-profile"
+                component={CreateProfile}
+              />
+              <PrivateRoute
+                exact
+                path="/edit-profile"
+                component={EditProfile}
+              />
+              <PrivateRoute
+                exact
+                path="/edit-experience"
+                component={EditExperience}
+              />
+              <PrivateRoute
+                exact
+                path="/edit-education"
+                component={EditEducation}
+              />
+            </Switch>
+          </Fragment>
+        </Router>
+      </Provider>
+    </ThemeProvider>
   );
 };
 
