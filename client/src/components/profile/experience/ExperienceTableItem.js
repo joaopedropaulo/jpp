@@ -12,10 +12,40 @@ class ExperienceTableItem extends React.Component {
   render() {
     return (
       <TableRow>
-        <TableCell>{this.props.value.companyIcon}</TableCell>
-        <TableCell>{this.props.value.company}</TableCell>
-        <TableCell>{this.props.value.jobTitle}</TableCell>
-        <TableCell>
+        <TableCell
+          style={{
+            whiteSpace: "normal",
+            wordBreak: "break-word",
+            overflowWrap: "break-word",
+          }}
+        >
+          {this.props.value.companyIcon}
+        </TableCell>
+        <TableCell
+          style={{
+            whiteSpace: "normal",
+            wordBreak: "break-word",
+            overflowWrap: "break-word",
+          }}
+        >
+          {this.props.value.company}
+        </TableCell>
+        <TableCell
+          style={{
+            whiteSpace: "normal",
+            wordBreak: "break-word",
+            overflowWrap: "break-word",
+          }}
+        >
+          {this.props.value.jobTitle}
+        </TableCell>
+        <TableCell
+          style={{
+            whiteSpace: "normal",
+            wordBreak: "break-word",
+            overflowWrap: "break-word",
+          }}
+        >
           <Moment format="YYYY/MM/DD">{this.props.value.from}</Moment>-
           {this.props.value.to === null ? (
             " Now"
@@ -23,13 +53,21 @@ class ExperienceTableItem extends React.Component {
             <Moment format="YYYY/MM/DD">{this.props.value.to}</Moment>
           )}
         </TableCell>
-        <TableCell>{this.props.value.location}</TableCell>
         <TableCell
-        // style={{
-        //   whiteSpace: "normal",
-        //   wordBreak: "break-word",
-        //   overflowWrap: "break-word",
-        // }}
+          style={{
+            whiteSpace: "normal",
+            wordBreak: "break-word",
+            overflowWrap: "break-word",
+          }}
+        >
+          {this.props.value.location}
+        </TableCell>
+        <TableCell
+          style={{
+            whiteSpace: "normal",
+            wordBreak: "break-word",
+            overflowWrap: "break-word",
+          }}
         >
           {this.props.value.description}
         </TableCell>

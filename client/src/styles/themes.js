@@ -27,7 +27,7 @@ const darkTheme = createMuiTheme({
     },
     h4: {
       textTransform: "uppercase",
-      fontWeight: 900,
+      fontWeight: 700,
     },
     h5: {
       textTransform: "uppercase",
