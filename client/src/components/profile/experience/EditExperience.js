@@ -92,16 +92,17 @@ const EditExperience = ({
       <Grid container justify="center" spacing={2}>
         <Grid item xs={4}>
           <Container maxWidth="sm">
-            <Typography variant="h4">Edit Experience</Typography>
+            <Box pb={2}>
+              <Typography variant="h4">Edit Experience</Typography>
+            </Box>
           </Container>
         </Grid>
         <Grid item xs={8} />
         <Grid item xs={4}>
-          <Paper>
+          <Paper className={classes.fillHeightContainer}>
             <Container maxWidth="sm">
               <form onSubmit={(e) => onSubmit(e)}>
                 <Box py={2}>
-                  {/* <Typography variant="h6">Job Title</Typography> */}
                   <TextField
                     fullWidth
                     type="text"
@@ -112,12 +113,7 @@ const EditExperience = ({
                   />
                 </Box>
                 <Box py={2}>
-                  {/* <Typography variant="h6">Company</Typography> */}
                   <TextField
-                    //className={classes.bodyTextField}
-                    // inputProps={{
-                    //   className: classes.bodyTextField,
-                    // }}
                     fullWidth
                     type="text"
                     label="Company"
@@ -127,7 +123,6 @@ const EditExperience = ({
                   />
                 </Box>
                 <Box py={2}>
-                  {/* <Typography variant="h6">Company Icon URL</Typography> */}
                   <TextField
                     fullWidth
                     type="text"
@@ -138,7 +133,6 @@ const EditExperience = ({
                   />
                 </Box>
                 <Box py={2}>
-                  {/* <Typography variant="h6">Location</Typography> */}
                   <TextField
                     fullWidth
                     type="text"
@@ -149,39 +143,43 @@ const EditExperience = ({
                   />
                 </Box>
                 <Box py={2}>
-                  {/* <Typography variant="subtitle1" display="inline">
-                  From Date
-                </Typography> */}
-                  <TextField
-                    type="date"
-                    id="from"
-                    label="From Date"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    value={from}
-                    onChange={(e) => handleValueChange(e)}
-                  />
-                </Box>
-                <Box py={2}>
-                  <Typography variant="subtitle2" display="inline">
-                    Current Job
-                  </Typography>
-                  <Checkbox
-                    checked={current}
-                    onChange={(e) => {
-                      setFormData({ ...formData, current: !current });
-                      toggleIsCurrentJob(!isCurrentJob);
-                    }}
-                    name="current"
-                    color="primary"
-                  />
+                  <Grid
+                    justify="space-between"
+                    alignItems="center"
+                    container
+                    spacing={24}
+                  >
+                    <Grid item>
+                      <TextField
+                        type="date"
+                        id="from"
+                        label="From Date"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        value={from}
+                        onChange={(e) => handleValueChange(e)}
+                      />
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="subtitle2" display="inline">
+                        Current Job
+                      </Typography>
+                      <Checkbox
+                        checked={current}
+                        onChange={(e) => {
+                          setFormData({ ...formData, current: !current });
+                          toggleIsCurrentJob(!isCurrentJob);
+                        }}
+                        name="current"
+                        color="primary"
+                      />
+                    </Grid>
+                  </Grid>
                 </Box>
                 {!isCurrentJob ? (
                   <Box py={2}>
-                    {/* <Typography variant="h6">To Date</Typography> */}
                     <TextField
-                      fullWidth
                       type="date"
                       id="to"
                       label="To Date"
@@ -197,7 +195,6 @@ const EditExperience = ({
                 )}
                 <Fragment />
                 <Box py={2}>
-                  {/* <Typography variant="h6">Description</Typography> */}
                   <TextField
                     fullWidth
                     id="description"
@@ -218,13 +215,19 @@ const EditExperience = ({
                           variant="contained"
                           color="secondary"
                           href="/dashboard"
+                          size="large"
                         >
                           Back
                         </Button>
                       </div>
                     </Grid>
                     <Grid item>
-                      <Button type="submit" variant="contained" color="primary">
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                      >
                         Add
                       </Button>
                     </Grid>

@@ -30,12 +30,47 @@ class ExperienceTable extends React.Component {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Company Icon</TableCell>
-              <TableCell>Company</TableCell>
-              <TableCell>Job Title</TableCell>
-              <TableCell>Years</TableCell>
-              <TableCell>Location</TableCell>
-              <TableCell>Description</TableCell>
+              <TableCell></TableCell>
+              <TableCell
+                style={{
+                  whiteSpace: "nowrap",
+                  textTransform: "uppercase",
+                }}
+              >
+                Company
+              </TableCell>
+              <TableCell
+                style={{
+                  whiteSpace: "nowrap",
+                  textTransform: "uppercase",
+                }}
+              >
+                Job Title
+              </TableCell>
+              <TableCell
+                style={{
+                  whiteSpace: "nowrap",
+                  textTransform: "uppercase",
+                }}
+              >
+                Years
+              </TableCell>
+              <TableCell
+                style={{
+                  whiteSpace: "nowrap",
+                  textTransform: "uppercase",
+                }}
+              >
+                Location
+              </TableCell>
+              <TableCell
+                style={{
+                  whiteSpace: "nowrap",
+                  textTransform: "uppercase",
+                }}
+              >
+                Description
+              </TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableHead>
