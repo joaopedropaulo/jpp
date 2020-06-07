@@ -8,7 +8,7 @@ import { getCurrentProfile } from "../../actions/profile";
 import DashboardActions from "./DashboardActions";
 
 import Spinner from "../layout/Spinner";
-import { Typography } from "@material-ui/core";
+import { Typography, Box } from "@material-ui/core";
 
 const Dashboard = ({
   getCurrentProfile,
@@ -28,10 +28,9 @@ const Dashboard = ({
     );
   } else {
     dashboardHeader = (
-      <Fragment>
-        <Typography variant="h3">Profile Dashboard</Typography>
-        <Typography variant="h4"> Welcome {user && user.name}</Typography>
-      </Fragment>
+      <Box mx={10} mt={5}>
+        <Typography variant="h6"> Welcome, {user && user.name}!</Typography>
+      </Box>
     );
   }
 
