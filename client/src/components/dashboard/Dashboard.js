@@ -52,9 +52,9 @@ const Dashboard = ({
       <Navbar />
       {dashboardHeader}
       {profile !== null ? (
-        <Box>
+        <Fragment>
           <DashboardActions />
-        </Box>
+        </Fragment>
       ) : (
         <Fragment>
           <Link to="/create-profile">Create Profile</Link>
