@@ -9,6 +9,17 @@ import DashboardActions from "./DashboardActions";
 
 import Spinner from "../layout/Spinner";
 import { Typography, Box } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  headerTypography: {
+    [theme.breakpoints.down("md")]: {
+      marginLeft: "0",
+      marginRight: "0",
+      textAlign: "center",
+    },
+  },
+}));
 
 const Dashboard = ({
   getCurrentProfile,
@@ -19,6 +30,8 @@ const Dashboard = ({
     getCurrentProfile();
   }, []);
 
+  const classes = useStyles();
+
   let dashboardHeader;
   if (loading && profile === null) {
     dashboardHeader = (
@@ -28,7 +41,7 @@ const Dashboard = ({
     );
   } else {
     dashboardHeader = (
-      <Box mx={10} mt={5}>
+      <Box mx={10} mt={5} className={classes.headerTypography}>
         <Typography variant="h6"> Welcome, {user && user.name}!</Typography>
       </Box>
     );
@@ -39,9 +52,9 @@ const Dashboard = ({
       <Navbar />
       {dashboardHeader}
       {profile !== null ? (
-        <Fragment>
+        <Box>
           <DashboardActions />
-        </Fragment>
+        </Box>
       ) : (
         <Fragment>
           <Link to="/create-profile">Create Profile</Link>

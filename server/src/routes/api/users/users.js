@@ -15,14 +15,12 @@ const User = require("../../../models/User");
 router.post(
   "/",
   [
-    check("name", "Name is a required field.")
-      .not()
-      .isEmpty(),
+    check("name", "Name is a required field.").not().isEmpty(),
     check("email", "Please include a valid email.").isEmail(),
     check(
       "password",
       "Please enter a password with 8 or more characters."
-    ).isLength({ min: 8 })
+    ).isLength({ min: 8 }),
   ],
   async (req, res) => {
     let user = await User.findOne();
@@ -43,7 +41,7 @@ router.post(
       user = new User({
         name,
         email,
-        password
+        password,
       });
 
       // Encrypt password
@@ -56,8 +54,8 @@ router.post(
       // Prepare response
       const payload = {
         user: {
-          id: user.id
-        }
+          id: user.id,
+        },
       };
 
       // Create token
