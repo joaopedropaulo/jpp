@@ -88,17 +88,14 @@ const EditExperience = ({
   };
 
   return (
-    <Box mx={15} mt={10}>
-      <Grid container justify="center" spacing={2}>
-        <Grid item xs={4}>
-          <Container maxWidth="sm">
-            <Box pb={2}>
-              <Typography variant="h4">Edit Experience</Typography>
-            </Box>
-          </Container>
+    <Box className={classes.editModeContainers}>
+      <Grid container justify="flex-start" spacing={2}>
+        <Grid item xs={12}>
+          <Box pb={2}>
+            <Typography variant="h4">Edit Experience</Typography>
+          </Box>
         </Grid>
-        <Grid item xs={8} />
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <Paper className={classes.fillHeightContainer}>
             <Container maxWidth="sm">
               <form onSubmit={(e) => onSubmit(e)}>
@@ -237,14 +234,12 @@ const EditExperience = ({
             </Container>
           </Paper>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={12} md={8}>
           <Paper className={classes.fillHeightContainer}>
-            <Container maxWidth="lg">
-              <ExperienceTable
-                experienceList={loading ? [] : profile.experience}
-                onRemoveExperience={onRemoveExperience}
-              />
-            </Container>
+            <ExperienceTable
+              experienceList={loading ? [] : profile.experience}
+              onRemoveExperience={onRemoveExperience}
+            />
           </Paper>
         </Grid>
       </Grid>

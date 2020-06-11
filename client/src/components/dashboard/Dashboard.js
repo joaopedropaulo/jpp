@@ -8,7 +8,7 @@ import { getCurrentProfile } from "../../actions/profile";
 import DashboardActions from "./DashboardActions";
 
 import Spinner from "../layout/Spinner";
-import { Typography, Box } from "@material-ui/core";
+import { Typography, Box, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +42,7 @@ const Dashboard = ({
   } else {
     dashboardHeader = (
       <Box mx={10} mt={5} className={classes.headerTypography}>
-        <Typography variant="h6"> Welcome, {user && user.name}!</Typography>
+        <Typography variant="h6">Welcome, {user && user.name}!</Typography>
       </Box>
     );
   }

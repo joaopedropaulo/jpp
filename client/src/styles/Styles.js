@@ -1,8 +1,17 @@
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   fillHeightContainer: {
     height: "100%",
+  },
+
+  editModeContainers: {
+    [theme.breakpoints.up("xs")]: {
+      margin: "2% 3%",
+    },
+    [theme.breakpoints.up("md")]: {
+      margin: "2% 5% 0% 5%",
+    },
   },
   // rootDiv: {
   //   flexGrow: 1,
@@ -31,6 +40,6 @@ const useStyles = makeStyles({
   // bodyTextField: {
   //   color: "#B9B9B9",
   // },
-});
+}));
 
 export default useStyles;
