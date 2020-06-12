@@ -54,7 +54,7 @@ class ExperienceTableItem extends React.Component {
           {this.props.value.jobTitle}
         </TableCell>
         <TableCell>
-          <Moment format="YYYY/MM/DD">{this.props.value.from}</Moment>-
+          <Moment format="YYYY/MM/DD">{this.props.value.from}</Moment> -
           {this.props.value.to === null ? (
             " Now"
           ) : (

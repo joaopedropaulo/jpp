@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  fillHeightContainer: {
+  editModePaperContainers: {
     height: "100%",
   },
 
@@ -13,6 +13,53 @@ const useStyles = makeStyles((theme) => ({
       margin: "2% 5% 0% 5%",
     },
   },
+
+  editModeHeadersContainers: {
+    [theme.breakpoints.up("xs")]: {
+      "& h4": {
+        fontSize: "1.75rem",
+      },
+      textAlign: "center",
+      margin: "3% 0%",
+    },
+    [theme.breakpoints.up("md")]: {
+      "& h4": {
+        fontSize: "2.125rem",
+      },
+      textAlign: "left",
+      margin: "0% 0% 1% 1%",
+    },
+  },
+
+  editModeTextInputContainers: {
+    [theme.breakpoints.up("xs")]: {
+      padding: "1% 0%",
+    },
+    [theme.breakpoints.up("md")]: {
+      padding: "2% 0% 2% 0%",
+    },
+  },
+
+  editModeDateInputContainers: {
+    [theme.breakpoints.up("xs")]: {
+      padding: "2% 0%",
+    },
+    [theme.breakpoints.up("md")]: {
+      padding: "3% 0% 3% 0%",
+    },
+  },
+
+  editModeExperienceTableItemCompanyIcon: {
+    [theme.breakpoints.up("xs")]: {
+      width: "50px",
+      height: "50px",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "75px",
+      height: "75px",
+    },
+  },
+
   // rootDiv: {
   //   flexGrow: 1,
   // },

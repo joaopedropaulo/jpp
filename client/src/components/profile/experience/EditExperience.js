@@ -21,6 +21,7 @@ import {
   Box,
   Divider,
   Paper,
+  Fab,
 } from "@material-ui/core";
 
 const EditExperience = ({
@@ -91,15 +92,15 @@ const EditExperience = ({
     <Box className={classes.editModeContainers}>
       <Grid container justify="flex-start" spacing={2}>
         <Grid item xs={12}>
-          <Box pb={2}>
+          <Box className={classes.editModeHeadersContainers}>
             <Typography variant="h4">Edit Experience</Typography>
           </Box>
         </Grid>
         <Grid item xs={12} md={4}>
-          <Paper className={classes.fillHeightContainer}>
+          <Paper className={classes.editModePaperContainers}>
             <Container maxWidth="sm">
               <form onSubmit={(e) => onSubmit(e)}>
-                <Box py={2}>
+                <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
                     type="text"
@@ -109,7 +110,7 @@ const EditExperience = ({
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
-                <Box py={2}>
+                <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
                     type="text"
@@ -119,7 +120,7 @@ const EditExperience = ({
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
-                <Box py={2}>
+                <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
                     type="text"
@@ -129,7 +130,7 @@ const EditExperience = ({
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
-                <Box py={2}>
+                <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
                     type="text"
@@ -139,7 +140,7 @@ const EditExperience = ({
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
-                <Box py={2}>
+                <Box className={classes.editModeDateInputContainers}>
                   <Grid
                     justify="space-between"
                     alignItems="center"
@@ -175,7 +176,7 @@ const EditExperience = ({
                   </Grid>
                 </Box>
                 {!isCurrentJob ? (
-                  <Box py={2}>
+                  <Box className={classes.editModeDateInputContainers}>
                     <TextField
                       type="date"
                       id="to"
@@ -191,7 +192,7 @@ const EditExperience = ({
                   <Fragment />
                 )}
                 <Fragment />
-                <Box py={2}>
+                <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
                     id="description"
@@ -235,7 +236,7 @@ const EditExperience = ({
           </Paper>
         </Grid>
         <Grid item xs={12} md={8}>
-          <Paper className={classes.fillHeightContainer}>
+          <Paper className={classes.editModePaperContainers}>
             <ExperienceTable
               experienceList={loading ? [] : profile.experience}
               onRemoveExperience={onRemoveExperience}
