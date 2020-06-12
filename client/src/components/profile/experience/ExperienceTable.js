@@ -1,95 +1,57 @@
-import React, { Fragment, useState } from "react";
-import { Link, withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-
-import ExperienceTableItem from "./ExperienceTableItem";
-
+import React from "react";
 import {
-  Typography,
-  TextField,
-  Button,
-  Checkbox,
-  Grid,
   Table,
   TableBody,
   TableHead,
   TableContainer,
   TableCell,
   TableRow,
-  Paper,
 } from "@material-ui/core";
+import ExperienceTableItem from "./ExperienceTableItem";
+import useStyles from "../../../styles/Styles";
 
-class ExperienceTable extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell></TableCell>
-              <TableCell
-                style={{
-                  whiteSpace: "nowrap",
-                  textTransform: "uppercase",
-                }}
-              >
-                Company
-              </TableCell>
-              <TableCell
-                style={{
-                  whiteSpace: "nowrap",
-                  textTransform: "uppercase",
-                }}
-              >
-                Job Title
-              </TableCell>
-              <TableCell
-                style={{
-                  whiteSpace: "nowrap",
-                  textTransform: "uppercase",
-                }}
-              >
-                Years
-              </TableCell>
-              <TableCell
-                style={{
-                  whiteSpace: "nowrap",
-                  textTransform: "uppercase",
-                }}
-              >
-                Location
-              </TableCell>
-              <TableCell
-                style={{
-                  whiteSpace: "nowrap",
-                  textTransform: "uppercase",
-                }}
-              >
-                Description
-              </TableCell>
-              <TableCell></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.props.experienceList.map((experienceItem, index) => {
-              return (
-                <ExperienceTableItem
-                  key={`${index}-${experienceItem}`}
-                  index={index}
-                  value={experienceItem}
-                  onRemoveExperience={this.props.onRemoveExperience}
-                />
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    );
-  }
-}
+const ExperienceTable = (props) => {
+  const classes = useStyles();
+
+  return (
+    <TableContainer>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell></TableCell>
+            <TableCell className={classes.editModeExperienceTableHeaderCell}>
+              Company
+            </TableCell>
+            <TableCell className={classes.editModeExperienceTableHeaderCell}>
+              Job Title
+            </TableCell>
+            <TableCell className={classes.editModeExperienceTableHeaderCell}>
+              Years
+            </TableCell>
+            <TableCell className={classes.editModeExperienceTableHeaderCell}>
+              Location
+            </TableCell>
+            <TableCell className={classes.editModeExperienceTableHeaderCell}>
+              Description
+            </TableCell>
+            <TableCell></TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {props.experienceList.map((experienceItem, index) => {
+            return (
+              <ExperienceTableItem
+                key={`${index}-${experienceItem}`}
+                index={index}
+                value={experienceItem}
+                onRemoveExperience={props.onRemoveExperience}
+              />
+            );
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+};
 
 export default ExperienceTable;

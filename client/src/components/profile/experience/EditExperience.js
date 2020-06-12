@@ -1,16 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Link, withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  addExperience,
-  removeExperience,
-  getCurrentProfile,
-} from "../../../actions/profile";
-import ExperienceTable from "./ExperienceTable";
-
-import useStyles from "../../../styles/Styles";
-
+import PropTypes from "prop-types";
 import {
   Typography,
   TextField,
@@ -19,10 +9,15 @@ import {
   Grid,
   Container,
   Box,
-  Divider,
   Paper,
-  Fab,
 } from "@material-ui/core";
+import {
+  addExperience,
+  removeExperience,
+  getCurrentProfile,
+} from "../../../actions/profile";
+import ExperienceTable from "./ExperienceTable";
+import useStyles from "../../../styles/Styles";
 
 const EditExperience = ({
   addExperience,
@@ -145,7 +140,7 @@ const EditExperience = ({
                     justify="space-between"
                     alignItems="center"
                     container
-                    spacing={24}
+                    spacing={2}
                   >
                     <Grid item>
                       <TextField
@@ -206,7 +201,7 @@ const EditExperience = ({
                   />
                 </Box>
                 <Box py={2}>
-                  <Grid justify="space-between" container spacing={24}>
+                  <Grid justify="space-between" container spacing={2}>
                     <Grid item>
                       <div>
                         <Button

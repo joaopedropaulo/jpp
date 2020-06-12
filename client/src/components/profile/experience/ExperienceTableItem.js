@@ -1,97 +1,63 @@
 import React, { Fragment } from "react";
+import Moment from "react-moment";
 import {
-  ListItem,
-  ListItemText,
   Button,
   TableRow,
   TableCell,
   Card,
-  CardActionArea,
   CardMedia,
 } from "@material-ui/core";
-import Moment from "react-moment";
+import useStyles from "../../../styles/Styles";
 
-class ExperienceTableItem extends React.Component {
-  render() {
-    return (
-      <TableRow>
-        <TableCell>
-          {this.props.value.companyIcon ? (
-            <Card
-              style={{
-                width: "75px",
-                height: "75px",
-              }}
-            >
-              <CardMedia
-                image={this.props.value.companyIcon}
-                style={{
-                  width: "75px",
-                  height: "75px",
-                }}
-              />
-            </Card>
-          ) : (
-            <Fragment />
-          )}
-        </TableCell>
-        <TableCell
-          style={{
-            whiteSpace: "normal",
-            wordBreak: "break-word",
-            overflowWrap: "break-word",
-          }}
+const ExperienceTableItem = (props) => {
+  const classes = useStyles();
+
+  return (
+    <TableRow>
+      <TableCell>
+        {props.value.companyIcon ? (
+          <Card className={classes.editModeExperienceTableItemCompanyIcon}>
+            <CardMedia
+              image={props.value.companyIcon}
+              className={classes.editModeExperienceTableItemCompanyIcon}
+            />
+          </Card>
+        ) : (
+          <Fragment />
+        )}
+      </TableCell>
+      <TableCell className={classes.editModeExperienceTableItemCell}>
+        {props.value.company}
+      </TableCell>
+      <TableCell className={classes.editModeExperienceTableItemCell}>
+        {props.value.jobTitle}
+      </TableCell>
+      <TableCell>
+        <Moment format="YYYY/MM/DD">{props.value.from}</Moment> -
+        {props.value.to === null ? (
+          " Now"
+        ) : (
+          <Moment format="YYYY/MM/DD">{props.value.to}</Moment>
+        )}
+      </TableCell>
+      <TableCell className={classes.editModeExperienceTableItemCell}>
+        {props.value.location}
+      </TableCell>
+      <TableCell className={classes.editModeExperienceTableItemCell}>
+        {props.value.description}
+      </TableCell>
+      <TableCell>
+        <Button
+          variant="outlined"
+          color="secondary"
+          href="#"
+          onClick={(e) => props.onRemoveExperience(props.index)}
         >
-          {this.props.value.company}
-        </TableCell>
-        <TableCell
-          style={{
-            whiteSpace: "normal",
-            wordBreak: "break-word",
-            overflowWrap: "break-word",
-          }}
-        >
-          {this.props.value.jobTitle}
-        </TableCell>
-        <TableCell>
-          <Moment format="YYYY/MM/DD">{this.props.value.from}</Moment> -
-          {this.props.value.to === null ? (
-            " Now"
-          ) : (
-            <Moment format="YYYY/MM/DD">{this.props.value.to}</Moment>
-          )}
-        </TableCell>
-        <TableCell
-          style={{
-            whiteSpace: "normal",
-            wordBreak: "break-word",
-            overflowWrap: "break-word",
-          }}
-        >
-          {this.props.value.location}
-        </TableCell>
-        <TableCell
-          style={{
-            whiteSpace: "normal",
-            wordBreak: "break-word",
-            overflowWrap: "break-word",
-          }}
-        >
-          {this.props.value.description}
-        </TableCell>
-        <TableCell>
-          <Button
-            variant="outlined"
-            color="secondary"
-            href="#"
-            onClick={(e) => this.props.onRemoveExperience(this.props.index)}
-          >
-            X
-          </Button>
-        </TableCell>
-      </TableRow>
-    );
-  }
-}
+          X
+        </Button>
+      </TableCell>
+    </TableRow>
+  );
+};
 
 export default ExperienceTableItem;

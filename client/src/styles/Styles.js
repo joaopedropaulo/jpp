@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  // Experience Table
   editModeExperienceTableItemCompanyIcon: {
     [theme.breakpoints.up("xs")]: {
       width: "50px",
@@ -58,6 +59,17 @@ const useStyles = makeStyles((theme) => ({
       width: "75px",
       height: "75px",
     },
+  },
+
+  editModeExperienceTableHeaderCell: {
+    whiteSpace: "nowrap",
+    textTransform: "uppercase",
+  },
+
+  editModeExperienceTableItemCell: {
+    whiteSpace: "normal",
+    wordBreak: "break-word",
+    overflowWrap: "break-word",
   },
 
   // rootDiv: {
