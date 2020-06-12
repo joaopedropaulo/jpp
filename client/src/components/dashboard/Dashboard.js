@@ -1,25 +1,13 @@
 import React, { useEffect, Fragment } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import Navbar from "../layout/Navbar";
-import { connect } from "react-redux";
-
+import { Typography, Box } from "@material-ui/core";
 import { getCurrentProfile } from "../../actions/profile";
+import Navbar from "../layout/Navbar";
 import DashboardActions from "./DashboardActions";
-
 import Spinner from "../layout/Spinner";
-import { Typography, Box, Container } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-  headerTypography: {
-    [theme.breakpoints.down("md")]: {
-      marginLeft: "0",
-      marginRight: "0",
-      textAlign: "center",
-    },
-  },
-}));
+import useStyles from "../../styles/Styles";
 
 const Dashboard = ({
   getCurrentProfile,
@@ -28,7 +16,7 @@ const Dashboard = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, []);
+  }, [getCurrentProfile]);
 
   const classes = useStyles();
 
@@ -41,7 +29,7 @@ const Dashboard = ({
     );
   } else {
     dashboardHeader = (
-      <Box mx={10} mt={5} className={classes.headerTypography}>
+      <Box mx={10} mt={5} className={classes.dashboardHeaderContainer}>
         <Typography variant="h6">Welcome, {user && user.name}!</Typography>
       </Box>
     );
