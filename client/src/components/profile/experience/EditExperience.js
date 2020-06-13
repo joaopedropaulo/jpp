@@ -203,16 +203,14 @@ const EditExperience = ({
                 <Box py={2}>
                   <Grid justify="space-between" container spacing={2}>
                     <Grid item>
-                      <div>
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          href="/dashboard"
-                          size="large"
-                        >
-                          Back
-                        </Button>
-                      </div>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        href="/dashboard"
+                        size="large"
+                      >
+                        Back
+                      </Button>
                     </Grid>
                     <Grid item>
                       <Button

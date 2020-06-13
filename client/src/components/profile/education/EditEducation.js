@@ -1,21 +1,23 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Link, withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  addEducation,
-  removeEducation,
-  getCurrentProfile,
-} from "../../../actions/profile";
-import EducationTable from "./EducationTable";
-
+import PropTypes from "prop-types";
 import {
   Typography,
   TextField,
   Button,
   Checkbox,
   Grid,
+  Container,
+  Box,
+  Paper,
 } from "@material-ui/core";
+import {
+  addEducation,
+  removeEducation,
+  getCurrentProfile,
+} from "../../../actions/profile";
+import EducationTable from "./EducationTable";
+import useStyles from "../../../styles/Styles";
 
 const EditEducation = ({
   addEducation,
@@ -27,6 +29,8 @@ const EditEducation = ({
   useEffect(() => {
     getCurrentProfile();
   }, [loading]);
+
+  const classes = useStyles();
 
   const [formData, setFormData] = useState({
     school: "",
@@ -77,105 +81,150 @@ const EditEducation = ({
   };
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={4}>
-        <Typography variant="h3">Edit Education</Typography>
-        <form onSubmit={(e) => onSubmit(e)}>
-          <div>
-            <Typography variant="h6">School</Typography>
-            <TextField
-              type="text"
-              label="School"
-              id="school"
-              value={school}
-              onChange={(e) => handleValueChange(e)}
+    <Box className={classes.editModeContainers}>
+      <Grid container justify="flex-start" spacing={2}>
+        <Grid item xs={12}>
+          <Box className={classes.editModeHeadersContainers}>
+            <Typography variant="h4">Edit Education</Typography>
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <Paper className={classes.editModePaperContainers}>
+            <Container maxWidth="sm">
+              <form onSubmit={(e) => onSubmit(e)}>
+                <Box className={classes.editModeTextInputContainers}>
+                  <TextField
+                    fullWidth
+                    type="text"
+                    label="School"
+                    id="school"
+                    value={school}
+                    onChange={(e) => handleValueChange(e)}
+                  />
+                </Box>
+                <Box className={classes.editModeTextInputContainers}>
+                  <TextField
+                    fullWidth
+                    type="text"
+                    label="Degree"
+                    id="degree"
+                    value={degree}
+                    onChange={(e) => handleValueChange(e)}
+                  />
+                </Box>
+                <Box className={classes.editModeTextInputContainers}>
+                  <TextField
+                    fullWidth
+                    type="text"
+                    label="Field of Study"
+                    id="fieldOfStudy"
+                    value={fieldOfStudy}
+                    onChange={(e) => handleValueChange(e)}
+                  />
+                </Box>
+                <Box className={classes.editModeDateInputContainers}>
+                  <Grid
+                    justify="space-between"
+                    alignItems="center"
+                    container
+                    spacing={2}
+                  >
+                    <Grid item>
+                      <TextField
+                        type="date"
+                        id="from"
+                        label="From Date"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        value={from}
+                        onChange={(e) => handleValueChange(e)}
+                      />
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="subtitle2" display="inline">
+                        Current School
+                      </Typography>
+                      <Checkbox
+                        checked={current}
+                        onChange={(e) => {
+                          setFormData({ ...formData, current: !current });
+                          toggleIsCurrentSchool(!isCurrentSchool);
+                        }}
+                        name="current"
+                        color="primary"
+                      />
+                    </Grid>
+                  </Grid>
+                </Box>
+                {!isCurrentSchool ? (
+                  <Box className={classes.editModeDateInputContainers}>
+                    <TextField
+                      type="date"
+                      id="to"
+                      label="To Date"
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      value={to}
+                      onChange={(e) => handleValueChange(e)}
+                    />
+                  </Box>
+                ) : (
+                  <Fragment />
+                )}
+                <Fragment />
+                <Box className={classes.editModeTextInputContainers}>
+                  <TextField
+                    fullWidth
+                    id="description"
+                    label="Description"
+                    multiline
+                    cols={30}
+                    rows={5}
+                    variant="outlined"
+                    value={description}
+                    onChange={(e) => handleValueChange(e)}
+                  />
+                </Box>
+                <Box py={2}>
+                  <Grid justify="space-between" container spacing={2}>
+                    <Grid item>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        href="/dashboard"
+                        size="large"
+                      >
+                        Back
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                      >
+                        Add
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </form>
+            </Container>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} md={8}>
+          <Paper className={classes.editModePaperContainers}>
+            <EducationTable
+              educationList={loading ? [] : profile.education}
+              onRemoveEducation={onRemoveEducation}
             />
-          </div>
-          <div>
-            <Typography variant="h6">Degree</Typography>
-            <TextField
-              type="text"
-              label="Degree"
-              id="degree"
-              value={degree}
-              onChange={(e) => handleValueChange(e)}
-            />
-          </div>
-          <div>
-            <Typography variant="h6">Field of Study</Typography>
-            <TextField
-              type="text"
-              label="Field of Study"
-              id="fieldOfStudy"
-              value={fieldOfStudy}
-              onChange={(e) => handleValueChange(e)}
-            />
-          </div>
-          <div>
-            <Typography variant="h6">From Date</Typography>
-            <TextField
-              type="date"
-              id="from"
-              value={from}
-              onChange={(e) => handleValueChange(e)}
-            />
-          </div>
-          <div>
-            <Typography variant="h6" display="inline">
-              Current School
-            </Typography>
-            <Checkbox
-              checked={current}
-              onChange={(e) => {
-                setFormData({ ...formData, current: !current });
-                toggleIsCurrentSchool(!isCurrentSchool);
-              }}
-              name="current"
-              color="primary"
-            />
-          </div>
-          {!isCurrentSchool ? (
-            <div>
-              <Typography variant="h6">To Date</Typography>
-              <TextField
-                type="date"
-                id="to"
-                value={to}
-                onChange={(e) => handleValueChange(e)}
-              />
-            </div>
-          ) : (
-            <Fragment />
-          )}
-          <Fragment />
-          <div>
-            <Typography variant="h6">Description</Typography>
-            <TextField
-              id="description"
-              label="Description"
-              multiline
-              cols={30}
-              rows={5}
-              variant="outlined"
-              value={description}
-              onChange={(e) => handleValueChange(e)}
-            />
-          </div>
-          <Button type="submit" variant="contained" color="primary">
-            Add
-          </Button>
-          <Button variant="contained" color="secondary" href="/dashboard">
-            Back
-          </Button>
-        </form>
+          </Paper>
+        </Grid>
       </Grid>
-      <Grid item xs={8}>
-        <EducationTable
-          educationList={loading ? [] : profile.education}
-          onRemoveEducation={onRemoveEducation}
-        />
-      </Grid>
-    </Grid>
+    </Box>
   );
 };
 
