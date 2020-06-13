@@ -113,6 +113,18 @@ const useStyles = makeStyles((theme) => ({
     wordBreak: "break-word",
     overflowWrap: "break-word",
   },
+
+  // Edit Mode - Education Table
+  editModeEducationTableItemCell: {
+    whiteSpace: "normal",
+    wordBreak: "break-word",
+    overflowWrap: "break-word",
+  },
+
+  editModeEducationTableHeaderCell: {
+    whiteSpace: "nowrap",
+    textTransform: "uppercase",
+  },
 }));
 
 export default useStyles;

@@ -1,42 +1,42 @@
 import React from "react";
-import {
-  ListItem,
-  ListItemText,
-  Button,
-  TableRow,
-  TableCell,
-} from "@material-ui/core";
 import Moment from "react-moment";
+import { Button, TableRow, TableCell } from "@material-ui/core";
+import useStyles from "../../../styles/Styles";
 
-class EducationTableItem extends React.Component {
-  render() {
-    return (
-      <TableRow>
-        <TableCell>{this.props.value.school}</TableCell>
-        <TableCell>{this.props.value.degree}</TableCell>
-        <TableCell>{this.props.value.fieldOfStudy}</TableCell>
-        <TableCell>
-          <Moment format="YYYY/MM/DD">{this.props.value.from}</Moment>-
-          {this.props.value.to === null ? (
-            " Now"
-          ) : (
-            <Moment format="YYYY/MM/DD">{this.props.value.to}</Moment>
-          )}
-        </TableCell>
-        <TableCell>{this.props.value.description}</TableCell>
-        <TableCell>
-          <Button
-            variant="outlined"
-            color="secondary"
-            href="#"
-            onClick={(e) => this.props.onRemoveEducation(this.props.index)}
-          >
-            X
-          </Button>
-        </TableCell>
-      </TableRow>
-    );
-  }
-}
+const EducationTableItem = (props) => {
+  const classes = useStyles();
+  return (
+    <TableRow>
+      <TableCell className={classes.editModeEducationTableItemCell}>
+        {props.value.school}
+      </TableCell>
+      <TableCell className={classes.editModeEducationTableItemCell}>
+        {props.value.degree}
+      </TableCell>
+      <TableCell className={classes.editModeEducationTableItemCell}>
+        {props.value.fieldOfStudy}
+      </TableCell>
+      <TableCell>
+        <Moment format="YYYY/MM/DD">{props.value.from}</Moment> -
+        {props.value.to === null ? (
+          " Now"
+        ) : (
+          <Moment format="YYYY/MM/DD">{props.value.to}</Moment>
+        )}
+      </TableCell>
+      <TableCell>{props.value.description}</TableCell>
+      <TableCell>
+        <Button
+          variant="outlined"
+          color="secondary"
+          href="#"
+          onClick={(e) => props.onRemoveEducation(props.index)}
+        >
+          X
+        </Button>
+      </TableCell>
+    </TableRow>
+  );
+};
 
 export default EducationTableItem;
