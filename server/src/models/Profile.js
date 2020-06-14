@@ -127,10 +127,13 @@ const ProfileSchema = new mongoose.Schema(
         },
         media: [
           {
-            image: {
+            mediaType: {
               type: String,
             },
-            video: {
+            contentURL: {
+              type: String,
+            },
+            description: {
               type: String,
             },
           },
