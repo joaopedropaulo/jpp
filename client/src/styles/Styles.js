@@ -125,6 +125,53 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: "nowrap",
     textTransform: "uppercase",
   },
+
+  // Edit Mode - Generic Sections
+  editModeGenericSectionsTableItemCell: {
+    whiteSpace: "normal",
+    wordBreak: "break-word",
+    overflowWrap: "break-word",
+  },
+
+  editModeGenericSectionsTableHeaderCell: {
+    whiteSpace: "nowrap",
+    textTransform: "uppercase",
+  },
+
+  editModeGenericSectionsTableItemMediaContainer: {
+    [theme.breakpoints.up("xs")]: {
+      width: "75px",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "400px",
+      padding: "4px 4px",
+    },
+  },
+
+  editModeGenericSectionsTableItemMediaCardActionsContainer: {
+    justifyContent: "center",
+  },
+
+  editModeGenericSectionsTableItemMediaCard: {
+    height: "100px",
+    maxWidth: "400px",
+    display: "flex",
+    margin: "6px 0px",
+  },
+
+  editModeGenericSectionsTableItemMediaCardContent: {
+    maxWidth: "300px",
+    width: "100%",
+    "& p": {
+      fontSize: "0.8rem",
+    },
+  },
+
+  editModeGenericSectionsTableItemMediaCardMedia: {
+    height: "100px",
+    width: "100px",
+    display: "inline",
+  },
 }));
 
 export default useStyles;

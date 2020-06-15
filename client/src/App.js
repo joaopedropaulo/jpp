@@ -14,6 +14,7 @@ import CreateProfile from "./components/profile/CreateProfile";
 import EditProfile from "./components/profile/EditProfile";
 import EditExperience from "./components/profile/experience/EditExperience";
 import EditEducation from "./components/profile/education/EditEducation";
+import EditGenericSections from "./components/profile/generic-sections/EditGenericSections";
 
 import PrivateRoute from "./components/routing/PrivateRoute";
 
@@ -73,6 +74,12 @@ const App = () => {
                 exact
                 path="/edit-education"
                 component={EditEducation}
+              />
+
+              <PrivateRoute
+                exact
+                path="/edit-generic-sections"
+                component={EditGenericSections}
               />
             </Switch>
           </Fragment>
