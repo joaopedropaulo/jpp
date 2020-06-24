@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import {
   Grid,
   Button,
@@ -8,44 +10,28 @@ import {
   Box,
   Container,
 } from "@material-ui/core";
+import {
+  addGenericSection,
+  removeGenericSection,
+  getCurrentProfile,
+} from "../../../actions/profile";
 import GenericSectionsTable from "./GenericSectionsTable";
-import useStyles from "../../../styles/Styles";
 import AddMediaItemForm from "./media/AddMediaItemForm";
 import MediaList from "./media/MediaList";
+import useStyles from "../../../styles/Styles";
 
-const EditGenericSections = () => {
+const EditGenericSections = ({
+  addGenericSection,
+  removeGenericSection,
+  getCurrentProfile,
+  profile: { profile, loading },
+  history,
+}) => {
+  useEffect(() => {
+    getCurrentProfile();
+  }, [loading]);
+
   const classes = useStyles();
-
-  const list = [
-    {
-      title: "test",
-      subtitle: "",
-      body: "asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd",
-      media: [
-        {
-          mediaType: "video",
-          contentURL: "https://www.youtube.com/embed/TD2hNsY6G7E",
-          description: "asdasdasdasdasdasdasdasdasdasd",
-        },
-        {
-          mediaType: "sound",
-          contentURL:
-            "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/198619623&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true",
-          description: "sssssssssssssssssssssssssssssss",
-        },
-        {
-          mediaType: "image",
-          contentURL:
-            "https://images.squarespace-cdn.com/content/v1/5a5906400abd0406785519dd/1552662149940-G6MMFW3JC2J61UBPROJ5/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/baelen.jpg?format=1500w",
-          description: "hhhhhhhhhhhhhhhhhhhh",
-        },
-      ],
-    },
-  ];
-
-  const onRemoveGenericSection = (index) => {
-    console.log("index - " + index);
-  };
 
   const [formData, setFormData] = useState({
     title: "",
@@ -56,7 +42,7 @@ const EditGenericSections = () => {
 
   const { title, subtitle, body, media } = formData;
 
-  // Handle state changes
+  // Handle media items before generic section transaction to the backend happens
   const onRemoveMediaItem = (index) => {
     let list = [...media];
     list.splice(index, 1);
@@ -73,12 +59,29 @@ const EditGenericSections = () => {
     setFormData({ ...formData, ["media"]: list });
   };
 
+  // Update state
   const handleValueChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
+  const cleanUpForm = () => {
+    setFormData({
+      title: "",
+      subtitle: "",
+      body: "",
+      media: [],
+    });
+  };
+
+  // Actions that take it to the backend
+  const onRemoveGenericSection = (index) => {
+    removeGenericSection(profile.genericSections[index]._id);
+  };
+
   const onSubmit = (e) => {
-    console.log("submit - " + e);
+    e.preventDefault();
+    addGenericSection(formData, history);
+    cleanUpForm();
   };
 
   return (
@@ -114,17 +117,31 @@ const EditGenericSections = () => {
                   />
                 </Box>
                 <Box className={classes.editModeTextInputContainers}>
+                  <Typography
+                    className={classes.editModeTextInputContainers}
+                    variant="body1"
+                    color="textSecondary"
+                  >
+                    Body
+                  </Typography>
                   <TextField
                     fullWidth
                     type="text"
-                    label="Body"
                     id="body"
                     value={body}
+                    label="Choose your words wisely =)"
+                    multiline
+                    rows={5}
+                    variant="outlined"
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
-                <Box>
-                  <Typography variant="body1" color="textSecondary">
+                <Box className={classes.editModeTextInputContainers}>
+                  <Typography
+                    className={classes.editModeTextInputContainers}
+                    variant="body1"
+                    color="textSecondary"
+                  >
                     Media
                   </Typography>
                   <AddMediaItemForm onAddMediaItem={onAddMediaItem} />
@@ -164,7 +181,7 @@ const EditGenericSections = () => {
         <Grid item xs={12} md={8}>
           <Paper className={classes.editModePaperContainers}>
             <GenericSectionsTable
-              genericSectionsList={list}
+              genericSectionsList={loading ? [] : profile.genericSections}
               onRemoveGenericSection={onRemoveGenericSection}
             ></GenericSectionsTable>
           </Paper>
@@ -174,4 +191,18 @@ const EditGenericSections = () => {
   );
 };
 
-export default EditGenericSections;
+EditGenericSections.propTypes = {
+  addGenericSection: PropTypes.func.isRequired,
+  removeGenericSection: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+});
+
+export default connect(mapStateToProps, {
+  addGenericSection,
+  removeGenericSection,
+  getCurrentProfile,
+})(EditGenericSections);

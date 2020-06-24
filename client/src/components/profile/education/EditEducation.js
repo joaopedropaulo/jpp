@@ -54,6 +54,11 @@ const EditEducation = ({
     description,
   } = formData;
 
+  // Update state
+  const handleValueChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
   const cleanUpForm = () => {
     setFormData({
       school: "",
@@ -66,12 +71,9 @@ const EditEducation = ({
     });
   };
 
+  // Actions that take it to the backend
   const onRemoveEducation = (index) => {
     removeEducation(profile.education[index]._id);
-  };
-
-  const handleValueChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
   const onSubmit = (e) => {

@@ -142,3 +142,54 @@ export const removeEducation = (itemId) => async (dispatch) => {
     });
   }
 };
+
+export const addGenericSection = (
+  formData,
+  history,
+  redirect = false
+) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const res = await axios.put("/api/profile/generic", formData, config);
+    dispatch({ type: UPDATE_PROFILE, payload: res.data });
+    dispatch(setAlert("Generic Section Added.", "success"));
+
+    if (redirect) {
+      history.push("/dashboard");
+    }
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((e) => dispatch(setAlert(e.msg, "warning")));
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const removeGenericSection = (itemId) => async (dispatch) => {
+  try {
+    const res = await axios.delete("/api/profile/generic/" + itemId);
+    dispatch({ type: UPDATE_PROFILE, payload: res.data });
+    dispatch(setAlert("Generic Section Item Removed.", "success"));
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((e) => dispatch(setAlert(e.msg, "warning")));
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};

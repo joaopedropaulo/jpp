@@ -172,6 +172,29 @@ const useStyles = makeStyles((theme) => ({
     width: "100px",
     display: "inline",
   },
+
+  editModeGenericSectionsAddMediaItemFormContainer: {
+    borderStyle: "dashed",
+    borderWidth: "2px",
+    borderColor: "#5DB7DE",
+    borderRadius: "5px",
+
+    [theme.breakpoints.up("xs")]: {
+      padding: "1% 2%",
+    },
+    [theme.breakpoints.up("md")]: {
+      padding: "3% 3%",
+    },
+  },
+
+  editModeGenericSectionsAddMediaItemFormGridItem: {
+    width: "100%",
+  },
+
+  editModeGenericSectionsAddMediaItemFormAddButton: {
+    alignSelf: "center",
+    textAlign: "center",
+  },
 }));
 
 export default useStyles;
