@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Card, CardMedia, CardContent, Typography } from "@material-ui/core";
 import useStyles from "../../../../styles/Styles";
 

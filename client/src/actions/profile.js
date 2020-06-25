@@ -156,7 +156,7 @@ export const addGenericSection = (
     };
     const res = await axios.put("/api/profile/generic", formData, config);
     dispatch({ type: UPDATE_PROFILE, payload: res.data });
-    dispatch(setAlert("Generic Section Added.", "success"));
+    dispatch(setAlert("Generic Section Item Added.", "success"));
 
     if (redirect) {
       history.push("/dashboard");

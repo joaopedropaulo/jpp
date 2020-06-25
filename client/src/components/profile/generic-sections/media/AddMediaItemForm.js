@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   TextField,
@@ -23,6 +23,7 @@ const AddMediaItemForm = (props) => {
 
   const { mediaType, contentURL, description } = data;
 
+  // Update state
   const handleValueChange = (e) => {
     setData({ ...data, [e.target.id]: e.target.value });
   };
@@ -31,6 +32,7 @@ const AddMediaItemForm = (props) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
+  // Action to add the media item to the Generic Section
   const onAddClick = (e) => {
     e.preventDefault();
 

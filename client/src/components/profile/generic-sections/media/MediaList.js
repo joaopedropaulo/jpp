@@ -1,11 +1,17 @@
 import React, { Fragment } from "react";
-import { Typography, List } from "@material-ui/core";
+import { Box, List } from "@material-ui/core";
 import MediaListItem from "./MediaListItem";
 import useStyles from "../../../../styles/Styles";
 const MediaList = (props) => {
+  const classes = useStyles();
   return (
-    <div>
-      {/* <Typography variant="subtitle1">Media</Typography> */}
+    <Box
+      className={`${
+        props.mediaList.length > 0
+          ? classes.editModeGenericSectionsMediaListContainer
+          : "none"
+      } `}
+    >
       {props.mediaList.length > 0 ? (
         <List dense={false}>
           {props.mediaList.map((mediaObjValue, index) => {
@@ -22,7 +28,7 @@ const MediaList = (props) => {
       ) : (
         <Fragment></Fragment>
       )}
-    </div>
+    </Box>
   );
 };
 

@@ -1,7 +1,6 @@
-import React, { Fragment } from "react";
+import React, { useState } from "react";
 import {
   Button,
-  Typography,
   TableRow,
   TableCell,
   Box,
@@ -14,7 +13,8 @@ import useStyles from "../../../styles/Styles";
 
 const GenericSectionsTableItem = (props) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+
+  const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);

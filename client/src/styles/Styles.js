@@ -195,6 +195,19 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: "center",
     textAlign: "center",
   },
+
+  editModeGenericSectionsMediaListContainer: {
+    borderStyle: "dashed",
+    borderRadius: "5px",
+    borderWidth: "2px",
+    margin: "2% 0 0 0",
+    padding: "1% 1%",
+  },
+
+  editModeGenericSectionsMediaListItemRemoveButton: {
+    alignSelf: "center",
+    textAlign: "center",
+  },
 }));
 
 export default useStyles;
