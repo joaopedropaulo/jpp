@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import { TextField } from "@material-ui/core";
+import { TextField, Box } from "@material-ui/core";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import GitHubIcon from "@material-ui/icons/GitHub";
@@ -21,7 +21,7 @@ class CreateUpdateSocialMediaInputs extends React.Component {
 
     return (
       <Fragment>
-        <div>
+        <Box>
           <TwitterIcon />
           <TextField
             label="Twitter URL"
@@ -30,9 +30,9 @@ class CreateUpdateSocialMediaInputs extends React.Component {
             value={twitter}
             onChange={(e) => this.props.handleValueChange(e)}
           />
-        </div>
+        </Box>
 
-        <div>
+        <Box>
           <FacebookIcon />
           <TextField
             label="Facebook URL"
@@ -41,9 +41,9 @@ class CreateUpdateSocialMediaInputs extends React.Component {
             value={facebook}
             onChange={(e) => this.props.handleValueChange(e)}
           />
-        </div>
+        </Box>
 
-        <div>
+        <Box>
           <YouTubeIcon />
           <TextField
             label="YouTube URL"
@@ -52,9 +52,9 @@ class CreateUpdateSocialMediaInputs extends React.Component {
             value={youtube}
             onChange={(e) => this.props.handleValueChange(e)}
           />
-        </div>
+        </Box>
 
-        <div>
+        <Box>
           <LinkedInIcon />
           <TextField
             label="Linkedin URL"
@@ -63,9 +63,9 @@ class CreateUpdateSocialMediaInputs extends React.Component {
             value={linkedin}
             onChange={(e) => this.props.handleValueChange(e)}
           />
-        </div>
+        </Box>
 
-        <div>
+        <Box>
           <InstagramIcon />
           <TextField
             label="Instagram URL"
@@ -74,8 +74,8 @@ class CreateUpdateSocialMediaInputs extends React.Component {
             value={instagram}
             onChange={(e) => this.props.handleValueChange(e)}
           />
-        </div>
-        <div>
+        </Box>
+        <Box>
           <GitHubIcon />
           <TextField
             label="GitHub URL"
@@ -84,7 +84,7 @@ class CreateUpdateSocialMediaInputs extends React.Component {
             value={github}
             onChange={(e) => this.props.handleValueChange(e)}
           />
-        </div>
+        </Box>
       </Fragment>
     );
   }

@@ -13,6 +13,7 @@ import {
   Box,
   Paper,
 } from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { createUpdateProfile, getCurrentProfile } from "../../actions/profile";
 import AddSkillForm from "./skills/AddSkillForm";
 import SkillList from "./skills/SkillList";
@@ -109,9 +110,9 @@ const EditProfile = ({
         <Grid item xs={12}>
           <Box className={classes.editModeHeadersContainers}>
             {isProfileUpdate() ? (
-              <Typography variant="h3">Edit Profile</Typography>
+              <Typography variant="h4">Edit Profile</Typography>
             ) : (
-              <Typography variant="h3">Create Profile</Typography>
+              <Typography variant="h4">Create Profile</Typography>
             )}
           </Box>
         </Grid>
@@ -119,61 +120,66 @@ const EditProfile = ({
           <Paper className={classes.editModePaperContainers}>
             <Container maxWidth="sm">
               <form onSubmit={(e) => onSubmit(e)}>
-                <div>
-                  <Typography variant="h6">Current Company</Typography>
+                <Box className={classes.editModeTextInputContainers}>
+                  {/* <Typography variant="h6">Current Company</Typography> */}
                   <TextField
+                    fullWidth
                     id="currentCompany"
                     label="Company"
                     value={currentCompany}
                     onChange={(e) => handleValueChange(e)}
                   />
-                </div>
-                <div>
-                  <Typography variant="h6">Current Job Title</Typography>
+                </Box>
+                <Box className={classes.editModeTextInputContainers}>
+                  {/* <Typography variant="h6">Current Job Title</Typography> */}
                   <TextField
+                    fullWidth
                     id="currentJobTitle"
                     label="Job title"
                     value={currentJobTitle}
                     onChange={(e) => handleValueChange(e)}
                   />
-                </div>
-                <div>
-                  <Typography variant="h6">Current Location</Typography>
+                </Box>
+                <Box className={classes.editModeTextInputContainers}>
+                  {/* <Typography variant="h6">Current Location</Typography> */}
                   <TextField
+                    fullWidth
                     id="location"
                     label="Location"
                     value={location}
                     onChange={(e) => handleValueChange(e)}
                   />
-                </div>
-                <div>
-                  <Typography variant="h6">
+                </Box>
+                <Box className={classes.editModeTextInputContainers}>
+                  {/* <Typography variant="h6">
                     Skills & Experience Levels
-                  </Typography>
+                  </Typography> */}
                   <AddSkillForm onAddSkill={onAddSkill} />
                   <SkillList skillList={skills} onRemoveSkill={onRemoveSkill} />
-                </div>
-                <div>
-                  <Typography variant="h6">Biography</Typography>
+                </Box>
+                <Box className={classes.editModeTextInputContainers}>
+                  {/* <Typography variant="h6">Biography</Typography> */}
                   <TextField
+                    fullWidth
                     id="bio"
                     label="A short bio"
                     multiline
+                    cols={30}
                     rows={5}
                     variant="outlined"
                     value={bio}
                     onChange={(e) => handleValueChange(e)}
                   />
-                </div>
-                <div>
+                </Box>
+                <Box className={classes.editModeTextInputContainers}>
                   <Button
                     variant="outlined"
                     color="primary"
                     onClick={() => toggleSocialInputs(!displaySocialInputs)}
                   >
-                    Social Network Links
+                    <ExpandMoreIcon /> Social Network Links
                   </Button>
-                </div>
+                </Box>
                 {displaySocialInputs ? (
                   <CreateUpdateSocialMediaInputs
                     handleValueChange={handleValueChange}
@@ -182,12 +188,30 @@ const EditProfile = ({
                 ) : (
                   <Fragment></Fragment>
                 )}
-                <Button type="submit" variant="contained" color="primary">
-                  Submit
-                </Button>
-                <Typography>
-                  <Link href="/dashboard">Back</Link>
-                </Typography>
+                <Box py={2}>
+                  <Grid justify="space-between" container spacing={2}>
+                    <Grid item>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        href="/dashboard"
+                        size="large"
+                      >
+                        Back
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                      >
+                        Add
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </Box>
               </form>
             </Container>
           </Paper>
