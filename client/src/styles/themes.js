@@ -46,18 +46,18 @@ const darkTheme = createMuiTheme({
       fontFamily: "'Playfair Display', serif",
     },
     subtitle1: {
-      textTransform: "uppercase",
-      fontFamily: "'Playfair Display', serif",
+      //fontFamily: "'Playfair Display', serif",
+      // fontFamily: "'Open Sans', serif",
     },
     subtitle2: {
-      textTransform: "uppercase",
-      fontFamily: "'Playfair Display', serif",
+      //fontFamily: "'Playfair Display', serif",
+      // fontFamily: "'Open Sans', serif",
     },
     body1: {
-      //fontFamily: "'Open Sans', serif",
+      // fontFamily: "'Open Sans', serif",
     },
     body2: {
-      //fontFamily: "'Open Sans', serif",
+      // fontFamily: "'Open Sans', serif",
     },
   },
   overrides: {

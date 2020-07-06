@@ -54,6 +54,17 @@ const useStyles = makeStyles((theme) => ({
   backToTopButtonIcon: {
     color: "white",
   },
+  educationItemBox: {
+    paddingLeft: "2%",
+    paddingBottom: "3%",
+  },
+  educationItemDegree: {
+    fontWeight: "600",
+    color: "#E58F5B",
+  },
+  educationItemSchoolDates: {
+    fontStyle: "italic",
+  },
 }));
 
 const Landing = ({ isAuthenticated }) => {
@@ -163,23 +174,47 @@ const Landing = ({ isAuthenticated }) => {
                 </Typography>
               </Grid>
               <Grid item xs={12} className={classes.sectionBodyDiv}>
-                <Typography variant="body1">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Pellentesque elit ullamcorper dignissim cras tincidunt
-                  lobortis feugiat. Urna porttitor rhoncus dolor purus non enim.
-                  Ipsum dolor sit amet consectetur adipiscing. At in tellus
-                  integer feugiat scelerisque varius morbi. Lorem ipsum dolor
-                  sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-                  porttitor rhoncus dolor purus non enim. Ipsum dolor sit amet
-                  consectetur adipiscing. At in tellus integer feugiat
-                  scelerisque varius morbi. Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                  ut labore et dolore magna aliqua. Pellentesque elit
-                  ullamcorper dignissim cras tincidunt lobortis feugiat. Urna
-                  porttitor rhoncus dolor purus non enim. Ipsum dolor sit amet
-                  consectetur adipiscing. At in tellus integer feugiat
-                </Typography>
+                <Box className={classes.educationItemBox}>
+                  <Typography
+                    variant="subtitle1"
+                    className={classes.educationItemDegree}
+                  >
+                    MS. Electrical and Computer Engineering
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    className={classes.educationItemSchoolDates}
+                  >
+                    University of Coimbra, 2012-2017
+                  </Typography>
+                  <Typography variant="body1">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Pellentesque elit ullamcorper dignissim cras.
+                  </Typography>
+                </Box>
+                <Box className={classes.educationItemBox}>
+                  <Typography
+                    variant="subtitle1"
+                    className={classes.educationItemDegree}
+                  >
+                    MS. Electrical and Computer Engineering
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    className={classes.educationItemSchoolDates}
+                  >
+                    University of Coimbra, 2012-2017
+                  </Typography>
+                  <Typography variant="body1">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Pellentesque elit ullamcorper dignissim cras
+                    tincidunt lobortis feugiat. Urna porttitor rhoncus dolor
+                    purus non enim. Ipsum dolor sit amet consectetur adipiscing.
+                    At in tellus integer feugiat scelerisque varius morbi.
+                  </Typography>
+                </Box>
               </Grid>
               <Grid item xs={12} className={classes.sectionHeaderDiv}>
                 <Typography variant="h5" align="flex-start" color="secondary">
