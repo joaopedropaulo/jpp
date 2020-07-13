@@ -35,6 +35,15 @@ const useStyles = makeStyles((theme) => ({
   sectionHeaderDiv: {
     margin: "5% 0%",
   },
+  sectionHeaderTypography: {
+    fontWeight: "700",
+  },
+  sectionSubHeaderDiv: {
+    margin: "5% 0%",
+  },
+  sectionSubHeaderTypography: {
+    fontWeight: "700",
+  },
   sectionBodyDiv: {
     alignSelf: "center",
   },
@@ -60,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
   },
   educationItemDegree: {
     fontWeight: "600",
-    color: "#E58F5B",
+    color: theme.palette.primary.main,
   },
   educationItemSchoolDates: {
     fontStyle: "italic",
@@ -107,7 +116,12 @@ const Landing = ({ isAuthenticated }) => {
             {/* <Box className={classes.sectionBox}> */}
             <Grid container justify="center">
               <Grid item xs={12} className={classes.sectionHeaderDiv}>
-                <Typography variant="h3" align="center" color="secondary">
+                <Typography
+                  variant="h3"
+                  align="center"
+                  color="primary"
+                  className={classes.sectionHeaderTypography}
+                >
                   About me
                 </Typography>
               </Grid>
@@ -164,12 +178,22 @@ const Landing = ({ isAuthenticated }) => {
             {/* <Box className={classes.sectionBox}> */}
             <Grid container justify="center">
               <Grid item xs={12} className={classes.sectionHeaderDiv}>
-                <Typography variant="h3" align="center" color="secondary">
+                <Typography
+                  variant="h3"
+                  align="center"
+                  color="primary"
+                  className={classes.sectionHeaderTypography}
+                >
                   Resume
                 </Typography>
               </Grid>
-              <Grid item xs={12} className={classes.sectionHeaderDiv}>
-                <Typography variant="h5" align="flex-start" color="secondary">
+              <Grid item xs={12} className={classes.sectionSubHeaderDiv}>
+                <Typography
+                  variant="h5"
+                  align="flex-start"
+                  color="primary"
+                  className={classes.sectionSubHeaderTypography}
+                >
                   Education
                 </Typography>
               </Grid>
@@ -216,66 +240,57 @@ const Landing = ({ isAuthenticated }) => {
                   </Typography>
                 </Box>
               </Grid>
-              <Grid item xs={12} className={classes.sectionHeaderDiv}>
-                <Typography variant="h5" align="flex-start" color="secondary">
+              <Grid item xs={12} className={classes.sectionSubHeaderDiv}>
+                <Typography
+                  variant="h5"
+                  align="flex-start"
+                  color="primary"
+                  className={classes.sectionSubHeaderTypography}
+                >
                   Experience
                 </Typography>
               </Grid>
               <Grid item xs={12} className={classes.sectionBodyDiv}>
-                <Typography variant="body1">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Pellentesque elit ullamcorper dignissim cras tincidunt
-                  lobortis feugiat. Urna porttitor rhoncus dolor purus non enim.
-                  Ipsum dolor sit amet consectetur adipiscing. At in tellus
-                  integer feugiat scelerisque varius morbi. Lorem ipsum dolor
-                  sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-                  porttitor rhoncus dolor purus non enim. Ipsum dolor sit amet
-                  consectetur adipiscing. At in tellus integer feugiat
-                  scelerisque varius morbi. Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                  ut labore et dolore magna aliqua. Pellentesque elit
-                  ullamcorper dignissim cras tincidunt lobortis feugiat. Urna
-                  porttitor rhoncus dolor purus non enim. Ipsum dolor sit amet
-                  consectetur adipiscing. At in tellus integer feugiat
-                  scelerisque varius morbi. Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                  ut labore et dolore magna aliqua. Pellentesque elit
-                  ullamcorper dignissim cras tincidunt lobortis feugiat. Urna
-                  porttitor rhoncus dolor purus non enim. Ipsum dolor sit amet
-                  consectetur adipiscing. At in tellus integer feugiat
-                  scelerisque varius morbi. porttitor rhoncus dolor purus non
-                  enim. Ipsum dolor sit amet consectetur adipiscing. At in
-                  tellus integer feugiat scelerisque varius morbi. Lorem ipsum
-                  dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua.
-                  Pellentesque elit ullamcorper dignissim cras tincidunt
-                  lobortis feugiat. Urna porttitor rhoncus dolor purus non enim.
-                  Ipsum dolor sit amet consectetur adipiscing. At in tellus
-                  integer feugiat scelerisque varius morbi. Lorem ipsum dolor
-                  sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                  incididunt ut labore et dolore magna aliqua. Pellentesque elit
-                  ullamcorper dignissim cras tincidunt lobortis feugiat. Urna
-                  porttitor rhoncus dolor purus non enim. Ipsum dolor sit amet
-                  consectetur adipiscing. At in tellus integer feugiat
-                  scelerisque varius morbi. At in tellus integer feugiat
-                  scelerisque varius morbi.At in tellus integer feugiat
-                  scelerisque varius morbi.At in tellus integer feugiat
-                  scelerisque varius morbi.At in tellus integer feugiat
-                  scelerisque varius morbi.At in tellus integer feugiat
-                  scelerisque varius morbi.At in tellus integer feugiat
-                  scelerisque varius morbi.At in tellus integer feugiat
-                  scelerisque varius morbi.At in tellus integer feugiat
-                  scelerisque varius morbi. At in tellus integer feugiat
-                  scelerisque varius morbi. At in tellus integer feugiat
-                  scelerisque varius morbi. porttitor rhoncus dolor purus non
-                  enim. Ipsum dolor sit amet consectetur adipiscing. At in
-                  tellus integer feugiat scelerisque varius morbi. Lorem ipsum
-                  dolor sit amet,
-                </Typography>
+                <Box className={classes.educationItemBox}>
+                  <Typography
+                    variant="subtitle1"
+                    className={classes.educationItemDegree}
+                  >
+                    Job Title, Company - Location
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    className={classes.educationItemSchoolDates}
+                  >
+                    September 2017 - Present
+                  </Typography>
+                  <Typography variant="body1">Description</Typography>
+                </Box>
+                <Box className={classes.educationItemBox}>
+                  <Typography
+                    variant="subtitle1"
+                    className={classes.educationItemDegree}
+                  >
+                    MS. Electrical and Computer Engineering
+                  </Typography>
+                  <Typography
+                    variant="subtitle2"
+                    className={classes.educationItemSchoolDates}
+                  >
+                    University of Coimbra, 2012-2017
+                  </Typography>
+                  <Typography variant="body1">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Pellentesque elit ullamcorper dignissim cras
+                    tincidunt lobortis feugiat. Urna porttitor rhoncus dolor
+                    purus non enim. Ipsum dolor sit amet consectetur adipiscing.
+                    At in tellus integer feugiat scelerisque varius morbi.
+                  </Typography>
+                </Box>
               </Grid>
               <Grid item xs={12} className={classes.sectionHeaderDiv}>
-                <Typography variant="h5" align="flex-start" color="secondary">
+                <Typography variant="h5" align="flex-start" color="primary">
                   Skills
                 </Typography>
               </Grid>
