@@ -7,10 +7,7 @@ const ResumeSkillsItem = (props) => {
 
   return (
     <Box className={classes.skillsItemBox}>
-      <Typography
-        variant="subtitle1"
-        className={classes.skillsItemJobTitleName}
-      >
+      <Typography variant="subtitle1" className={classes.skillsItemName}>
         {props.value.name}
       </Typography>
       <Typography variant="body1" className={classes.skillsItemExperienceLevel}>

@@ -10,13 +10,11 @@ const ResumeEducationItem = (props) => {
     <Box className={classes.educationItemBox}>
       <Typography variant="subtitle1" className={classes.educationItemDegree}>
         {props.value.degree}
+        {props.value.fieldOfStudy ? ", " + props.value.fieldOfStudy : ""}
       </Typography>
-      <Typography
-        variant="subtitle2"
-        className={classes.educationItemFieldOfStudy}
-      >
+      {/* <Typography variant="subtitle2" className={classes.educationItemFieldOfStudy}>
         {props.value.fieldOfStudy}
-      </Typography>
+      </Typography> */}
       <Typography
         variant="subtitle2"
         className={classes.educationItemSchoolDates}

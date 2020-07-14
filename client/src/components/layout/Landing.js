@@ -1,82 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-
 import { Redirect } from "react-router-dom";
-
+import PropTypes from "prop-types";
 import {
   Box,
   Button,
   Typography,
   Container,
-  Paper,
   Grid,
   Divider,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-
-import PropTypes from "prop-types";
-
+import { getCurrentProfile } from "../../actions/profile";
+import ResumeEducationSection from "./resume/education/ResumeEducationSection";
+import ResumeExperienceSection from "./resume/experience/ResumeExperienceSection";
+import ResumeSkillsSection from "./resume/skills/ResumeSkillsSection";
 import Navbar from "./Navbar";
+import useStyles from "../../styles/Styles";
 
-import Image from "../../img/test.jpg"; // Import using relative path
+const Landing = ({
+  isAuthenticated,
+  getCurrentProfile,
+  profile: { profile, loading },
+}) => {
+  useEffect(() => {
+    getCurrentProfile();
+  }, [loading]);
 
-const useStyles = makeStyles((theme) => ({
-  landingTopDiv: {
-    height: "100vh",
-    backgroundImage: `url(${Image})`,
-  },
-  sectionContainer: {
-    minHeight: "100vh",
-    display: "flex",
-    alignItems: "center",
-  },
-  sectionHeaderDiv: {
-    margin: "5% 0%",
-  },
-  sectionHeaderTypography: {
-    fontWeight: "700",
-  },
-  sectionSubHeaderDiv: {
-    margin: "5% 0%",
-  },
-  sectionSubHeaderTypography: {
-    fontWeight: "700",
-  },
-  sectionBodyDiv: {
-    alignSelf: "center",
-  },
-  sectionImageDiv: {
-    alignSelf: "center",
-    textAlign: "center",
-  },
-  backToTopButtonBox: {
-    position: "fixed",
-    right: "50%",
-    bottom: "30px",
-    zIndex: "118",
-  },
-  backToTopButton: {
-    backgroundColor: "transparent",
-  },
-  backToTopButtonIcon: {
-    color: "white",
-  },
-  educationItemBox: {
-    paddingLeft: "2%",
-    paddingBottom: "3%",
-  },
-  educationItemDegree: {
-    fontWeight: "600",
-    color: theme.palette.primary.main,
-  },
-  educationItemSchoolDates: {
-    fontStyle: "italic",
-  },
-}));
-
-const Landing = ({ isAuthenticated }) => {
   const classes = useStyles();
 
   const [showScroll, setShowScroll] = useState(false);
@@ -113,7 +63,6 @@ const Landing = ({ isAuthenticated }) => {
       <Box>
         <section id="about_me" className={classes.sectionContainer}>
           <Container>
-            {/* <Box className={classes.sectionBox}> */}
             <Grid container justify="center">
               <Grid item xs={12} className={classes.sectionHeaderDiv}>
                 <Typography
@@ -169,13 +118,11 @@ const Landing = ({ isAuthenticated }) => {
                 </Typography>
               </Grid>
             </Grid>
-            {/* </Box> */}
           </Container>
         </section>
         <Divider />
         <section id="resume">
           <Container>
-            {/* <Box className={classes.sectionBox}> */}
             <Grid container justify="center">
               <Grid item xs={12} className={classes.sectionHeaderDiv}>
                 <Typography
@@ -198,47 +145,11 @@ const Landing = ({ isAuthenticated }) => {
                 </Typography>
               </Grid>
               <Grid item xs={12} className={classes.sectionBodyDiv}>
-                <Box className={classes.educationItemBox}>
-                  <Typography
-                    variant="subtitle1"
-                    className={classes.educationItemDegree}
-                  >
-                    MS. Electrical and Computer Engineering
-                  </Typography>
-                  <Typography
-                    variant="subtitle2"
-                    className={classes.educationItemSchoolDates}
-                  >
-                    University of Coimbra, 2012-2017
-                  </Typography>
-                  <Typography variant="body1">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Pellentesque elit ullamcorper dignissim cras.
-                  </Typography>
-                </Box>
-                <Box className={classes.educationItemBox}>
-                  <Typography
-                    variant="subtitle1"
-                    className={classes.educationItemDegree}
-                  >
-                    MS. Electrical and Computer Engineering
-                  </Typography>
-                  <Typography
-                    variant="subtitle2"
-                    className={classes.educationItemSchoolDates}
-                  >
-                    University of Coimbra, 2012-2017
-                  </Typography>
-                  <Typography variant="body1">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Pellentesque elit ullamcorper dignissim cras
-                    tincidunt lobortis feugiat. Urna porttitor rhoncus dolor
-                    purus non enim. Ipsum dolor sit amet consectetur adipiscing.
-                    At in tellus integer feugiat scelerisque varius morbi.
-                  </Typography>
-                </Box>
+                <ResumeEducationSection
+                  educationList={
+                    loading ? [] : profile ? profile.education : []
+                  }
+                />
               </Grid>
               <Grid item xs={12} className={classes.sectionSubHeaderDiv}>
                 <Typography
@@ -251,65 +162,28 @@ const Landing = ({ isAuthenticated }) => {
                 </Typography>
               </Grid>
               <Grid item xs={12} className={classes.sectionBodyDiv}>
-                <Box className={classes.educationItemBox}>
-                  <Typography
-                    variant="subtitle1"
-                    className={classes.educationItemDegree}
-                  >
-                    Job Title, Company - Location
-                  </Typography>
-                  <Typography
-                    variant="subtitle2"
-                    className={classes.educationItemSchoolDates}
-                  >
-                    September 2017 - Present
-                  </Typography>
-                  <Typography variant="body1">Description</Typography>
-                </Box>
-                <Box className={classes.educationItemBox}>
-                  <Typography
-                    variant="subtitle1"
-                    className={classes.educationItemDegree}
-                  >
-                    MS. Electrical and Computer Engineering
-                  </Typography>
-                  <Typography
-                    variant="subtitle2"
-                    className={classes.educationItemSchoolDates}
-                  >
-                    University of Coimbra, 2012-2017
-                  </Typography>
-                  <Typography variant="body1">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Pellentesque elit ullamcorper dignissim cras
-                    tincidunt lobortis feugiat. Urna porttitor rhoncus dolor
-                    purus non enim. Ipsum dolor sit amet consectetur adipiscing.
-                    At in tellus integer feugiat scelerisque varius morbi.
-                  </Typography>
-                </Box>
+                <ResumeExperienceSection
+                  experienceList={
+                    loading ? [] : profile ? profile.experience : []
+                  }
+                />
               </Grid>
-              <Grid item xs={12} className={classes.sectionHeaderDiv}>
-                <Typography variant="h5" align="flex-start" color="primary">
+              <Grid item xs={12} className={classes.sectionSubHeaderDiv}>
+                <Typography
+                  variant="h5"
+                  align="flex-start"
+                  color="primary"
+                  className={classes.sectionSubHeaderTypography}
+                >
                   Skills
                 </Typography>
               </Grid>
               <Grid item xs={12} className={classes.sectionBodyDiv}>
-                <Typography variant="body1">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Pellentesque elit ullamcorper dignissim cras tincidunt
-                  lobortis feugiat. Urna porttitor rhoncus dolor purus non enim.
-                  Ipsum dolor sit amet consectetur adipiscing. At in tellus
-                  integer feugiat scelerisque varius morbi. Lorem ipsum dolor
-                  sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-                  porttitor rhoncus dolor purus non enim. Ipsum dolor sit amet
-                  consectetur adipiscing. At in tellus integer feugiat
-                  scelerisque varius morbi. Lorem ipsum dolor sit amet
-                </Typography>
+                <ResumeSkillsSection
+                  skillsList={loading ? [] : profile ? profile.skills : []}
+                />
               </Grid>
             </Grid>
-            {/* </Box> */}
           </Container>
         </section>
         <Divider />
@@ -325,10 +199,14 @@ const Landing = ({ isAuthenticated }) => {
 
 Landing.propTypes = {
   isAuthenticated: PropTypes.bool,
+  getCurrentProfile: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  profile: state.profile,
 });
 
-export default connect(mapStateToProps)(Landing);
+export default connect(mapStateToProps, {
+  getCurrentProfile,
+})(Landing);

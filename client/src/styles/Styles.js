@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core";
+import Image from "../img/test.jpg"; // Import using relative path
 
 const useStyles = makeStyles((theme) => ({
   // Dashboard
@@ -208,6 +209,99 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: "center",
     textAlign: "center",
   },
+
+  // Main page - Sections
+  landingTopDiv: {
+    height: "100vh",
+    backgroundImage: `url(${Image})`,
+  },
+  sectionContainer: {
+    minHeight: "100vh",
+    display: "flex",
+    alignItems: "center",
+  },
+  sectionHeaderDiv: {
+    margin: "5% 0%",
+  },
+  sectionHeaderTypography: {
+    fontWeight: "700",
+  },
+  sectionSubHeaderDiv: {
+    margin: "5% 0% 2% 0%",
+  },
+  sectionSubHeaderTypography: {
+    fontWeight: "700",
+  },
+  sectionBodyDiv: {
+    alignSelf: "center",
+  },
+  sectionImageDiv: {
+    alignSelf: "center",
+    textAlign: "center",
+  },
+
+  // Main page - buttons and actions
+  backToTopButtonBox: {
+    position: "fixed",
+    right: "50%",
+    bottom: "30px",
+    zIndex: "118",
+  },
+  backToTopButton: {
+    backgroundColor: "transparent",
+  },
+  backToTopButtonIcon: {
+    color: "white",
+  },
+
+  // Main page - Education
+  educationItemBox: {
+    padding: "1% 3%",
+  },
+  educationItemDegree: {
+    fontWeight: "600",
+    color: theme.palette.secondary.dark,
+    //color: theme.palette.primary.main,
+  },
+  educationItemSchoolDates: {
+    fontStyle: "italic",
+    color: theme.palette.primary.light,
+  },
+  educationItemDescription: {},
+
+  // Main page - Experience
+  experienceItemBox: {
+    padding: "1% 3%",
+  },
+  experienceItemCompanyIcon: {
+    borderRadius: "5px",
+    [theme.breakpoints.up("xs")]: {
+      width: "50px",
+      height: "50px",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "75px",
+      height: "75px",
+    },
+  },
+  experienceItemJobTitleCompanyLocation: {
+    fontWeight: "600",
+    //color: theme.palette.primary.main,
+    color: theme.palette.secondary.dark,
+  },
+  experienceItemDates: {
+    fontStyle: "italic",
+    //textTransform: ""
+    color: theme.palette.primary.light,
+  },
+  experienceItemDescription: {},
+
+  // Main page - Skills
+  skillsItemBox: {
+    padding: "1% 3%",
+  },
+  skillsItemName: {},
+  skillsItemExperienceLevel: {},
 }));
 
 export default useStyles;
