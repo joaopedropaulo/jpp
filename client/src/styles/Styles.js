@@ -300,8 +300,28 @@ const useStyles = makeStyles((theme) => ({
   skillsItemBox: {
     padding: "1% 3%",
   },
-  skillsItemName: {},
-  skillsItemExperienceLevel: {},
+  skillsGridContainer: {
+    textAlign: "center",
+    alignItems: "center",
+  },
+  skillsGridItemSkillName: {
+    textAlign: "end",
+  },
+  skillsGridItemExperienceLevel: {
+    textAlign: "start",
+  },
+  skillsItemName: {
+    padding: "0 5%",
+    margin: "0 3%",
+    backgroundColor: theme.palette.secondary.dark,
+    color: theme.palette.background.default,
+    //borderColor: theme.palette.primary.dark,
+    borderWidth: "1px",
+    fontWeight: "600",
+  },
+  skillsItemExperienceLevel: {
+    margin: "0 1%",
+  },
 }));
 
 export default useStyles;
