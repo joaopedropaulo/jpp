@@ -121,7 +121,7 @@ const Landing = ({
           </Container>
         </section>
         <Divider />
-        <section id="resume">
+        <section id="resume" className={classes.sectionContainer}>
           <Container>
             <Grid container justify="center">
               <Grid item xs={12} className={classes.sectionHeaderDiv}>
@@ -188,9 +188,28 @@ const Landing = ({
         </section>
         <Divider />
         <section id="contact_me">
-          <Typography variant="h4" style={{ width: "100%", height: "100%" }}>
-            Conctact me
-          </Typography>
+          <Container>
+            <Grid container justify="center">
+              <Grid item xs={12} className={classes.sectionHeaderDiv}>
+                <Typography
+                  variant="h3"
+                  align="center"
+                  color="primary"
+                  className={classes.sectionHeaderTypography}
+                >
+                  Contact me
+                </Typography>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography variant="body1" align="center" color="primary">
+                  Reach out and say hello! Email me at \blablabla@bla.bla\.
+                </Typography>
+                <Typography variant="body1" align="center" color="primary">
+                  Find me on social media.
+                </Typography>
+              </Grid>
+            </Grid>
+          </Container>
         </section>
       </Box>
     </Box>

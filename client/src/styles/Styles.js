@@ -312,7 +312,7 @@ const useStyles = makeStyles((theme) => ({
   },
   skillsItemName: {
     padding: "0 5%",
-    margin: "0 3%",
+    margin: "0 5%",
     backgroundColor: theme.palette.secondary.dark,
     color: theme.palette.background.default,
     //borderColor: theme.palette.primary.dark,
