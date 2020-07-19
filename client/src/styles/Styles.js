@@ -322,6 +322,20 @@ const useStyles = makeStyles((theme) => ({
   skillsItemExperienceLevel: {
     margin: "0 1%",
   },
+
+  // Main page - Contact Section
+  contactSectionBox: {
+    textAlign: "center",
+    paddingTop: "1%",
+  },
+
+  contactIconButton: {
+    color: theme.palette.primary.main,
+  },
+
+  contactIconButtonIcon: {
+    fontSize: "3rem",
+  },
 }));
 
 export default useStyles;

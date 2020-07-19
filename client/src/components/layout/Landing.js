@@ -16,6 +16,7 @@ import ResumeEducationSection from "./resume/education/ResumeEducationSection";
 import ResumeExperienceSection from "./resume/experience/ResumeExperienceSection";
 import ResumeSkillsSection from "./resume/skills/ResumeSkillsSection";
 import Navbar from "./Navbar";
+import Contact from "./contact/Contact";
 import useStyles from "../../styles/Styles";
 
 const Landing = ({
@@ -187,7 +188,7 @@ const Landing = ({
           </Container>
         </section>
         <Divider />
-        <section id="contact_me">
+        <section id="contact_me" className={classes.sectionContainer}>
           <Container>
             <Grid container justify="center">
               <Grid item xs={12} className={classes.sectionHeaderDiv}>
@@ -205,8 +206,9 @@ const Landing = ({
                   Reach out and say hello! Email me at \blablabla@bla.bla\.
                 </Typography>
                 <Typography variant="body1" align="center" color="primary">
-                  Find me on social media.
+                  Or find me on social media:
                 </Typography>
+                <Contact value={loading ? {} : profile ? profile.social : {}} />
               </Grid>
             </Grid>
           </Container>
