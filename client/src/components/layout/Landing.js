@@ -49,8 +49,15 @@ const Landing = ({
   }
 
   return (
-    <Box onScroll={checkScrollTop()}>
-      <Box className={classes.landingTopDiv}>
+    <Box>
+      <Box
+        className={classes.landingTopDiv}
+        style={{
+          backgroundImage: `url(${
+            loading ? "" : profile ? profile.profileBackgroundImageURL : ""
+          })`,
+        }}
+      >
         <Navbar name="João Paulo" />
         <Box
           className={classes.backToTopButtonBox}
@@ -76,7 +83,16 @@ const Landing = ({
                 </Typography>
               </Grid>
               <Grid item xs={4} className={classes.sectionImageDiv}>
-                <img src="https://via.placeholder.com/300"></img>
+                <img
+                  className={classes.sectionImage}
+                  src={
+                    loading
+                      ? "https://via.placeholder.com/300"
+                      : profile
+                      ? profile.profilePicURL
+                      : "https://via.placeholder.com/300"
+                  }
+                ></img>
               </Grid>
               <Grid item xs={8} className={classes.sectionBodyDiv}>
                 <Typography variant="body1">

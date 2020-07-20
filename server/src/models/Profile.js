@@ -18,6 +18,12 @@ const ProfileSchema = new mongoose.Schema(
     email: {
       type: String,
     },
+    profilePicURL: {
+      type: String,
+    },
+    profileBackgroundImageURL: {
+      type: String,
+    },
     skills: [
       {
         name: {

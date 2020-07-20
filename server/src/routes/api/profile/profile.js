@@ -54,6 +54,8 @@ router.post(
       currentCompany,
       location,
       currentJobTitle,
+      profilePicURL,
+      profileBackgroundImageURL,
       skills,
       bio,
       youtube,
@@ -75,6 +77,12 @@ router.post(
     }
     if (currentJobTitle) {
       profileFields.currentJobTitle = currentJobTitle;
+    }
+    if (profilePicURL) {
+      profileFields.profilePicURL = profilePicURL;
+    }
+    if (profileBackgroundImageURL) {
+      profileFields.profileBackgroundImageURL = profileBackgroundImageURL;
     }
     if (skills) {
       profileFields.skills = skills;

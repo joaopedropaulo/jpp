@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core";
-import Image from "../img/test.jpg"; // Import using relative path
 
 const useStyles = makeStyles((theme) => ({
   // Navbar
@@ -234,7 +233,6 @@ const useStyles = makeStyles((theme) => ({
   // Main page - Sections
   landingTopDiv: {
     height: "100vh",
-    backgroundImage: `url(${Image})`,
   },
   sectionContainer: {
     minHeight: "100vh",
@@ -260,19 +258,26 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: "center",
     textAlign: "center",
   },
+  sectionImage: {
+    width: "300px",
+    height: "300px",
+  },
 
   // Main page - buttons and actions
   backToTopButtonBox: {
     position: "fixed",
-    right: "50%",
+    //right: "50%",
     bottom: "30px",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
     zIndex: "118",
   },
   backToTopButton: {
     backgroundColor: "transparent",
   },
   backToTopButtonIcon: {
-    color: theme.palette.secondary.dark,
+    color: theme.palette.primary.light,
     fontSize: "4rem",
   },
 

@@ -35,6 +35,12 @@ const EditProfile = ({
       location: loading || !profile.location ? "" : profile.location,
       currentJobTitle:
         loading || !profile.currentJobTitle ? "" : profile.currentJobTitle,
+      profilePicURL:
+        loading || !profile.profilePicURL ? "" : profile.profilePicURL,
+      profileBackgroundImageURL:
+        loading || !profile.profileBackgroundImageURL
+          ? ""
+          : profile.profileBackgroundImageURL,
       skills: loading || !profile.skills ? [] : profile.skills,
       bio: loading || !profile.bio ? "" : profile.bio,
       youtube: loading || !profile.social ? "" : profile.social.youtube,
@@ -53,6 +59,8 @@ const EditProfile = ({
     currentCompany: "",
     location: "",
     currentJobTitle: "",
+    profilePicURL: "",
+    profileBackgroundImageURL: "",
     skills: [],
     bio: "",
     youtube: "",
@@ -65,7 +73,15 @@ const EditProfile = ({
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
-  const { currentCompany, location, currentJobTitle, skills, bio } = formData;
+  const {
+    currentCompany,
+    location,
+    currentJobTitle,
+    profilePicURL,
+    profileBackgroundImageURL,
+    skills,
+    bio,
+  } = formData;
 
   // Update state
   const onRemoveSkill = (index) => {
@@ -91,6 +107,8 @@ const EditProfile = ({
   const isProfileUpdate = () => {
     return currentCompany != "" ||
       currentJobTitle != "" ||
+      profilePicURL != "" ||
+      profileBackgroundImageURL != "" ||
       location != "" ||
       bio != "" ||
       skills
@@ -147,6 +165,24 @@ const EditProfile = ({
                     id="location"
                     label="Location"
                     value={location}
+                    onChange={(e) => handleValueChange(e)}
+                  />
+                </Box>
+                <Box className={classes.editModeTextInputContainers}>
+                  <TextField
+                    fullWidth
+                    id="profilePicURL"
+                    label="Profile Picture URL"
+                    value={profilePicURL}
+                    onChange={(e) => handleValueChange(e)}
+                  />
+                </Box>
+                <Box className={classes.editModeTextInputContainers}>
+                  <TextField
+                    fullWidth
+                    id="profileBackgroundImageURL"
+                    label="Profile Background Image URL"
+                    value={profileBackgroundImageURL}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
