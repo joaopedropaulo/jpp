@@ -2,6 +2,27 @@ import { makeStyles } from "@material-ui/core";
 import Image from "../img/test.jpg"; // Import using relative path
 
 const useStyles = makeStyles((theme) => ({
+  // Navbar
+  navbarRoot: {
+    background: "transparent",
+    boxShadow: "none",
+  },
+  navbarHomeButtonText: {
+    fontFamily: "'Open Sans', serif",
+    fontWeight: "500",
+  },
+  navbarHomeButton: {
+    "&:hover": {
+      color: theme.palette.primary.light,
+    },
+  },
+  navbarHomeGrid: {
+    padding: "1% 1%",
+  },
+  navbarActions: {
+    textAlign: "center",
+  },
+
   // Dashboard
   dashboardActionsContainer: {
     [theme.breakpoints.up("xs")]: {
@@ -251,7 +272,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "transparent",
   },
   backToTopButtonIcon: {
-    color: "white",
+    color: theme.palette.secondary.dark,
+    fontSize: "4rem",
   },
 
   // Main page - Education
@@ -335,6 +357,11 @@ const useStyles = makeStyles((theme) => ({
 
   contactIconButtonIcon: {
     fontSize: "3rem",
+  },
+
+  contactMailToLink: {
+    color: theme.palette.secondary.main,
+    textDecoration: "none",
   },
 }));
 

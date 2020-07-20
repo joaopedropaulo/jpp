@@ -32,9 +32,9 @@ const Landing = ({
 
   const [showScroll, setShowScroll] = useState(false);
   const checkScrollTop = () => {
-    if (!showScroll && window.pageYOffset > 400) {
+    if (!showScroll && window.pageYOffset > 200) {
       setShowScroll(true);
-    } else if (showScroll && window.pageYOffset <= 400) {
+    } else if (showScroll && window.pageYOffset <= 200) {
       setShowScroll(false);
     }
   };
@@ -49,15 +49,15 @@ const Landing = ({
   }
 
   return (
-    <Box>
+    <Box onScroll={checkScrollTop()}>
       <Box className={classes.landingTopDiv}>
-        <Navbar />
-        <Box className={classes.backToTopButtonBox}>
+        <Navbar name="João Paulo" />
+        <Box
+          className={classes.backToTopButtonBox}
+          style={{ display: showScroll ? "flex" : "none" }}
+        >
           <Button size="large" onClick={scrollTop}>
-            <ExpandLessIcon
-              size="large"
-              className={classes.backToTopButtonIcon}
-            />
+            <ExpandLessIcon className={classes.backToTopButtonIcon} />
           </Button>
         </Box>
       </Box>
@@ -80,42 +80,7 @@ const Landing = ({
               </Grid>
               <Grid item xs={8} className={classes.sectionBodyDiv}>
                 <Typography variant="body1">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Pellentesque elit ullamcorper dignissim cras tincidunt
-                  lobortis feugiat. Urna porttitor rhoncus dolor purus non enim.
-                  Ipsum dolor sit amet consectetur adipiscing. At in tellus
-                  integer feugiat scelerisque varius morbi. Lorem ipsum dolor
-                  sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                  incididunt ut labore et dolore magna aliqua. Pellentesque elit
-                  ullamcorper dignissim cras tincidunt lobortis feugiat. Urna
-                  porttitor rhoncus dolor purus non enim. Ipsum dolor sit amet
-                  consectetur adipiscing. At in tellus integer feugiat
-                  scelerisque varius morbi. Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                  ut labore et dolore magna aliqua. Pellentesque elit
-                  ullamcorper dignissim cras tincidunt lobortis feugiat. Urna
-                  porttitor rhoncus dolor purus non enim. Ipsum dolor sit amet
-                  consectetur adipiscing. At in tellus integer feugiat
-                  scelerisque varius morbi. Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                  ut labore et dolore magna aliqua. Pellentesque elit
-                  ullamcorper dignissim cras tincidunt lobortis feugiat. Urna
-                  porttitor rhoncus dolor purus non enim. Ipsum dolor sit amet
-                  consectetur adipiscing. At in tellus integer feugiat
-                  scelerisque varius morbi. Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                  ut labore et dolore magna aliqua. Pellentesque elit
-                  ullamcorper dignissim cras tincidunt lobortis feugiat. Urna
-                  porttitor rhoncus dolor purus non enim. Ipsum dolor sit amet
-                  consectetur adipiscing. At in tellus integer feugiat
-                  scelerisque varius morbi. Lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                  ut labore et dolore magna aliqua. Pellentesque elit
-                  ullamcorper dignissim cras tincidunt lobortis feugiat. Urna
-                  porttitor rhoncus dolor purus non enim. Ipsum dolor sit amet
-                  consectetur adipiscing. At in tellus integer feugiat
-                  scelerisque varius morbi.
+                  {loading ? null : profile ? profile.bio : null}
                 </Typography>
               </Grid>
             </Grid>
@@ -138,7 +103,7 @@ const Landing = ({
               <Grid item xs={12} className={classes.sectionSubHeaderDiv}>
                 <Typography
                   variant="h5"
-                  align="flex-start"
+                  //align="flex-start"
                   color="primary"
                   className={classes.sectionSubHeaderTypography}
                 >
@@ -155,7 +120,7 @@ const Landing = ({
               <Grid item xs={12} className={classes.sectionSubHeaderDiv}>
                 <Typography
                   variant="h5"
-                  align="flex-start"
+                  //align="flex-start"
                   color="primary"
                   className={classes.sectionSubHeaderTypography}
                 >
@@ -172,7 +137,7 @@ const Landing = ({
               <Grid item xs={12} className={classes.sectionSubHeaderDiv}>
                 <Typography
                   variant="h5"
-                  align="flex-start"
+                  //align="flex-start"
                   color="primary"
                   className={classes.sectionSubHeaderTypography}
                 >
@@ -203,7 +168,15 @@ const Landing = ({
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="body1" align="center" color="primary">
-                  Reach out and say hello! Email me at \blablabla@bla.bla\.
+                  Reach out and say hello! Email me at{" "}
+                  {loading ? null : profile ? (
+                    <a
+                      className={classes.contactMailToLink}
+                      href={"mailto:" + profile.email}
+                    >
+                      {profile.email}
+                    </a>
+                  ) : null}
                 </Typography>
                 <Typography variant="body1" align="center" color="primary">
                   Or find me on social media:

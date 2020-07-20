@@ -121,6 +121,7 @@ router.post(
       }
 
       // Create
+      profileFields.email = user.email;
       profile = new Profile(profileFields);
       await profile.save();
 

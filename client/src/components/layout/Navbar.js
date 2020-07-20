@@ -20,16 +20,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import AnchorButton from "./AnchorButton";
 import { logout } from "../../actions/auth";
-
-const useStyles = makeStyles((theme) => ({
-  navbarRoot: {
-    background: "transparent",
-    boxShadow: "none",
-  },
-  navbarActions: {
-    textAlign: "center",
-  },
-}));
+import useStyles from "../../styles/Styles";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const classes = useStyles();
@@ -65,14 +56,21 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   );
 
   return (
-    <AppBar position="static" className={classes.navbarRoot}>
-      {/* <Container> */}
+    <AppBar
+      position="static"
+      className={!isAuthenticated ? classes.navbarRoot : {}}
+    >
       <Toolbar>
         <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <Button href={"/"} color="inherit">
-              <Typography variant="h6">João Paulo</Typography>
-              <HomeIcon />
+          <Grid item xs={6} className={classes.navbarHomeGrid}>
+            <Button
+              href={"/"}
+              color="inherit"
+              className={classes.navbarHomeButton}
+            >
+              <Typography variant="h6" className={classes.navbarHomeButtonText}>
+                João Paulo
+              </Typography>
             </Button>
           </Grid>
           <Grid item xs={6} className={classes.navbarActions}>
@@ -82,7 +80,6 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           </Grid>
         </Grid>
       </Toolbar>
-      {/* </Container> */}
     </AppBar>
   );
 };

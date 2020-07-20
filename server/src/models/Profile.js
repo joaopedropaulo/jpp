@@ -15,6 +15,9 @@ const ProfileSchema = new mongoose.Schema(
     currentJobTitle: {
       type: String,
     },
+    email: {
+      type: String,
+    },
     skills: [
       {
         name: {
