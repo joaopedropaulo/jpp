@@ -34,7 +34,7 @@ jobs:
 workflows:
     create-docker-image:
       jobs:
-        - create-docker-image
+        - create-docker-image:
             filters:
                 branches:
                   only:
