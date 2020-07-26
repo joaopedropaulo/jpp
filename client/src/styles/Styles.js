@@ -16,10 +16,28 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   navbarHomeGrid: {
-    padding: "1% 1%",
+    [theme.breakpoints.up("xs")]: {
+      padding: "1% 1%",
+    },
   },
   navbarActions: {
-    textAlign: "center",
+    [theme.breakpoints.up("xs")]: {
+      display: "none",
+    },
+    [theme.breakpoints.up("sm")]: {
+      textAlign: "center",
+      display: "block",
+    },
+  },
+  navbarGuestLinkButton: {
+    "&:hover": {
+      color: theme.palette.primary.light,
+    },
+  },
+  navbarAuthLinkButton: {
+    "&:hover": {
+      color: theme.palette.primary.light,
+    },
   },
 
   // Dashboard
@@ -233,6 +251,10 @@ const useStyles = makeStyles((theme) => ({
   // Main page - Sections
   landingTopDiv: {
     height: "100vh",
+    [theme.breakpoints.up("xs")]: {
+      backgroundPosition: "center",
+    },
+    [theme.breakpoints.up("md")]: {},
   },
   sectionContainer: {
     minHeight: "100vh",
@@ -240,27 +262,55 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   sectionHeaderDiv: {
-    margin: "5% 0%",
+    [theme.breakpoints.up("xs")]: {
+      margin: "10% 0% 5% 0%",
+    },
+    [theme.breakpoints.up("sm")]: {
+      margin: "5% 0%",
+    },
   },
   sectionHeaderTypography: {
     fontWeight: "700",
   },
   sectionSubHeaderDiv: {
-    margin: "5% 0% 2% 0%",
+    [theme.breakpoints.up("xs")]: {
+      margin: "8% 0% 5% 0%",
+    },
+    [theme.breakpoints.up("sm")]: {
+      margin: "5% 0% 2% 0%",
+    },
   },
   sectionSubHeaderTypography: {
     fontWeight: "700",
   },
   sectionBodyDiv: {
     alignSelf: "center",
+    [theme.breakpoints.up("xs")]: {
+      padding: "0 2% 5% 2%",
+    },
+    [theme.breakpoints.up("sm")]: {
+      padding: "0 0",
+    },
   },
   sectionImageDiv: {
     alignSelf: "center",
     textAlign: "center",
+    [theme.breakpoints.up("xs")]: {
+      margin: "10% 0",
+    },
+    [theme.breakpoints.up("sm")]: {
+      margin: "0 0",
+    },
   },
   sectionImage: {
-    width: "300px",
-    height: "300px",
+    [theme.breakpoints.up("xs")]: {
+      width: "150px",
+      height: "150px",
+    },
+    [theme.breakpoints.up("sm")]: {
+      width: "300px",
+      height: "300px",
+    },
   },
 
   // Main page - buttons and actions
@@ -300,6 +350,9 @@ const useStyles = makeStyles((theme) => ({
   experienceItemBox: {
     padding: "1% 3%",
   },
+  experienceItemGridContainer: {
+    alignItems: "center",
+  },
   experienceItemCompanyIcon: {
     borderRadius: "5px",
     [theme.breakpoints.up("xs")]: {
@@ -325,17 +378,32 @@ const useStyles = makeStyles((theme) => ({
 
   // Main page - Skills
   skillsItemBox: {
-    padding: "1% 3%",
+    [theme.breakpoints.up("xs")]: {
+      padding: "1% 3% 2% 3%",
+    },
+    [theme.breakpoints.up("sm")]: {
+      padding: "1%",
+    },
   },
   skillsGridContainer: {
     textAlign: "center",
     alignItems: "center",
   },
   skillsGridItemSkillName: {
-    textAlign: "end",
+    [theme.breakpoints.up("xs")]: {
+      textAlign: "center",
+    },
+    [theme.breakpoints.up("sm")]: {
+      textAlign: "end",
+    },
   },
   skillsGridItemExperienceLevel: {
-    textAlign: "start",
+    [theme.breakpoints.up("xs")]: {
+      textAlign: "center",
+    },
+    [theme.breakpoints.up("sm")]: {
+      textAlign: "start",
+    },
   },
   skillsItemName: {
     padding: "0 5%",
@@ -361,7 +429,12 @@ const useStyles = makeStyles((theme) => ({
   },
 
   contactIconButtonIcon: {
-    fontSize: "3rem",
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "2rem",
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "3rem",
+    },
   },
 
   contactMailToLink: {

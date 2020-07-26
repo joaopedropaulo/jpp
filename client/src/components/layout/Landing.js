@@ -82,7 +82,7 @@ const Landing = ({
                   About me
                 </Typography>
               </Grid>
-              <Grid item xs={4} className={classes.sectionImageDiv}>
+              <Grid item xs={12} sm={4} className={classes.sectionImageDiv}>
                 <img
                   className={classes.sectionImage}
                   src={
@@ -94,7 +94,7 @@ const Landing = ({
                   }
                 ></img>
               </Grid>
-              <Grid item xs={8} className={classes.sectionBodyDiv}>
+              <Grid item xs={12} sm={8} className={classes.sectionBodyDiv}>
                 <Typography variant="body1">
                   {loading ? null : profile ? profile.bio : null}
                 </Typography>

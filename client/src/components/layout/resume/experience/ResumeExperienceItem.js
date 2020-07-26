@@ -8,8 +8,12 @@ const ResumeExperienceItem = (props) => {
 
   return (
     <Box className={classes.experienceItemBox}>
-      <Grid container spacing={2}>
-        <Grid item xs={1}>
+      <Grid
+        container
+        spacing={2}
+        className={classes.experienceItemGridContainer}
+      >
+        <Grid item xs={3} sm={1}>
           {props.value.companyIcon ? (
             <img
               className={classes.experienceItemCompanyIcon}
@@ -19,7 +23,7 @@ const ResumeExperienceItem = (props) => {
             <Fragment />
           )}
         </Grid>
-        <Grid item xs={11}>
+        <Grid item xs={9} sm={11}>
           <Typography
             variant="subtitle1"
             className={classes.experienceItemJobTitleCompanyLocation}

@@ -14,7 +14,6 @@ import {
 
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import PersonIcon from "@material-ui/icons/Person";
-import HomeIcon from "@material-ui/icons/Home";
 
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -27,10 +26,16 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   const authLinks = (
     <Box>
-      <Button href={"/dashboard"} color="inherit" startIcon={<PersonIcon />}>
+      <Button
+        href={"/dashboard"}
+        color="inherit"
+        className={classes.navbarAuthLinkButton}
+        startIcon={<PersonIcon />}
+      >
         Dashboard
       </Button>
       <Button
+        className={classes.navbarAuthLinkButton}
         onClick={logout}
         href={"#!"}
         color="inherit"
@@ -43,13 +48,25 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   const guestLinks = (
     <Box>
-      <AnchorButton href={"#about_me"} color="inherit">
+      <AnchorButton
+        href={"#about_me"}
+        color="inherit"
+        className={classes.navbarGuestLinkButton}
+      >
         About me
       </AnchorButton>
-      <AnchorButton href={"#resume"} color="inherit">
+      <AnchorButton
+        href={"#resume"}
+        color="inherit"
+        className={classes.navbarGuestLinkButton}
+      >
         Resume
       </AnchorButton>
-      <AnchorButton href={"#contact_me"} color="inherit">
+      <AnchorButton
+        href={"#contact_me"}
+        color="inherit"
+        className={classes.navbarGuestLinkButton}
+      >
         Contact me
       </AnchorButton>
     </Box>
@@ -62,7 +79,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     >
       <Toolbar>
         <Grid container spacing={2}>
-          <Grid item xs={6} className={classes.navbarHomeGrid}>
+          <Grid item xs={12} sm={6} className={classes.navbarHomeGrid}>
             <Button
               href={"/"}
               color="inherit"
