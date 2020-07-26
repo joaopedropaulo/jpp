@@ -3,9 +3,6 @@ orbs:
   node: circleci/node@3.0.1
 jobs:
   create-docker-image:
-    branches:
-      only:
-        -master
     working_directory: ~/server
     machine:
       image: ubuntu-1604:201903-01
@@ -38,3 +35,7 @@ workflows:
     create-docker-image:
       jobs:
         - create-docker-image
+            filters:
+                branches:
+                  only:
+                    - master
