@@ -9,12 +9,17 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build Docker image and push to Heroku repository
+          name: Install Heroku CLI and login
           command: |
               sudo curl https://cli-assets.heroku.com/install.sh | sh
               HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web
-              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} web
+       - run:
+          name: Build Docker images and push to Heroku repository
+          command: cd server && HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web
+       - run:
+          name: Deploy Docker images
+          command: HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} web
+          
 workflows:
     create-docker-image:
       jobs:
