@@ -15,21 +15,15 @@ jobs:
       - run:
           name: Create Docker image for the server
           command: |
-              cd server | sh
+              sh
               HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web
-      - run:
-          name: Create Docker image for the client
-          command: |
-              cd client | sh
-              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web
+              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push --recursive -a ${HEROKU_APP_NAME}
       - run:
           name: Deploy images
           command: |
               sh
               HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} web
+              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} server client
               
 workflows:
     create-docker-image:
