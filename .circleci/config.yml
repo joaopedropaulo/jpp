@@ -12,13 +12,10 @@ jobs:
           name: Install Heroku CLI and login
           command: |
               sudo curl https://cli-assets.heroku.com/install.sh | sh
+              cd server
               HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-       - run:
-          name: Build Docker images and push to Heroku repository
-          command: cd server && HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web
-       - run:
-          name: Deploy Docker images
-          command: HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} web
+              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web
+              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} web
           
 workflows:
     create-docker-image:
