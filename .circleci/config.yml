@@ -1,17 +1,21 @@
 version: 2.1
 orbs:
-  node: circleci/node@1.1.6
+  node: circleci/node@3.0.1
 jobs:
-  build-and-test:
+  create-docker-image:
     executor:
       name: node/default
+      working_directory: server
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: cd server && npm install
-            - run: cd client && npm install
+      - run:
+          name: Build Docker image and push to Heroku repository
+          command: |
+              sudo curl https://cli-assets.heroku.com/install.sh | sh
+              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
+              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web
+              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} web
 workflows:
-    build-and-test:
+    create-docker-image:
       jobs:
-        - build-and-test
+        - create-docker-image
