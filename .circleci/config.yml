@@ -3,9 +3,7 @@ orbs:
   node: circleci/node@3.0.1
 jobs:
   create-docker-image:
-    executor:
-      name: node/default
-      working_directory: server
+    working_directory: server
     steps:
       - checkout
       - run:
