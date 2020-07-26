@@ -4,17 +4,17 @@ orbs:
 jobs:
   create-docker-image:
     working_directory: ~/server
-    executor:
-      name: node/default
-    steps:
-      - checkout
-      - run:
-          name: Build Docker image and push to Heroku repository
-          command: |
-              sudo curl https://cli-assets.heroku.com/install.sh | sh
-              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web
-              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} web
+    machine:
+      image: ubuntu-1604:201903-01
+      steps:
+        - checkout
+        - run:
+            name: Build Docker image and push to Heroku repository
+            command: |
+                sudo curl https://cli-assets.heroku.com/install.sh | sh
+                HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
+                HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web
+                HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} web
 workflows:
     create-docker-image:
       jobs:
