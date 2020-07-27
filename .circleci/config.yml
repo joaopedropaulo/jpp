@@ -9,6 +9,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Create client distribution
+          command: |
+              cd scripts
+              sh prepareClientAppDistribution
+      - run:
           name: Install Heroku CLI and login
           command: |
               sudo curl https://cli-assets.heroku.com/install.sh
@@ -16,14 +21,10 @@ jobs:
           name: Create Docker image for the server
           command: |
               sh
+              cd sever
               HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push --recursive -a ${HEROKU_APP_NAME}
-      - run:
-          name: Deploy images
-          command: |
-              sh
-              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} server client
+              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME}
+              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} web
               
 workflows:
     create-docker-image:
