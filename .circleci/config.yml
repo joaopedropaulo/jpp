@@ -8,8 +8,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install new node version
+          command: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash && nvm --version && nvm install 10.15.3
+      - run:
           name: Create client distribution
-          command: cd scripts && nvm install 10.15.3 && nvm use 10.15.3 && npm version && sh prepareClientAppDistribution.sh
+          command: cd scripts && nvm use 10.15.3 && sh prepareClientAppDistribution.sh
       - run:
           name: Push to Heroku
           command: |
