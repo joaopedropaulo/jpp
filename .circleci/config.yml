@@ -3,14 +3,13 @@ orbs:
   node: circleci/node@3.0.1
 jobs:
   deploy-to-heroku:
-    working_directory: ~/server
     machine:
       image: ubuntu-1604:201903-01
     steps:
       - checkout
       - run:
           name: Create client distribution
-          command: cd scripts && sh prepareClientAppDistribution.sh
+          command: cd scripts && npm version && sh prepareClientAppDistribution.sh
       - run:
           name: Push to Heroku
           command: |
