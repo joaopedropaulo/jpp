@@ -20,11 +20,11 @@ jobs:
               HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web --arg NODE_CONFIG='{"mongoURI":"${PROD_DB_URI}", "jwtSecret":"${PROD_JWT_SECRET}"}'
               HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} web
               
-#workflows:
-#    deploy-to-heroku:
-#      jobs:
-#        - deploy-to-heroku:
-#            filters:
-#                branches:
-#                  only:
-#                    - master
+workflows:
+    deploy-to-heroku:
+      jobs:
+        - deploy-to-heroku
+            #filters:
+            #    branches:
+            #      only:
+            #        - master
