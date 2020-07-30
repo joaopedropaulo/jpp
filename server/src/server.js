@@ -1,5 +1,6 @@
 const express = require("express");
 const connectDB = require("../config/db");
+const path = require("path");
 const app = express();
 
 // Connect to DB
@@ -13,8 +14,10 @@ app.use("/api/auth", require("./routes/api/auth/auth"));
 app.use("/api/profile", require("./routes/api/profile/index"));
 app.use("/api/users", require("./routes/api/users/users"));
 
-app.get("/", (req, res) => {
-  res.send("API is work");
+app.use(express.static(path.join(__dirname, "clientApp")));
+
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "clientApp", "index.html"));
 });
 
 const PORT = process.env.PORT || 5000;

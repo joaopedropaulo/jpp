@@ -3,6 +3,11 @@ FROM node:10.18.1-alpine3.11
 # Create app directory
 WORKDIR /usr/server
 
+# NodeJS Config arguments
+ARG NODE_CONFIG=
+
+ENV NODE_CONFIG $NODE_CONFIG
+
 # Copy 
 COPY package*.json ./
 
@@ -17,5 +22,5 @@ COPY ./config ./config
 
 EXPOSE 5000
 
-# Run development script
-CMD [ "npm", "run", "server" ]
+# Run production
+CMD [ "npm", "run", "start" ]

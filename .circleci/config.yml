@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@3.0.1
 jobs:
-  create-docker-image:
+  deploy-to-heroku:
     working_directory: ~/server
     machine:
       image: ubuntu-1604:201903-01
@@ -10,27 +10,21 @@ jobs:
       - checkout
       - run:
           name: Create client distribution
-          command: |
-              cd scripts
-              sh prepareClientAppDistribution
+          command: cd scripts && sh prepareClientAppDistribution.sh
       - run:
-          name: Install Heroku CLI and login
+          name: Push to Heroku
           command: |
-              sudo curl https://cli-assets.heroku.com/install.sh
-      - run:
-          name: Create Docker image for the server
-          command: |
-              sh
-              cd sever
+              sudo curl https://cli-assets.heroku.com/install.sh | sh
+              cd server
               HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME}
+              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web --arg NODE_CONFIG='{"mongoURI":"${PROD_DB_URI}", "jwtSecret":"${PROD_JWT_SECRET}"}'
               HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} web
               
-workflows:
-    create-docker-image:
-      jobs:
-        - create-docker-image:
-            filters:
-                branches:
-                  only:
-                    - master
+#workflows:
+#    deploy-to-heroku:
+#      jobs:
+#        - deploy-to-heroku:
+#            filters:
+#                branches:
+#                  only:
+#                    - master
