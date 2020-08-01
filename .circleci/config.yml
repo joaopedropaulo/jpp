@@ -10,7 +10,7 @@ jobs:
       - run:
           name: Setup Node configs
           command: |
-            echo 'export CONFIG="{\\"mongoURI\\":\\"$PROD_DB_URI\\", \\"jwtSecret\\":\\"$PROD_JWT_SECRET\\"}"' >> $BASH_ENV
+            echo 'export CONFIG="\"{\"mongoURI\":\"$PROD_DB_URI\", \"jwtSecret\":\"$PROD_JWT_SECRET\"}\""' >> $BASH_ENV
       - run:
           name: Check node version before
           command: | 
