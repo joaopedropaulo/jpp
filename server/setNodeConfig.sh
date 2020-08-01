@@ -1,7 +1,12 @@
 #!/bin/sh
+set -e
 
-if [ -z $1 ] && [ -z $2 ]; then
-    exit 0
+if [ -z ${PROD_DB_URI} ] || [ -z ${PROD_JWT_SECRET} ]; then
+    exit -1
 else
-	export NODE_CONFIG="{\"mongoURI\":\"$1\", \"jwtSecret\":\"$2\"}"
+    echo ${PROD_DB_URI}
+    echo ${PROD_JWT_SECRET}
+	export NODE_CONFIG="{\"mongoURI\":\"${PROD_DB_URI}\", \"jwtSecret\":\"${PROD_JWT_SECRET}\"}"
 fi
+
+npm run start

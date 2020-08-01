@@ -7,8 +7,7 @@ WORKDIR /usr/server
 ARG PROD_DB_URI=
 ARG PROD_JWT_SECRET=
 
-COPY setNodeConfig.sh ./
-RUN chmod +x setNodeConfig.sh && ./setNodeConfig.sh $PROD_DB_URI $PROD_JWT_SECRET
+COPY setNodeConfig.sh ./entrypoint.sh
 
 # Copy 
 COPY package*.json ./
@@ -22,7 +21,10 @@ COPY ./src ./src
 # Copy configs
 COPY ./config ./config
 
+ENV PROD_DB_URI=$PROD_DB_URI
+ENV PROD_JWT_SECRET=$PROD_JWT_SECRET
+
 EXPOSE 5000
 
 # Run production
-CMD [ "npm", "run", "start" ]
+ENTRYPOINT /bin/sh entrypoint.sh
