@@ -4,9 +4,11 @@ FROM node:10.18.1-alpine3.11
 WORKDIR /usr/server
 
 # NodeJS Config arguments
-ARG NODE_CONFIG=
+ARG PROD_DB_URI=
+ARG PROD_JWT_SECRET=
 
-ENV NODE_CONFIG $NODE_CONFIG
+COPY setNodeConfig.sh ./
+RUN chmod +x setNodeConfig.sh && ./setNodeConfig.sh $PROD_DB_URI $PROD_JWT_SECRET
 
 # Copy 
 COPY package*.json ./

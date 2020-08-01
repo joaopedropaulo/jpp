@@ -7,10 +7,6 @@ jobs:
       image: ubuntu-1604:201903-01
     steps:
       - checkout
-      #- run:
-      #    name: Setup Node configs
-      #    command: |
-      #      echo 'export CONFIG="{\"mongoURI\":\"$PROD_DB_URI\", \"jwtSecret\":\"$PROD_JWT_SECRET\"}"' >> $BASH_ENV
       - run:
           name: Check node version before
           command: | 
@@ -39,7 +35,7 @@ jobs:
               sudo curl https://cli-assets.heroku.com/install.sh | sh
               cd server
               HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web --arg NODE_CONFIG="${CONFIG}"
+              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web --arg PROD_DB_URI=$PROD_DB_URI,PROD_JWT_SECRET=$PROD_JWT_SECRET
               HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} web
               
 workflows:
