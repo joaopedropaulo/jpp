@@ -5,8 +5,14 @@ jobs:
   deploy-to-heroku:
     machine:
       image: ubuntu-1604:201903-01
+    environment:
+      DB: "{\"mongoURI\":\"${PROD_DB_URI}\", \"jwtSecret\":\"${PROD_JWT_SECRET}\"}"
     steps:
       - checkout
+      - run:
+          name: Test
+          command: |
+            echo $DB
       - run:
           name: Check node version before
           command: | 
