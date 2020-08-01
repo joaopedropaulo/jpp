@@ -12,6 +12,8 @@ jobs:
       - run:
           name: Test
           command: |
+            echo $PROD_DB_URI
+            echo $PROD_JWT_SECRET
             echo $DB
       - run:
           name: Check node version before
