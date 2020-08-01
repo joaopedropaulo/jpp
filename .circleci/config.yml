@@ -8,18 +8,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Test
+          name: Setup Node configs
           command: |
-            echo 'export DB="{\"mongoURI\":\"$PROD_DB_URI\", \"jwtSecret\":\"$PROD_JWT_SECRET\"}"' >> $BASH_ENV
-            echo $PROD_DB_URI
-            echo $PROD_JWT_SECRET
-            echo $DB
-      - run:
-          name: Test2
-          command: |
-            echo $PROD_DB_URI
-            echo $PROD_JWT_SECRET
-            echo $DB
+            echo 'export CONFIG="{\"mongoURI\":\"$PROD_DB_URI\", \"jwtSecret\":\"$PROD_JWT_SECRET\"}"' >> $BASH_ENV
       - run:
           name: Check node version before
           command: | 
@@ -48,7 +39,7 @@ jobs:
               sudo curl https://cli-assets.heroku.com/install.sh | sh
               cd server
               HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web --arg NODE_CONFIG='{"mongoURI":"$PROD_DB_URI", "jwtSecret":"$PROD_JWT_SECRET"}'
+              HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a ${HEROKU_APP_NAME} web --arg NODE_CONFIG=${CONFIG}
               HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a ${HEROKU_APP_NAME} web
               
 workflows:
