@@ -5,12 +5,17 @@ jobs:
   deploy-to-heroku:
     machine:
       image: ubuntu-1604:201903-01
-    environment:
-      DB: "{\"mongoURI\":\"$PROD_DB_URI\", \"jwtSecret\":\"$PROD_JWT_SECRET\"}"
     steps:
       - checkout
       - run:
           name: Test
+          command: |
+            echo 'export DB="{\"mongoURI\":\"$PROD_DB_URI\", \"jwtSecret\":\"$PROD_JWT_SECRET\"}"' >> $BASH_ENV
+            echo $PROD_DB_URI
+            echo $PROD_JWT_SECRET
+            echo $DB
+      - run:
+          name: Test2
           command: |
             echo $PROD_DB_URI
             echo $PROD_JWT_SECRET
