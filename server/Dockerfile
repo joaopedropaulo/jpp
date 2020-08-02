@@ -28,4 +28,5 @@ ENV PROD_JWT_SECRET=$PROD_JWT_SECRET
 EXPOSE 5000
 
 # Run production
-ENTRYPOINT /bin/sh entrypoint.sh
+ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
+CMD ["npm", "run", "start"]

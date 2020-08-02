@@ -8,5 +8,3 @@ else
     echo ${PROD_JWT_SECRET}
 	export NODE_CONFIG="{\"mongoURI\":\"${PROD_DB_URI}\", \"jwtSecret\":\"${PROD_JWT_SECRET}\"}"
 fi
-
-npm run start
