@@ -29,4 +29,4 @@ EXPOSE 5000
 
 # Run production
 #ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
-CMD ["npm", "run", "start"]
+CMD ["/bin/sh", "entrypoint.sh"]
