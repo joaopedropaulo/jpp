@@ -8,6 +8,7 @@ services:
       - "5000:5000"
     volumes:
       - ./server/src:/usr/server/src
+    command: npm run server
   client:
     build:
       context: ./client
