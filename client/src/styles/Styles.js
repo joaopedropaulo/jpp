@@ -1,6 +1,29 @@
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
+  // Login
+  loginRootBox: {
+    flexGrow: 1,
+    padding: theme.spacing(2),
+  },
+  loginPaper: {
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
+  loginGridContainer: {
+    padding: theme.spacing(1),
+  },
+  loginIcons: {
+    alignSelf: "flex-end",
+    [theme.breakpoints.up("xs")]: {
+      margin: "0% 3% 0% 0%",
+    },
+    [theme.breakpoints.up("sm")]: {
+      margin: "0",
+    },
+  },
+
   // Navbar
   navbarRoot: {
     background: "transparent",
@@ -18,6 +41,12 @@ const useStyles = makeStyles((theme) => ({
   navbarHomeGrid: {
     [theme.breakpoints.up("xs")]: {
       padding: "1% 1%",
+    },
+  },
+  navbarActionsAuthenticated: {
+    [theme.breakpoints.up("xs")]: {
+      textAlign: "center",
+      display: "block",
     },
   },
   navbarActions: {

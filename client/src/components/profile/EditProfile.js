@@ -6,8 +6,6 @@ import {
   Typography,
   TextField,
   Button,
-  Link,
-  Checkbox,
   Grid,
   Container,
   Box,
@@ -105,12 +103,12 @@ const EditProfile = ({
 
   // Helper
   const isProfileUpdate = () => {
-    return currentCompany != "" ||
-      currentJobTitle != "" ||
-      profilePicURL != "" ||
-      profileBackgroundImageURL != "" ||
-      location != "" ||
-      bio != "" ||
+    return currentCompany !== "" ||
+      currentJobTitle !== "" ||
+      profilePicURL !== "" ||
+      profileBackgroundImageURL !== "" ||
+      location !== "" ||
+      bio !== "" ||
       skills
       ? true
       : false;

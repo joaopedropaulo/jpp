@@ -18,6 +18,7 @@ const ResumeExperienceItem = (props) => {
             <img
               className={classes.experienceItemCompanyIcon}
               src={props.value.companyIcon}
+              alt="company icon"
             ></img>
           ) : (
             <Fragment />

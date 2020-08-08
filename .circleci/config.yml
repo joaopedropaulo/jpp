@@ -41,8 +41,8 @@ jobs:
 workflows:
     deploy-to-heroku:
       jobs:
-        - deploy-to-heroku
-            #filters:
-            #    branches:
-            #      only:
-            #        - master
+        - deploy-to-heroku:
+            filters:
+              branches:
+                only:
+                  - master

@@ -1,40 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { login } from "../../actions/auth";
 
-import {
-  Paper,
-  withStyles,
-  Grid,
-  TextField,
-  Button,
-  FormControlLabel,
-  Checkbox,
-} from "@material-ui/core";
-
-import { makeStyles } from "@material-ui/core/styles";
+import { Paper, Grid, TextField, Button } from "@material-ui/core";
 
 import { Face, Fingerprint } from "@material-ui/icons";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    padding: theme.spacing(2),
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  },
-  padding: {
-    padding: theme.spacing(1),
-  },
-  icons: {
-    alignSelf: "flex-end",
-  },
-}));
+import useStyles from "../../styles/Styles";
 
 const Login = ({ login, isAuthenticated }) => {
   const classes = useStyles();
@@ -52,17 +25,17 @@ const Login = ({ login, isAuthenticated }) => {
   }
 
   return (
-    <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs></Grid>
-        <Grid item xs={6}>
+    <div className={classes.loginRootBox}>
+      <Grid container>
+        <Grid item xs={0} sm={3} />
+        <Grid item xs={12} sm={6}>
           <form onSubmit={onSubmit}>
-            <Paper className={classes.paper}>
-              <Grid container spacing={12} className={classes.padding}>
-                <Grid item xs className={classes.icons}>
+            <Paper className={classes.loginPaper}>
+              <Grid container className={classes.loginGridContainer}>
+                <Grid item xs={1} className={classes.loginIcons}>
                   <Face />
                 </Grid>
-                <Grid item xs={11}>
+                <Grid item xs={10}>
                   <TextField
                     id="email"
                     label="Email"
@@ -75,11 +48,11 @@ const Login = ({ login, isAuthenticated }) => {
                   />
                 </Grid>
               </Grid>
-              <Grid container spacing={12} className={classes.padding}>
-                <Grid item xs className={classes.icons}>
+              <Grid container className={classes.loginGridContainer}>
+                <Grid item xs={1} className={classes.loginIcons}>
                   <Fingerprint />
                 </Grid>
-                <Grid item xs={11}>
+                <Grid item xs={10}>
                   <TextField
                     id="password"
                     label="Password"
@@ -103,9 +76,8 @@ const Login = ({ login, isAuthenticated }) => {
             </Paper>
           </form>
         </Grid>
-        <Grid item xs></Grid>
+        <Grid item xs={0} sm={3} />
       </Grid>
-      <Grid container justify="center" style={{ marginTop: "10px" }}></Grid>
     </div>
   );
 };

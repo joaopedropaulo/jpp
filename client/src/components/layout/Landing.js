@@ -58,7 +58,7 @@ const Landing = ({
           })`,
         }}
       >
-        <Navbar name="João Paulo" />
+        <Navbar title="João Paulo" />
         <Box
           className={classes.backToTopButtonBox}
           style={{ display: showScroll ? "flex" : "none" }}
@@ -92,6 +92,7 @@ const Landing = ({
                       ? profile.profilePicURL
                       : "https://via.placeholder.com/300"
                   }
+                  alt="profile picture"
                 ></img>
               </Grid>
               <Grid item xs={12} sm={8} className={classes.sectionBodyDiv}>

@@ -1,16 +1,7 @@
 import React, { Fragment } from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
-//import Typography from "@material-ui/core/Typography";
-import {
-  Button,
-  Toolbar,
-  Box,
-  Container,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Button, Toolbar, Box, Grid, Typography } from "@material-ui/core";
 
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import PersonIcon from "@material-ui/icons/Person";
@@ -21,7 +12,7 @@ import AnchorButton from "./AnchorButton";
 import { logout } from "../../actions/auth";
 import useStyles from "../../styles/Styles";
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated, loading }, logout }, props) => {
   const classes = useStyles();
 
   const authLinks = (
@@ -75,11 +66,11 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   return (
     <AppBar
       position="static"
-      className={!isAuthenticated ? classes.navbarRoot : {}}
+      className={!isAuthenticated ? classes.navbarRoot : ""}
     >
       <Toolbar>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6} className={classes.navbarHomeGrid}>
+          <Grid item xs={6} sm={6} className={classes.navbarHomeGrid}>
             <Button
               href={"/"}
               color="inherit"
@@ -90,7 +81,15 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
               </Typography>
             </Button>
           </Grid>
-          <Grid item xs={6} className={classes.navbarActions}>
+          <Grid
+            item
+            xs={6}
+            className={
+              !isAuthenticated
+                ? classes.navbarActions
+                : classes.navbarActionsAuthenticated
+            }
+          >
             {!loading && (
               <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
             )}

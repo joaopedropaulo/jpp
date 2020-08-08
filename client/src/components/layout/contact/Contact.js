@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Typography, Box, IconButton } from "@material-ui/core";
+import { Box, IconButton } from "@material-ui/core";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import GitHubIcon from "@material-ui/icons/GitHub";

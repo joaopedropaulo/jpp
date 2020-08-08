@@ -3,9 +3,6 @@ import { Typography, List } from "@material-ui/core";
 import SkillListItem from "./SkillListItem";
 
 class SkillList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div>
