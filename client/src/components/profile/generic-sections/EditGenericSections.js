@@ -46,7 +46,7 @@ const EditGenericSections = ({
   const onRemoveMediaItem = (index) => {
     let list = [...media];
     list.splice(index, 1);
-    setFormData({ ...formData, ["media"]: list });
+    setFormData({ ...formData, media: list });
   };
 
   const onAddMediaItem = (mediaType, contentURL, description) => {
@@ -56,7 +56,7 @@ const EditGenericSections = ({
       description: description,
     };
     let list = [...media, obj];
-    setFormData({ ...formData, ["media"]: list });
+    setFormData({ ...formData, media: list });
   };
 
   // Update state

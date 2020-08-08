@@ -18,7 +18,7 @@ import SkillList from "./skills/SkillList";
 import CreateUpdateSocialMediaInputs from "./social-media/CreateUpdateSocialMediaInputs";
 import useStyles from "../../styles/Styles";
 
-const EditProfile = ({
+const CreateUpdateProfile = ({
   profile: { profile, loading },
   createUpdateProfile,
   getCurrentProfile,
@@ -85,7 +85,7 @@ const EditProfile = ({
   const onRemoveSkill = (index) => {
     let list = [...skills];
     list.splice(index, 1);
-    setFormData({ ...formData, ["skills"]: list });
+    setFormData({ ...formData, skills: list });
   };
 
   const onAddSkill = (name, experienceLevel) => {
@@ -94,7 +94,7 @@ const EditProfile = ({
       experienceLevel: experienceLevel,
     };
     let list = [...skills, obj];
-    setFormData({ ...formData, ["skills"]: list });
+    setFormData({ ...formData, skills: list });
   };
 
   const handleValueChange = (e) => {
@@ -137,7 +137,6 @@ const EditProfile = ({
             <Container maxWidth="sm">
               <form onSubmit={(e) => onSubmit(e)}>
                 <Box className={classes.editModeTextInputContainers}>
-                  {/* <Typography variant="h6">Current Company</Typography> */}
                   <TextField
                     fullWidth
                     id="currentCompany"
@@ -147,7 +146,6 @@ const EditProfile = ({
                   />
                 </Box>
                 <Box className={classes.editModeTextInputContainers}>
-                  {/* <Typography variant="h6">Current Job Title</Typography> */}
                   <TextField
                     fullWidth
                     id="currentJobTitle"
@@ -157,7 +155,6 @@ const EditProfile = ({
                   />
                 </Box>
                 <Box className={classes.editModeTextInputContainers}>
-                  {/* <Typography variant="h6">Current Location</Typography> */}
                   <TextField
                     fullWidth
                     id="location"
@@ -185,14 +182,10 @@ const EditProfile = ({
                   />
                 </Box>
                 <Box className={classes.editModeTextInputContainers}>
-                  {/* <Typography variant="h6">
-                    Skills & Experience Levels
-                  </Typography> */}
                   <AddSkillForm onAddSkill={onAddSkill} />
                   <SkillList skillList={skills} onRemoveSkill={onRemoveSkill} />
                 </Box>
                 <Box className={classes.editModeTextInputContainers}>
-                  {/* <Typography variant="h6">Biography</Typography> */}
                   <TextField
                     fullWidth
                     id="bio"
@@ -241,7 +234,7 @@ const EditProfile = ({
                         color="primary"
                         size="large"
                       >
-                        Add
+                        Save
                       </Button>
                     </Grid>
                   </Grid>
@@ -255,7 +248,7 @@ const EditProfile = ({
   );
 };
 
-EditProfile.propTypes = {
+CreateUpdateProfile.propTypes = {
   createUpdateProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
@@ -268,4 +261,4 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   createUpdateProfile,
   getCurrentProfile,
-})(withRouter(EditProfile));
+})(withRouter(CreateUpdateProfile));

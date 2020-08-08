@@ -87,19 +87,26 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   dashboardActionsButtons: {
-    [theme.breakpoints.up("lg")]: {
-      height: "200px",
-      width: "200px",
-    },
-    [theme.breakpoints.down("md")]: {
-      height: "75px",
-      width: "150px",
-      fontSize: "0.75rem",
-    },
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.up("xs")]: {
       height: "50px",
       width: "100px",
       fontSize: "0.6rem",
+    },
+    [theme.breakpoints.up("sm")]: {
+      height: "100px",
+      width: "200px",
+      fontSize: "0.6rem",
+    },
+    [theme.breakpoints.up("md")]: {
+      height: "200px",
+      width: "200px",
+      fontSize: "0.75rem",
+    },
+    [theme.breakpoints.up("lg")]: {
+      height: "200px",
+      width: "200px",
+      fontSize: "0.9rem",
+      fontWeight: "600",
     },
   },
   dashboardHeaderContainer: {
@@ -108,6 +115,10 @@ const useStyles = makeStyles((theme) => ({
       marginRight: "0",
       textAlign: "center",
     },
+  },
+  dashboardHeaderText: {
+    fontFamily: "'Open Sans', serif",
+    fontWeight: "600",
   },
 
   // Edit Mode - Generic

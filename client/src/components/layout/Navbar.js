@@ -12,7 +12,7 @@ import AnchorButton from "./AnchorButton";
 import { logout } from "../../actions/auth";
 import useStyles from "../../styles/Styles";
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }, props) => {
+const Navbar = ({ auth: { isAuthenticated, loading }, logout, name }) => {
   const classes = useStyles();
 
   const authLinks = (
@@ -28,7 +28,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }, props) => {
       <Button
         className={classes.navbarAuthLinkButton}
         onClick={logout}
-        href={"#!"}
+        href={"/"}
         color="inherit"
         startIcon={<ExitToAppIcon />}
       >
@@ -77,7 +77,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }, props) => {
               className={classes.navbarHomeButton}
             >
               <Typography variant="h6" className={classes.navbarHomeButtonText}>
-                João Paulo
+                {name}
               </Typography>
             </Button>
           </Grid>

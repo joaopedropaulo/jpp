@@ -30,14 +30,16 @@ const Dashboard = ({
   } else {
     dashboardHeader = (
       <Box mx={10} mt={5} className={classes.dashboardHeaderContainer}>
-        <Typography variant="h6">Welcome, {user && user.name}!</Typography>
+        <Typography variant="h6" className={classes.dashboardHeaderText}>
+          Welcome, {user && user.name}!
+        </Typography>
       </Box>
     );
   }
 
   return (
     <div>
-      <Navbar />
+      <Navbar name={user && user.name} />
       {dashboardHeader}
       {profile !== null ? (
         <Fragment>

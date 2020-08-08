@@ -9,8 +9,7 @@ import Alert from "./components/layout/Alert";
 import Login from "./components/auth/Login";
 
 import Dashboard from "./components/dashboard/Dashboard";
-import CreateProfile from "./components/profile/CreateProfile";
-import EditProfile from "./components/profile/EditProfile";
+import CreateUpdateProfile from "./components/profile/CreateUpdateProfile";
 import EditExperience from "./components/profile/experience/EditExperience";
 import EditEducation from "./components/profile/education/EditEducation";
 import EditGenericSections from "./components/profile/generic-sections/EditGenericSections";
@@ -57,12 +56,12 @@ const App = () => {
               <PrivateRoute
                 exact
                 path="/create-profile"
-                component={CreateProfile}
+                component={CreateUpdateProfile}
               />
               <PrivateRoute
                 exact
                 path="/edit-profile"
-                component={EditProfile}
+                component={CreateUpdateProfile}
               />
               <PrivateRoute
                 exact
