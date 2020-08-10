@@ -13,7 +13,7 @@ const Contact = (props) => {
 
   return (
     <Box className={classes.contactSectionBox}>
-      {props.value.youtube ? (
+      {props.value && props.value.youtube ? (
         <IconButton
           className={classes.contactIconButton}
           href={props.value.youtube}
@@ -26,7 +26,7 @@ const Contact = (props) => {
       ) : (
         <Fragment />
       )}
-      {props.value.facebook ? (
+      {props.value && props.value.facebook ? (
         <IconButton
           className={classes.contactIconButton}
           href={props.value.facebook}
@@ -39,7 +39,7 @@ const Contact = (props) => {
       ) : (
         <Fragment />
       )}
-      {props.value.github ? (
+      {props.value && props.value.github ? (
         <IconButton
           className={classes.contactIconButton}
           href={props.value.github}
@@ -52,7 +52,7 @@ const Contact = (props) => {
       ) : (
         <Fragment />
       )}
-      {props.value.instagram ? (
+      {props.value && props.value.instagram ? (
         <IconButton
           className={classes.contactIconButton}
           href={props.value.instagram}
@@ -65,7 +65,7 @@ const Contact = (props) => {
       ) : (
         <Fragment />
       )}
-      {props.value.linkedin ? (
+      {props.value && props.value.linkedin ? (
         <IconButton
           className={classes.contactIconButton}
           href={props.value.linkedin}
@@ -78,7 +78,7 @@ const Contact = (props) => {
       ) : (
         <Fragment />
       )}
-      {props.value.twitter ? (
+      {props.value && props.value.twitter ? (
         <IconButton
           className={classes.contactIconButton}
           href={props.value.twitter}

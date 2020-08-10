@@ -1,5 +1,5 @@
 {
-  "mongoURI": "mongodb+srv://jpp:UM047MmwlPfVkj00@cluster0-ropjj.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtSecret": "123sdkadh12ejasnjdn1kn1kdn12du1d1n2jk1n2dkjqsasdogosbfobmbmprkererk2gkkk",
+  "mongoURI": "mongodb://db:27017/test",
+  "jwtSecret": "1234567890abcdefghijklmnopqrstuvwxyz",
   "tokenExpirationTime": 36000
 }

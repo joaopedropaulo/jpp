@@ -48,7 +48,7 @@ export const login = (email, password) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "danger")));
+      errors.forEach((e) => dispatch(setAlert(e.msg, "error")));
     }
 
     dispatch({ type: LOGIN_FAIL });

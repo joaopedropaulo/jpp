@@ -2,7 +2,7 @@ import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Typography, Box } from "@material-ui/core";
+import { Typography, Box, Container } from "@material-ui/core";
 import { getCurrentProfile } from "../../actions/profile";
 import Navbar from "../layout/Navbar";
 import DashboardActions from "./DashboardActions";
@@ -46,9 +46,11 @@ const Dashboard = ({
           <DashboardActions />
         </Fragment>
       ) : (
-        <Fragment>
-          <Link to="/create-profile">Create Profile</Link>
-        </Fragment>
+        <Box mx={10} mt={5} className={classes.dashboardHeaderContainer}>
+          <Link to="/create-profile">
+            <Typography variant="subtitle">Create Profile</Typography>
+          </Link>
+        </Box>
       )}
     </div>
   );

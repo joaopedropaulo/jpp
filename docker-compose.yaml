@@ -1,9 +1,12 @@
 version: "3.7"
+
 services:
   server:
     build:
       context: ./server
       dockerfile: Dockerfile
+    depends_on:
+      - db
     ports:
       - "5000:5000"
     volumes:
@@ -13,7 +16,30 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
+    depends_on:
+      - db
+      - server
     ports:
       - "3000:3000"
     volumes:
       - ./client/src:/usr/client/src
+  db:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - db_volume:/data/db
+  db-admin:
+    image: mongo-express
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: db
+
+volumes:
+  db_volume:
+    name: "mongodb_mern_volume"

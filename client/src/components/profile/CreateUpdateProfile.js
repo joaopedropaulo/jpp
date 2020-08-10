@@ -27,32 +27,39 @@ const CreateUpdateProfile = ({
   useEffect(() => {
     getCurrentProfile();
 
-    setFormData({
-      currentCompany:
-        loading || !profile.currentCompany ? "" : profile.currentCompany,
-      location: loading || !profile.location ? "" : profile.location,
-      currentJobTitle:
-        loading || !profile.currentJobTitle ? "" : profile.currentJobTitle,
-      profilePicURL:
-        loading || !profile.profilePicURL ? "" : profile.profilePicURL,
-      profileBackgroundImageURL:
-        loading || !profile.profileBackgroundImageURL
-          ? ""
-          : profile.profileBackgroundImageURL,
-      skills: loading || !profile.skills ? [] : profile.skills,
-      bio: loading || !profile.bio ? "" : profile.bio,
-      youtube: loading || !profile.social ? "" : profile.social.youtube,
-      instagram: loading || !profile.social ? "" : profile.social.instagram,
-      linkedin: loading || !profile.social ? "" : profile.social.linkedin,
-      twitter: loading || !profile.social ? "" : profile.social.twitter,
-      github: loading || !profile.social ? "" : profile.social.github,
-      facebook: loading || !profile.social ? "" : profile.social.facebook,
-    });
+    if (profile !== null) {
+      setFormData({
+        currentCompany:
+          loading || !profile.currentCompany ? "" : profile.currentCompany,
+        location: loading || !profile.location ? "" : profile.location,
+        currentJobTitle:
+          loading || !profile.currentJobTitle ? "" : profile.currentJobTitle,
+        profilePicURL:
+          loading || !profile.profilePicURL ? "" : profile.profilePicURL,
+        profileBackgroundImageURL:
+          loading || !profile.profileBackgroundImageURL
+            ? ""
+            : profile.profileBackgroundImageURL,
+        skills: loading || !profile.skills ? [] : profile.skills,
+        bio: loading || !profile.bio ? "" : profile.bio,
+        youtube: loading || !profile.social ? "" : profile.social.youtube,
+        instagram: loading || !profile.social ? "" : profile.social.instagram,
+        linkedin: loading || !profile.social ? "" : profile.social.linkedin,
+        twitter: loading || !profile.social ? "" : profile.social.twitter,
+        github: loading || !profile.social ? "" : profile.social.github,
+        facebook: loading || !profile.social ? "" : profile.social.facebook,
+      });
+      setIsUpdate(true);
+    } else {
+      setIsUpdate(false);
+    }
   }, [loading]);
 
   const classes = useStyles();
 
   // States
+  const [isUpdate, setIsUpdate] = useState(false);
+
   const [formData, setFormData] = useState({
     currentCompany: "",
     location: "",
@@ -109,7 +116,7 @@ const CreateUpdateProfile = ({
       profileBackgroundImageURL !== "" ||
       location !== "" ||
       bio !== "" ||
-      skills
+      (skills && skills.length > 0)
       ? true
       : false;
   };
@@ -117,7 +124,8 @@ const CreateUpdateProfile = ({
   // Actions to be taken to the backend
   const onSubmit = (e) => {
     e.preventDefault();
-    createUpdateProfile(formData, history, isProfileUpdate());
+    console.log(isUpdate);
+    createUpdateProfile(formData, history, isUpdate);
   };
 
   return (
@@ -140,7 +148,7 @@ const CreateUpdateProfile = ({
                   <TextField
                     fullWidth
                     id="currentCompany"
-                    label="Company"
+                    label="Current Company"
                     value={currentCompany}
                     onChange={(e) => handleValueChange(e)}
                   />
@@ -149,7 +157,7 @@ const CreateUpdateProfile = ({
                   <TextField
                     fullWidth
                     id="currentJobTitle"
-                    label="Job title"
+                    label="Current Job title"
                     value={currentJobTitle}
                     onChange={(e) => handleValueChange(e)}
                   />
@@ -210,7 +218,7 @@ const CreateUpdateProfile = ({
                 {displaySocialInputs ? (
                   <CreateUpdateSocialMediaInputs
                     handleValueChange={handleValueChange}
-                    social={profile.social}
+                    social={profile ? profile.social : {}}
                   />
                 ) : (
                   <Fragment></Fragment>
