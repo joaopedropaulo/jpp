@@ -7,7 +7,7 @@ WORKDIR /usr/server
 ARG PROD_DB_URI=
 ARG PROD_JWT_SECRET=
 
-COPY setNodeConfig.sh ./entrypoint.sh
+COPY entrypoint.sh ./entrypoint.sh
 RUN chmod +x entrypoint.sh
 
 # Copy 

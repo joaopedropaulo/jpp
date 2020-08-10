@@ -16,9 +16,15 @@ app.use("/api/users", require("./routes/api/users/users"));
 
 app.use(express.static(path.join(__dirname, "clientApp")));
 
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "clientApp", "index.html"));
-});
+if (process.env.PROD && process.env.PROD === "true") {
+  app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "clientApp", "index.html"));
+  });
+
+  console.log("Starting Production...");
+} else {
+  console.log("Starting Non-Production...");
+}
 
 const PORT = process.env.PORT || 5000;
 
