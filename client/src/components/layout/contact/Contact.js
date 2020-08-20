@@ -7,7 +7,11 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import TwitterIcon from "@material-ui/icons/Twitter";
 
-import useStyles from "../../../styles/Styles";
+//import useStyles from "../../../styles/Styles";
+import { makeStyles } from "@material-ui/core";
+import styles from "../../../styles/Styles";
+const useStyles = makeStyles((theme) => styles(theme));
+
 const Contact = (props) => {
   const classes = useStyles();
 

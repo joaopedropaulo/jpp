@@ -1,7 +1,11 @@
 import React from "react";
 import { Typography, Box, Grid, Chip } from "@material-ui/core";
 import CustomLevelDisplayBar from "./CustomLevelDisplayBar";
-import useStyles from "../../../../styles/Styles";
+//import useStyles from "../../../../styles/Styles";
+
+import { makeStyles } from "@material-ui/core";
+import styles from "../../../../styles/Styles";
+const useStyles = makeStyles((theme) => styles(theme));
 
 const ResumeSkillsItem = (props) => {
   const classes = useStyles();

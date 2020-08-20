@@ -17,7 +17,10 @@ import {
   getCurrentProfile,
 } from "../../../actions/profile";
 import ExperienceTable from "./ExperienceTable";
-import useStyles from "../../../styles/Styles";
+//import useStyles from "../../../styles/Styles";
+import { makeStyles } from "@material-ui/core";
+import styles from "../../../styles/Styles";
+const useStyles = makeStyles((theme) => styles(theme));
 
 const EditExperience = ({
   addExperience,

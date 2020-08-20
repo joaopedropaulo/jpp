@@ -9,7 +9,10 @@ import {
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MediaItem from "./media/MediaItem";
-import useStyles from "../../../styles/Styles";
+//import useStyles from "../../../styles/Styles";
+import { makeStyles } from "@material-ui/core";
+import styles from "../../../styles/Styles";
+const useStyles = makeStyles((theme) => styles(theme));
 
 const GenericSectionsTableItem = (props) => {
   const classes = useStyles();

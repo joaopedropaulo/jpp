@@ -7,7 +7,10 @@ import { login } from "../../actions/auth";
 import { Paper, Grid, TextField, Button } from "@material-ui/core";
 
 import { Face, Fingerprint } from "@material-ui/icons";
-import useStyles from "../../styles/Styles";
+//import useStyles from "../../styles/Styles";
+import { makeStyles } from "@material-ui/core";
+import styles from "../../styles/Styles";
+const useStyles = makeStyles((theme) => styles(theme));
 
 const Login = ({ login, isAuthenticated }) => {
   const classes = useStyles();

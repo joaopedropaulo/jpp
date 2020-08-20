@@ -23,10 +23,18 @@ import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 
 import { ThemeProvider } from "@material-ui/core/styles";
+import {
+  StylesProvider,
+  createGenerateClassName,
+} from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import themes from "./styles/themes";
 
 import "./App.css";
+
+const generateClassName = createGenerateClassName({
+  productionPrefix: "caligula",
+});
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -38,52 +46,54 @@ const App = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={themes}>
-      <CssBaseline />
-      <Provider store={store}>
-        <Router>
-          <Fragment>
-            <Route exact path="/" component={Landing} />
-            <Alert />
-            <Switch>
-              <Route exact path="/login" component={Login} />
+    <StylesProvider generateClassName={generateClassName}>
+      <ThemeProvider theme={themes}>
+        <CssBaseline />
+        <Provider store={store}>
+          <Router>
+            <Fragment>
+              <Route exact path="/" component={Landing} />
+              <Alert />
+              <Switch>
+                <Route exact path="/login" component={Login} />
 
-              <Route exact path="/profile" component={Profile} />
+                <Route exact path="/profile" component={Profile} />
 
-              <Route exact path="/about" component={Landing} />
+                <Route exact path="/about" component={Landing} />
 
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute
-                exact
-                path="/create-profile"
-                component={CreateUpdateProfile}
-              />
-              <PrivateRoute
-                exact
-                path="/edit-profile"
-                component={CreateUpdateProfile}
-              />
-              <PrivateRoute
-                exact
-                path="/edit-experience"
-                component={EditExperience}
-              />
-              <PrivateRoute
-                exact
-                path="/edit-education"
-                component={EditEducation}
-              />
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute
+                  exact
+                  path="/create-profile"
+                  component={CreateUpdateProfile}
+                />
+                <PrivateRoute
+                  exact
+                  path="/edit-profile"
+                  component={CreateUpdateProfile}
+                />
+                <PrivateRoute
+                  exact
+                  path="/edit-experience"
+                  component={EditExperience}
+                />
+                <PrivateRoute
+                  exact
+                  path="/edit-education"
+                  component={EditEducation}
+                />
 
-              <PrivateRoute
-                exact
-                path="/edit-generic-sections"
-                component={EditGenericSections}
-              />
-            </Switch>
-          </Fragment>
-        </Router>
-      </Provider>
-    </ThemeProvider>
+                <PrivateRoute
+                  exact
+                  path="/edit-generic-sections"
+                  component={EditGenericSections}
+                />
+              </Switch>
+            </Fragment>
+          </Router>
+        </Provider>
+      </ThemeProvider>
+    </StylesProvider>
   );
 };
 

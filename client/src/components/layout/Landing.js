@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core";
 import {
   Box,
   Button,
@@ -17,7 +18,10 @@ import ResumeExperienceSection from "./resume/experience/ResumeExperienceSection
 import ResumeSkillsSection from "./resume/skills/ResumeSkillsSection";
 import Navbar from "./Navbar";
 import Contact from "./contact/Contact";
-import useStyles from "../../styles/Styles";
+//import useStyles from "../../styles/Styles";
+import styles from "../../styles/Styles";
+
+const useStyles = makeStyles((theme) => styles(theme));
 
 const Landing = ({
   isAuthenticated,

@@ -5,7 +5,10 @@ import SchoolIcon from "@material-ui/icons/School";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import WorkIcon from "@material-ui/icons/Work";
 import ListAltIcon from "@material-ui/icons/ListAlt";
-import useStyles from "../../styles/Styles";
+//import useStyles from "../../styles/Styles";
+import { makeStyles } from "@material-ui/core";
+import styles from "../../styles/Styles";
+const useStyles = makeStyles((theme) => styles(theme));
 
 export const DashboardActions = (props) => {
   const classes = useStyles();

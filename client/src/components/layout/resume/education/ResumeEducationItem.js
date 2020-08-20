@@ -2,7 +2,11 @@ import React from "react";
 import Moment from "react-moment";
 import { Typography, Box } from "@material-ui/core";
 
-import useStyles from "../../../../styles/Styles";
+//import useStyles from "../../../../styles/Styles";
+import { makeStyles } from "@material-ui/core";
+import styles from "../../../../styles/Styles";
+const useStyles = makeStyles((theme) => styles(theme));
+
 const ResumeEducationItem = (props) => {
   const classes = useStyles();
 

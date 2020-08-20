@@ -7,7 +7,10 @@ import { getCurrentProfile } from "../../actions/profile";
 import Navbar from "../layout/Navbar";
 import DashboardActions from "./DashboardActions";
 import Spinner from "../layout/Spinner";
-import useStyles from "../../styles/Styles";
+//import useStyles from "../../styles/Styles";
+import { makeStyles } from "@material-ui/core";
+import styles from "../../styles/Styles";
+const useStyles = makeStyles((theme) => styles(theme));
 
 const Dashboard = ({
   getCurrentProfile,
@@ -48,7 +51,7 @@ const Dashboard = ({
       ) : (
         <Box mx={10} mt={5} className={classes.dashboardHeaderContainer}>
           <Link to="/create-profile">
-            <Typography variant="subtitle">Create Profile</Typography>
+            <Typography variant="subtitle1">Create Profile</Typography>
           </Link>
         </Box>
       )}
