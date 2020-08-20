@@ -2,14 +2,13 @@ import React, { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Typography, Box, Container } from "@material-ui/core";
+import { Typography, Box, makeStyles } from "@material-ui/core";
 import { getCurrentProfile } from "../../actions/profile";
 import Navbar from "../layout/Navbar";
 import DashboardActions from "./DashboardActions";
 import Spinner from "../layout/Spinner";
-//import useStyles from "../../styles/Styles";
-import { makeStyles } from "@material-ui/core";
 import styles from "../../styles/Styles";
+
 const useStyles = makeStyles((theme) => styles(theme));
 
 const Dashboard = ({

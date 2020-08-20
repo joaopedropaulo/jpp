@@ -3,7 +3,6 @@ import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Landing from "./components/layout/Landing";
-import Profile from "./components/layout/Profile";
 import Alert from "./components/layout/Alert";
 
 import Login from "./components/auth/Login";
@@ -56,8 +55,6 @@ const App = () => {
               <Alert />
               <Switch>
                 <Route exact path="/login" component={Login} />
-
-                <Route exact path="/profile" component={Profile} />
 
                 <Route exact path="/about" component={Landing} />
 

@@ -1,8 +1,13 @@
 import React from "react";
-import { Card, CardMedia, CardContent, Typography } from "@material-ui/core";
-//import useStyles from "../../../../styles/Styles";
-import { makeStyles } from "@material-ui/core";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  makeStyles,
+} from "@material-ui/core";
 import styles from "../../../../styles/Styles";
+
 const useStyles = makeStyles((theme) => styles(theme));
 
 const MediaItem = (props) => {

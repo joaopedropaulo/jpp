@@ -1,67 +1,22 @@
 import React, { Fragment } from "react";
-
-import AppBar from "@material-ui/core/AppBar";
-import { makeStyles } from "@material-ui/core";
-import { Button, Toolbar, Box, Grid, Typography } from "@material-ui/core";
-
+import {
+  Button,
+  Toolbar,
+  Box,
+  Grid,
+  Typography,
+  AppBar,
+  makeStyles,
+} from "@material-ui/core";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import PersonIcon from "@material-ui/icons/Person";
-
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import AnchorButton from "./AnchorButton";
 import { logout } from "../../actions/auth";
-//import useStyles from "../../styles/Styles";
 import styles from "../../styles/Styles";
 
 const useStyles = makeStyles((theme) => styles(theme));
-
-//const useStyles = makeStyles((theme) => ({
-//  // Navbar
-//  navbarRoot: {
-//    background: "transparent",
-//    boxShadow: "none",
-//  },
-//  navbarHomeButtonText: {
-//    fontFamily: "'Open Sans', serif",
-//    fontWeight: "500",
-//  },
-//  navbarHomeButton: {
-//    "&:hover": {
-//      color: theme.palette.primary.light,
-//    },
-//  },
-//  navbarHomeGrid: {
-//    [theme.breakpoints.up("xs")]: {
-//      padding: "1% 1%",
-//    },
-//  },
-//  navbarActionsAuthenticated: {
-//    [theme.breakpoints.up("xs")]: {
-//      textAlign: "center",
-//      display: "block",
-//    },
-//  },
-//  navbarActions: {
-//    [theme.breakpoints.up("xs")]: {
-//      display: "none",
-//    },
-//    [theme.breakpoints.up("sm")]: {
-//      textAlign: "center",
-//      display: "block",
-//    },
-//  },
-//  navbarGuestLinkButton: {
-//    "&:hover": {
-//      color: theme.palette.primary.light,
-//    },
-//  },
-//  navbarAuthLinkButton: {
-//    "&:hover": {
-//      color: theme.palette.primary.light,
-//    },
-//  },
-//}));
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout, name }) => {
   const classes = useStyles();

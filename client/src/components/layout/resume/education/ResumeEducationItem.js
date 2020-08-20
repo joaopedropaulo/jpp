@@ -1,10 +1,8 @@
 import React from "react";
 import Moment from "react-moment";
-import { Typography, Box } from "@material-ui/core";
-
-//import useStyles from "../../../../styles/Styles";
-import { makeStyles } from "@material-ui/core";
+import { Typography, Box, makeStyles } from "@material-ui/core";
 import styles from "../../../../styles/Styles";
+
 const useStyles = makeStyles((theme) => styles(theme));
 
 const ResumeEducationItem = (props) => {
@@ -16,9 +14,6 @@ const ResumeEducationItem = (props) => {
         {props.value.degree}
         {props.value.fieldOfStudy ? ", " + props.value.fieldOfStudy : ""}
       </Typography>
-      {/* <Typography variant="subtitle2" className={classes.educationItemFieldOfStudy}>
-        {props.value.fieldOfStudy}
-      </Typography> */}
       <Typography
         variant="subtitle2"
         className={classes.educationItemSchoolDates}

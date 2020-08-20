@@ -6,10 +6,10 @@ import {
   TableCell,
   Card,
   CardMedia,
+  makeStyles,
 } from "@material-ui/core";
-//import useStyles from "../../../styles/Styles";
-import { makeStyles } from "@material-ui/core";
 import styles from "../../../styles/Styles";
+
 const useStyles = makeStyles((theme) => styles(theme));
 
 const ExperienceTableItem = (props) => {

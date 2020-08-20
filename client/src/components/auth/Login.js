@@ -3,13 +3,10 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { login } from "../../actions/auth";
-
-import { Paper, Grid, TextField, Button } from "@material-ui/core";
-
+import { Paper, Grid, TextField, Button, makeStyles } from "@material-ui/core";
 import { Face, Fingerprint } from "@material-ui/icons";
-//import useStyles from "../../styles/Styles";
-import { makeStyles } from "@material-ui/core";
 import styles from "../../styles/Styles";
+
 const useStyles = makeStyles((theme) => styles(theme));
 
 const Login = ({ login, isAuthenticated }) => {
@@ -30,7 +27,7 @@ const Login = ({ login, isAuthenticated }) => {
   return (
     <div className={classes.loginRootBox}>
       <Grid container>
-        <Grid item xs={0} sm={3} />
+        <Grid item xs={false} sm={3} />
         <Grid item xs={12} sm={6}>
           <form onSubmit={onSubmit}>
             <Paper className={classes.loginPaper}>
@@ -79,7 +76,7 @@ const Login = ({ login, isAuthenticated }) => {
             </Paper>
           </form>
         </Grid>
-        <Grid item xs={0} sm={3} />
+        <Grid item xs={false} sm={3} />
       </Grid>
     </div>
   );

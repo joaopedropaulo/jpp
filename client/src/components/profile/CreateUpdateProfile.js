@@ -10,15 +10,15 @@ import {
   Container,
   Box,
   Paper,
+  makeStyles,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { createUpdateProfile, getCurrentProfile } from "../../actions/profile";
 import AddSkillForm from "./skills/AddSkillForm";
 import SkillList from "./skills/SkillList";
 import CreateUpdateSocialMediaInputs from "./social-media/CreateUpdateSocialMediaInputs";
-//import useStyles from "../../styles/Styles";
-import { makeStyles } from "@material-ui/core";
 import styles from "../../styles/Styles";
+
 const useStyles = makeStyles((theme) => styles(theme));
 
 const CreateUpdateProfile = ({

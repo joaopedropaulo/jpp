@@ -1,9 +1,8 @@
 import React, { Fragment } from "react";
-import { Box, List } from "@material-ui/core";
+import { Box, List, makeStyles } from "@material-ui/core";
 import MediaListItem from "./MediaListItem";
-//import useStyles from "../../../../styles/Styles";
-import { makeStyles } from "@material-ui/core";
 import styles from "../../../../styles/Styles";
+
 const useStyles = makeStyles((theme) => styles(theme));
 
 const MediaList = (props) => {

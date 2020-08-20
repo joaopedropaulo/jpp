@@ -10,6 +10,7 @@ import {
   Container,
   Box,
   Paper,
+  makeStyles,
 } from "@material-ui/core";
 import {
   addEducation,
@@ -17,9 +18,8 @@ import {
   getCurrentProfile,
 } from "../../../actions/profile";
 import EducationTable from "./EducationTable";
-//import useStyles from "../../../styles/Styles";
-import { makeStyles } from "@material-ui/core";
 import styles from "../../../styles/Styles";
+
 const useStyles = makeStyles((theme) => styles(theme));
 
 const EditEducation = ({

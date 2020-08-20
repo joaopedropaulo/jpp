@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Box, Typography } from "@material-ui/core";
 import CustomLevelDisplayBar from "./CustomLevelDisplayBar";
 
