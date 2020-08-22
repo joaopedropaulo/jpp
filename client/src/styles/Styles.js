@@ -472,7 +472,12 @@ const styles = (theme) => {
       fontWeight: "600",
     },
     skillsItemExperienceLevel: {
-      margin: "0 1%",
+      [theme.breakpoints.up("xs")]: {
+        margin: "0 1%",
+      },
+      [theme.breakpoints.up("sm")]: {
+        margin: "0 3%",
+      },
     },
 
     // Main page - Contact Section
