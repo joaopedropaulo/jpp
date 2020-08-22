@@ -63,6 +63,7 @@ router.post(
       twitter,
       instagram,
       linkedin,
+      github,
     } = req.body;
 
     // Build profile object
@@ -107,6 +108,9 @@ router.post(
     }
     if (instagram) {
       profileFields.social.instagram = instagram;
+    }
+    if (github) {
+      profileFields.social.github = github;
     }
 
     try {
