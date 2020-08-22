@@ -76,7 +76,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout, name }) => {
     >
       <Toolbar>
         <Grid container spacing={2}>
-          <Grid item xs={8} sm={6} className={classes.navbarHomeGrid}>
+          <Grid item xs={7} sm={6} className={classes.navbarHomeGrid}>
             <Button
               href={"/"}
               color="inherit"
@@ -94,7 +94,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout, name }) => {
           </Grid>
           <Grid
             item
-            xs={4}
+            xs={5}
             sm={6}
             className={
               !isAuthenticated
