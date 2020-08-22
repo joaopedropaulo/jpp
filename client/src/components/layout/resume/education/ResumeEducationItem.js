@@ -8,6 +8,21 @@ const useStyles = makeStyles((theme) => styles(theme));
 const ResumeEducationItem = (props) => {
   const classes = useStyles();
 
+  const descriptionLines = props.value.description.split("\n");
+  const descComp = descriptionLines.map((descriptionItem, index) => {
+    return (
+      <div key={`${index}-edu-desc`}>
+        <Typography
+          variant="body1"
+          className={classes.educationItemDescription}
+          display="inline"
+        >
+          {descriptionItem}
+        </Typography>
+      </div>
+    );
+  });
+
   return (
     <Box className={classes.educationItemBox}>
       <Typography variant="subtitle1" className={classes.educationItemDegree}>
@@ -19,16 +34,14 @@ const ResumeEducationItem = (props) => {
         className={classes.educationItemSchoolDates}
       >
         {props.value.school},{" "}
-        <Moment format="YYYY/MM/DD">{props.value.from}</Moment> -
+        <Moment format="MMMM YYYY">{props.value.from}</Moment> -{" "}
         {props.value.to === null ? (
-          " Present"
+          "Present"
         ) : (
-          <Moment format="YYYY/MM/DD">{props.value.to}</Moment>
+          <Moment format="MMMM YYYY">{props.value.to}</Moment>
         )}
       </Typography>
-      <Typography variant="body1" className={classes.educationItemDescription}>
-        {props.value.description}
-      </Typography>
+      {descComp}
     </Box>
   );
 };

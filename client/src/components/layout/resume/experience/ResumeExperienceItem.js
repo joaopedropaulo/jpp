@@ -8,6 +8,21 @@ const useStyles = makeStyles((theme) => styles(theme));
 const ResumeExperienceItem = (props) => {
   const classes = useStyles();
 
+  const descriptionLines = props.value.description.split("\n");
+  const descComp = descriptionLines.map((descriptionItem, index) => {
+    return (
+      <div key={`${index}-exp-desc`}>
+        <Typography
+          variant="body1"
+          className={classes.experienceItemDescription}
+          display="inline"
+        >
+          {descriptionItem}
+        </Typography>
+      </div>
+    );
+  });
+
   return (
     <Box className={classes.experienceItemBox}>
       <Grid
@@ -38,19 +53,14 @@ const ResumeExperienceItem = (props) => {
             variant="subtitle2"
             className={classes.experienceItemDates}
           >
-            <Moment format="YYYY/MM/DD">{props.value.from}</Moment> -
+            <Moment format="MMMM YYYY">{props.value.from}</Moment> -{" "}
             {props.value.to === null ? (
-              " Present"
+              "Present"
             ) : (
-              <Moment format="YYYY/MM/DD">{props.value.to}</Moment>
+              <Moment format="MMMM YYYY">{props.value.to}</Moment>
             )}
           </Typography>
-          <Typography
-            variant="body1"
-            className={classes.experienceItemDescription}
-          >
-            {props.value.description}
-          </Typography>
+          {descComp}
         </Grid>
       </Grid>
     </Box>

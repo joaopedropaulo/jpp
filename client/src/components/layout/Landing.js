@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import {
   Box,
@@ -22,16 +21,25 @@ import styles from "../../styles/Styles";
 
 const useStyles = makeStyles((theme) => styles(theme));
 
-const Landing = ({
-  isAuthenticated,
-  getCurrentProfile,
-  profile: { profile, loading },
-}) => {
+const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
   useEffect(() => {
     getCurrentProfile();
   }, [loading]);
 
   const classes = useStyles();
+
+  var bio = <Fragment></Fragment>;
+  if (profile && profile.bio) {
+    bio = profile.bio.split("\n").map((bioLine, index) => {
+      return (
+        <div key={`${index}-bio`}>
+          <Typography variant="body1" display="inline">
+            {bioLine}
+          </Typography>
+        </div>
+      );
+    });
+  }
 
   const [showScroll, setShowScroll] = useState(false);
   const checkScrollTop = () => {
@@ -46,10 +54,6 @@ const Landing = ({
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  if (isAuthenticated) {
-    return <Redirect to="/dashboard" />;
-  }
 
   return (
     <Box>
@@ -99,9 +103,10 @@ const Landing = ({
                 ></img>
               </Grid>
               <Grid item xs={12} sm={8} className={classes.sectionBodyDiv}>
-                <Typography variant="body1">
+                {/* <Typography variant="body1">
                   {loading ? null : profile ? profile.bio : null}
-                </Typography>
+                </Typography> */}
+                {bio}
               </Grid>
             </Grid>
           </Container>
