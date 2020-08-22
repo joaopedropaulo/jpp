@@ -127,7 +127,6 @@ const CreateUpdateProfile = ({
   // Actions to be taken to the backend
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(isUpdate);
     createUpdateProfile(formData, history, isUpdate);
   };
 

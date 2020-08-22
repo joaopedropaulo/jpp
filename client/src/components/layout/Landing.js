@@ -33,7 +33,11 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
     bio = profile.bio.split("\n").map((bioLine, index) => {
       return (
         <div key={`${index}-bio`}>
-          <Typography variant="body1" display="inline">
+          <Typography
+            variant="body1"
+            display="inline"
+            className={classes.sectionBodyText}
+          >
             {bioLine}
           </Typography>
         </div>

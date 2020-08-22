@@ -331,6 +331,9 @@ const styles = (theme) => {
         padding: "0 0",
       },
     },
+    sectionBodyText: {
+      overflowWrap: "break-word",
+    },
     sectionImageDiv: {
       alignSelf: "center",
       textAlign: "center",
@@ -383,7 +386,9 @@ const styles = (theme) => {
       fontStyle: "italic",
       color: theme.palette.primary.light,
     },
-    educationItemDescription: {},
+    educationItemDescription: {
+      overflowWrap: "break-word",
+    },
 
     // Main page - Experience
     experienceItemBox: {
@@ -413,9 +418,19 @@ const styles = (theme) => {
       //textTransform: ""
       color: theme.palette.primary.light,
     },
-    experienceItemDescription: {},
+    experienceItemDescription: {
+      overflowWrap: "break-word",
+    },
 
     // Main page - Skills
+    skillsSectionBox: {
+      [theme.breakpoints.up("xs")]: {
+        margin: "0% 0% 5% 0%",
+      },
+      [theme.breakpoints.up("sm")]: {
+        margin: "0% 0% 7% 0%",
+      },
+    },
     skillsItemBox: {
       [theme.breakpoints.up("xs")]: {
         padding: "1% 3% 2% 3%",
