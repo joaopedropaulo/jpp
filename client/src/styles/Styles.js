@@ -32,6 +32,9 @@ const styles = (theme) => {
       fontFamily: "'Open Sans', serif",
       fontWeight: "500",
     },
+    navbarHomeButtonLogo: {
+      padding: "0 5% 0 0",
+    },
     navbarHomeButton: {
       "&:hover": {
         color: theme.palette.primary.light,

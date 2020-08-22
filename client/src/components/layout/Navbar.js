@@ -76,12 +76,17 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout, name }) => {
     >
       <Toolbar>
         <Grid container spacing={2}>
-          <Grid item xs={6} sm={6} className={classes.navbarHomeGrid}>
+          <Grid item xs={8} sm={6} className={classes.navbarHomeGrid}>
             <Button
               href={"/"}
               color="inherit"
               className={classes.navbarHomeButton}
             >
+              <img
+                src={`${process.env.PUBLIC_URL}/logo-tiny.png`}
+                alt="Logo"
+                className={classes.navbarHomeButtonLogo}
+              ></img>
               <Typography variant="h6" className={classes.navbarHomeButtonText}>
                 {name}
               </Typography>
@@ -89,7 +94,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout, name }) => {
           </Grid>
           <Grid
             item
-            xs={6}
+            xs={4}
+            sm={6}
             className={
               !isAuthenticated
                 ? classes.navbarActions
