@@ -9,7 +9,9 @@ import {
   Grid,
   Divider,
   makeStyles,
+  useMediaQuery,
 } from "@material-ui/core";
+import { useTheme } from "@material-ui/core/styles";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import { getCurrentProfile } from "../../actions/profile";
 import ResumeEducationSection from "./resume/education/ResumeEducationSection";
@@ -45,6 +47,15 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
     });
   }
 
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+
+  const resolveBackground = (isLargerScreen) => {
+    return isLargerScreen
+      ? profile.profileBackgroundImageURL
+      : profile.profileMobileBackgroundImageURL;
+  };
+
   const [showScroll, setShowScroll] = useState(false);
   const checkScrollTop = () => {
     if (!showScroll && window.pageYOffset > 200) {
@@ -65,7 +76,7 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
         className={classes.landingTopDiv}
         style={{
           backgroundImage: `url(${
-            loading ? "" : profile ? profile.profileBackgroundImageURL : ""
+            loading ? "" : profile ? resolveBackground(matches) : ""
           })`,
         }}
       >

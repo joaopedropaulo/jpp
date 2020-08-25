@@ -43,6 +43,10 @@ const CreateUpdateProfile = ({
           loading || !profile.profileBackgroundImageURL
             ? ""
             : profile.profileBackgroundImageURL,
+        profileMobileBackgroundImageURL:
+          loading || !profile.profileMobileBackgroundImageURL
+            ? ""
+            : profile.profileMobileBackgroundImageURL,
         skills: loading || !profile.skills ? [] : profile.skills,
         bio: loading || !profile.bio ? "" : profile.bio,
         youtube: loading || !profile.social ? "" : profile.social.youtube,
@@ -69,6 +73,7 @@ const CreateUpdateProfile = ({
     currentJobTitle: "",
     profilePicURL: "",
     profileBackgroundImageURL: "",
+    profileMobileBackgroundImageURL: "",
     skills: [],
     bio: "",
     youtube: "",
@@ -87,6 +92,7 @@ const CreateUpdateProfile = ({
     currentJobTitle,
     profilePicURL,
     profileBackgroundImageURL,
+    profileMobileBackgroundImageURL,
     skills,
     bio,
   } = formData;
@@ -117,6 +123,7 @@ const CreateUpdateProfile = ({
       currentJobTitle !== "" ||
       profilePicURL !== "" ||
       profileBackgroundImageURL !== "" ||
+      profileMobileBackgroundImageURL !== "" ||
       location !== "" ||
       bio !== "" ||
       (skills && skills.length > 0)
@@ -188,6 +195,15 @@ const CreateUpdateProfile = ({
                     id="profileBackgroundImageURL"
                     label="Profile Background Image URL"
                     value={profileBackgroundImageURL}
+                    onChange={(e) => handleValueChange(e)}
+                  />
+                </Box>
+                <Box className={classes.editModeTextInputContainers}>
+                  <TextField
+                    fullWidth
+                    id="profileMobileBackgroundImageURL"
+                    label="Profile Background Image URL for Mobile devices"
+                    value={profileMobileBackgroundImageURL}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>

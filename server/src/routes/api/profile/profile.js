@@ -56,6 +56,7 @@ router.post(
       currentJobTitle,
       profilePicURL,
       profileBackgroundImageURL,
+      profileMobileBackgroundImageURL,
       skills,
       bio,
       youtube,
@@ -84,6 +85,9 @@ router.post(
     }
     if (profileBackgroundImageURL) {
       profileFields.profileBackgroundImageURL = profileBackgroundImageURL;
+    }
+    if (profileMobileBackgroundImageURL) {
+      profileFields.profileMobileBackgroundImageURL = profileMobileBackgroundImageURL;
     }
     if (skills) {
       profileFields.skills = skills;

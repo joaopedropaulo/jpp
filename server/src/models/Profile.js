@@ -24,6 +24,9 @@ const ProfileSchema = new mongoose.Schema(
     profileBackgroundImageURL: {
       type: String,
     },
+    profileMobileBackgroundImageURL: {
+      type: String,
+    },
     skills: [
       {
         name: {
