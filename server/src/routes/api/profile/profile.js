@@ -42,6 +42,13 @@ router.post(
         "skills.*.experienceLevel",
         "Experience level must be a number between 1 and 5."
       ).isIn([1, 2, 3, 4, 5]),
+      check("languages", "Languages are not properly formatted.").isArray(),
+      check("languages", "Languages cannot be empty.").notEmpty(),
+      check("languages.*.name", "Language name is required.").notEmpty(),
+      check(
+        "languages.*.level",
+        "Language level must be a number between 1 and 5."
+      ).isIn([1, 2, 3, 4, 5]),
     ],
   ],
   async (req, res) => {
@@ -59,6 +66,9 @@ router.post(
       profileMobileBackgroundImageURL,
       skills,
       bio,
+      professionalInterests,
+      personalInterests,
+      languages,
       youtube,
       facebook,
       twitter,
@@ -91,6 +101,15 @@ router.post(
     }
     if (skills) {
       profileFields.skills = skills;
+    }
+    if (languages) {
+      profileFields.languages = languages;
+    }
+    if (professionalInterests) {
+      profileFields.professionalInterests = professionalInterests;
+    }
+    if (personalInterests) {
+      profileFields.personalInterests = personalInterests;
     }
     if (bio) {
       profileFields.bio = bio;

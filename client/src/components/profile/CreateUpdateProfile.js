@@ -15,9 +15,13 @@ import {
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { createUpdateProfile, getCurrentProfile } from "../../actions/profile";
 import AddSkillForm from "./skills/AddSkillForm";
+import AddLanguageForm from "./languages/AddLanguageForm";
+import AddInterestForm from "./interests/AddInterestForm";
 import SkillList from "./skills/SkillList";
+import LanguageList from "./languages/LanguageList";
 import CreateUpdateSocialMediaInputs from "./social-media/CreateUpdateSocialMediaInputs";
 import styles from "../../styles/Styles";
+import InterestList from "./interests/InterestList";
 
 const useStyles = makeStyles((theme) => styles(theme));
 
@@ -48,6 +52,15 @@ const CreateUpdateProfile = ({
             ? ""
             : profile.profileMobileBackgroundImageURL,
         skills: loading || !profile.skills ? [] : profile.skills,
+        languages: loading || !profile.languages ? [] : profile.languages,
+        professionalInterests:
+          loading || !profile.professionalInterests
+            ? []
+            : profile.professionalInterests,
+        personalInterests:
+          loading || !profile.personalInterests
+            ? []
+            : profile.personalInterests,
         bio: loading || !profile.bio ? "" : profile.bio,
         youtube: loading || !profile.social ? "" : profile.social.youtube,
         instagram: loading || !profile.social ? "" : profile.social.instagram,
@@ -75,6 +88,9 @@ const CreateUpdateProfile = ({
     profileBackgroundImageURL: "",
     profileMobileBackgroundImageURL: "",
     skills: [],
+    languages: [],
+    professionalInterests: [],
+    personalInterests: [],
     bio: "",
     youtube: "",
     instagram: "",
@@ -94,6 +110,9 @@ const CreateUpdateProfile = ({
     profileBackgroundImageURL,
     profileMobileBackgroundImageURL,
     skills,
+    languages,
+    professionalInterests,
+    personalInterests,
     bio,
   } = formData;
 
@@ -113,6 +132,43 @@ const CreateUpdateProfile = ({
     setFormData({ ...formData, skills: list });
   };
 
+  const onRemoveLanguage = (index) => {
+    let list = [...languages];
+    list.splice(index, 1);
+    setFormData({ ...formData, languages: list });
+  };
+
+  const onAddLanguage = (name, level) => {
+    let obj = {
+      name: name,
+      level: level,
+    };
+    let list = [...languages, obj];
+    setFormData({ ...formData, languages: list });
+  };
+
+  const onRemoveProfessionalInterest = (index) => {
+    let list = [...professionalInterests];
+    list.splice(index, 1);
+    setFormData({ ...formData, professionalInterests: list });
+  };
+
+  const onAddProfessionalInterest = (value) => {
+    let list = [...professionalInterests, value];
+    setFormData({ ...formData, professionalInterests: list });
+  };
+
+  const onRemovePersonalInterest = (index) => {
+    let list = [...personalInterests];
+    list.splice(index, 1);
+    setFormData({ ...formData, personalInterests: list });
+  };
+
+  const onAddPersonalInterest = (value) => {
+    let list = [...personalInterests, value];
+    setFormData({ ...formData, personalInterests: list });
+  };
+
   const handleValueChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -126,7 +182,10 @@ const CreateUpdateProfile = ({
       profileMobileBackgroundImageURL !== "" ||
       location !== "" ||
       bio !== "" ||
-      (skills && skills.length > 0)
+      (skills && skills.length > 0) ||
+      (languages && languages.length > 0) ||
+      (professionalInterests && professionalInterests.length > 0) ||
+      (personalInterests && personalInterests.length > 0)
       ? true
       : false;
   };
@@ -210,6 +269,37 @@ const CreateUpdateProfile = ({
                 <Box className={classes.editModeTextInputContainers}>
                   <AddSkillForm onAddSkill={onAddSkill} />
                   <SkillList skillList={skills} onRemoveSkill={onRemoveSkill} />
+                </Box>
+                <Box className={classes.editModeTextInputContainers}>
+                  <AddLanguageForm onAddLanguage={onAddLanguage} />
+                  <LanguageList
+                    languageList={languages}
+                    onRemoveLanguage={onRemoveLanguage}
+                  />
+                </Box>
+                {/* Professional interests */}
+                <Box className={classes.editModeTextInputContainers}>
+                  <AddInterestForm
+                    onAddInterest={onAddProfessionalInterest}
+                    label="Professional Interests"
+                  />
+                  <InterestList
+                    interestList={professionalInterests}
+                    onRemoveInterest={onRemoveProfessionalInterest}
+                    label="Professional Interests"
+                  />
+                </Box>
+                {/* Personal interests */}
+                <Box className={classes.editModeTextInputContainers}>
+                  <AddInterestForm
+                    onAddInterest={onAddPersonalInterest}
+                    label="Personal Interests"
+                  />
+                  <InterestList
+                    interestList={personalInterests}
+                    onRemoveInterest={onRemovePersonalInterest}
+                    label="Personal Interests"
+                  />
                 </Box>
                 <Box className={classes.editModeTextInputContainers}>
                   <TextField

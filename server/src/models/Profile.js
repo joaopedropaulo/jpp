@@ -27,6 +27,16 @@ const ProfileSchema = new mongoose.Schema(
     profileMobileBackgroundImageURL: {
       type: String,
     },
+    professionalInterests: [
+      {
+        type: String,
+      },
+    ],
+    personalInterests: [
+      {
+        type: String,
+      },
+    ],
     skills: [
       {
         name: {
@@ -34,6 +44,18 @@ const ProfileSchema = new mongoose.Schema(
           required: true,
         },
         experienceLevel: {
+          type: Number,
+          required: true,
+        },
+      },
+    ],
+    languages: [
+      {
+        name: {
+          type: String,
+          required: true,
+        },
+        level: {
           type: Number,
           required: true,
         },
