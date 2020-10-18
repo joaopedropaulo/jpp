@@ -14,6 +14,7 @@ import {
 import { useTheme } from "@material-ui/core/styles";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import { getCurrentProfile } from "../../actions/profile";
+import { generateResume } from "../../actions/resume";
 import ResumeEducationSection from "./resume/education/ResumeEducationSection";
 import ResumeExperienceSection from "./resume/experience/ResumeExperienceSection";
 import ResumeSkillsSection from "./resume/skills/ResumeSkillsSection";
@@ -68,6 +69,19 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
 
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const onGenerateResume = () => {
+    generateResume(
+      profile.resumeHTMLTemplate,
+      JSON.stringify(
+        Object.assign({}, profile, {
+          resumeHTMLTemplate: "",
+          generateResumeURL: "",
+        })
+      ),
+      profile.generateResumeURL
+    );
   };
 
   return (
@@ -185,6 +199,22 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
                 <ResumeSkillsSection
                   skillsList={loading ? [] : profile ? profile.skills : []}
                 />
+              </Grid>
+              <Grid item xs={12} className={classes.generateResumeGrid}>
+                {loading ? (
+                  <Fragment></Fragment>
+                ) : profile && profile.generateResumeURL ? (
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    className={classes.generateResumeButton}
+                    onClick={onGenerateResume}
+                  >
+                    Generate My Resume
+                  </Button>
+                ) : (
+                  <Fragment></Fragment>
+                )}
               </Grid>
             </Grid>
           </Container>

@@ -62,6 +62,14 @@ const CreateUpdateProfile = ({
             ? []
             : profile.personalInterests,
         bio: loading || !profile.bio ? "" : profile.bio,
+        generateResumeURL:
+          loading || !profile.generateResumeURL
+            ? ""
+            : profile.generateResumeURL,
+        resumeHTMLTemplate:
+          loading || !profile.resumeHTMLTemplate
+            ? ""
+            : profile.resumeHTMLTemplate,
         youtube: loading || !profile.social ? "" : profile.social.youtube,
         instagram: loading || !profile.social ? "" : profile.social.instagram,
         linkedin: loading || !profile.social ? "" : profile.social.linkedin,
@@ -92,6 +100,8 @@ const CreateUpdateProfile = ({
     professionalInterests: [],
     personalInterests: [],
     bio: "",
+    generateResumeURL: "",
+    resumeHTMLTemplate: "",
     youtube: "",
     instagram: "",
     linkedin: "",
@@ -114,6 +124,8 @@ const CreateUpdateProfile = ({
     professionalInterests,
     personalInterests,
     bio,
+    generateResumeURL,
+    resumeHTMLTemplate,
   } = formData;
 
   // Update state
@@ -182,6 +194,8 @@ const CreateUpdateProfile = ({
       profileMobileBackgroundImageURL !== "" ||
       location !== "" ||
       bio !== "" ||
+      generateResumeURL !== "" ||
+      resumeHTMLTemplate !== "" ||
       (skills && skills.length > 0) ||
       (languages && languages.length > 0) ||
       (professionalInterests && professionalInterests.length > 0) ||
@@ -311,6 +325,28 @@ const CreateUpdateProfile = ({
                     rows={5}
                     variant="outlined"
                     value={bio}
+                    onChange={(e) => handleValueChange(e)}
+                  />
+                </Box>
+                <Box className={classes.editModeTextInputContainers}>
+                  <TextField
+                    fullWidth
+                    id="generateResumeURL"
+                    label="URL for Resume Generation"
+                    value={generateResumeURL}
+                    onChange={(e) => handleValueChange(e)}
+                  />
+                </Box>
+                <Box className={classes.editModeTextInputContainers}>
+                  <TextField
+                    fullWidth
+                    id="resumeHTMLTemplate"
+                    label="HTML template for Resume generation"
+                    multiline
+                    cols={30}
+                    rows={5}
+                    variant="outlined"
+                    value={resumeHTMLTemplate}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>

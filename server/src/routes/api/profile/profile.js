@@ -69,6 +69,8 @@ router.post(
       professionalInterests,
       personalInterests,
       languages,
+      generateResumeURL,
+      resumeHTMLTemplate,
       youtube,
       facebook,
       twitter,
@@ -113,6 +115,12 @@ router.post(
     }
     if (bio) {
       profileFields.bio = bio;
+    }
+    if (generateResumeURL) {
+      profileFields.generateResumeURL = generateResumeURL;
+    }
+    if (resumeHTMLTemplate) {
+      profileFields.resumeHTMLTemplate = resumeHTMLTemplate;
     }
 
     // Build social object

@@ -503,6 +503,31 @@ const styles = (theme) => {
       color: theme.palette.secondary.main,
       textDecoration: "none",
     },
+
+    generateResumeGrid: {
+      textAlign: "center",
+      [theme.breakpoints.up("xs")]: {
+        margin: "10% 0% 20% 0%",
+      },
+      [theme.breakpoints.up("sm")]: {
+        margin: "1% 0% 10% 0%",
+      },
+    },
+
+    generateResumeButton: {
+      color: "white",
+      backgroundColor: theme.palette.primary.main,
+      borderWidth: "2px",
+      padding: "1.5%",
+      fontWeight: 600,
+      "&:hover": {
+        borderWidth: "2px",
+        color: theme.palette.primary.main,
+      },
+      [theme.breakpoints.down("sm")]: {
+        padding: "5%",
+      },
+    },
   };
 };
 

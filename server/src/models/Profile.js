@@ -174,6 +174,12 @@ const ProfileSchema = new mongoose.Schema(
         ],
       },
     ],
+    generateResumeURL: {
+      type: String,
+    },
+    resumeHTMLTemplate: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
