@@ -71,6 +71,7 @@ router.post(
       languages,
       generateResumeURL,
       resumeHTMLTemplate,
+      displayTitleName,
       youtube,
       facebook,
       twitter,
@@ -121,6 +122,9 @@ router.post(
     }
     if (resumeHTMLTemplate) {
       profileFields.resumeHTMLTemplate = resumeHTMLTemplate;
+    }
+    if (displayTitleName) {
+      profileFields.displayTitleName = displayTitleName;
     }
 
     // Build social object

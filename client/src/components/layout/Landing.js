@@ -94,7 +94,11 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
           })`,
         }}
       >
-        <Navbar name="João Paulo" />
+        <Navbar
+          name={
+            profile && profile.displayTitleName ? profile.displayTitleName : ""
+          }
+        />
         <Box
           className={classes.backToTopButtonBox}
           style={{ display: showScroll ? "flex" : "none" }}

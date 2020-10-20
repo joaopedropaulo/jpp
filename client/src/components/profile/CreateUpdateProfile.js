@@ -70,6 +70,8 @@ const CreateUpdateProfile = ({
           loading || !profile.resumeHTMLTemplate
             ? ""
             : profile.resumeHTMLTemplate,
+        displayTitleName:
+          loading || !profile.displayTitleName ? "" : profile.displayTitleName,
         youtube: loading || !profile.social ? "" : profile.social.youtube,
         instagram: loading || !profile.social ? "" : profile.social.instagram,
         linkedin: loading || !profile.social ? "" : profile.social.linkedin,
@@ -102,6 +104,7 @@ const CreateUpdateProfile = ({
     bio: "",
     generateResumeURL: "",
     resumeHTMLTemplate: "",
+    displayTitleName: "",
     youtube: "",
     instagram: "",
     linkedin: "",
@@ -126,6 +129,7 @@ const CreateUpdateProfile = ({
     bio,
     generateResumeURL,
     resumeHTMLTemplate,
+    displayTitleName,
   } = formData;
 
   // Update state
@@ -196,6 +200,7 @@ const CreateUpdateProfile = ({
       bio !== "" ||
       generateResumeURL !== "" ||
       resumeHTMLTemplate !== "" ||
+      displayTitleName !== "" ||
       (skills && skills.length > 0) ||
       (languages && languages.length > 0) ||
       (professionalInterests && professionalInterests.length > 0) ||
@@ -347,6 +352,15 @@ const CreateUpdateProfile = ({
                     rows={5}
                     variant="outlined"
                     value={resumeHTMLTemplate}
+                    onChange={(e) => handleValueChange(e)}
+                  />
+                </Box>
+                <Box className={classes.editModeTextInputContainers}>
+                  <TextField
+                    fullWidth
+                    id="displayTitleName"
+                    label="Title to display"
+                    value={displayTitleName}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>

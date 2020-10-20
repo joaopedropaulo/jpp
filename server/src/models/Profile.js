@@ -180,6 +180,9 @@ const ProfileSchema = new mongoose.Schema(
     resumeHTMLTemplate: {
       type: String,
     },
+    displayTitleName: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
