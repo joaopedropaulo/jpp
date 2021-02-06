@@ -51,10 +51,14 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
 
-  const resolveBackground = (isLargerScreen) => {
-    return isLargerScreen
-      ? profile.profileBackgroundImageURL
-      : profile.profileMobileBackgroundImageURL;
+  const resolveBackground = () => {
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+    const isLargeScreen = useMediaQuery(theme.breakpoints.up("xl"));
+    return isSmallScreen
+      ? profile.profileMobileBackgroundImageURL
+      : isLargeScreen
+      ? profile.profileLargeBackgroundImageURL
+      : profile.profileBackgroundImageURL;
   };
 
   const [showScroll, setShowScroll] = useState(false);
@@ -90,7 +94,7 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
         className={classes.landingTopDiv}
         style={{
           backgroundImage: `url(${
-            loading ? "" : profile ? resolveBackground(matches) : ""
+            loading ? "" : profile ? resolveBackground() : ""
           })`,
         }}
       >

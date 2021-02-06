@@ -64,6 +64,7 @@ router.post(
       profilePicURL,
       profileBackgroundImageURL,
       profileMobileBackgroundImageURL,
+      profileLargeBackgroundImageURL,
       skills,
       bio,
       professionalInterests,
@@ -101,6 +102,9 @@ router.post(
     }
     if (profileMobileBackgroundImageURL) {
       profileFields.profileMobileBackgroundImageURL = profileMobileBackgroundImageURL;
+    }
+    if (profileLargeBackgroundImageURL) {
+      profileFields.profileLargeBackgroundImageURL = profileLargeBackgroundImageURL;
     }
     if (skills) {
       profileFields.skills = skills;

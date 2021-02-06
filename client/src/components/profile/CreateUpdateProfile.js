@@ -51,6 +51,10 @@ const CreateUpdateProfile = ({
           loading || !profile.profileMobileBackgroundImageURL
             ? ""
             : profile.profileMobileBackgroundImageURL,
+        profileLargeBackgroundImageURL:
+          loading || !profile.profileLargeBackgroundImageURL
+            ? ""
+            : profile.profileLargeBackgroundImageURL,
         skills: loading || !profile.skills ? [] : profile.skills,
         languages: loading || !profile.languages ? [] : profile.languages,
         professionalInterests:
@@ -97,6 +101,7 @@ const CreateUpdateProfile = ({
     profilePicURL: "",
     profileBackgroundImageURL: "",
     profileMobileBackgroundImageURL: "",
+    profileLargeBackgroundImageURL: "",
     skills: [],
     languages: [],
     professionalInterests: [],
@@ -122,6 +127,7 @@ const CreateUpdateProfile = ({
     profilePicURL,
     profileBackgroundImageURL,
     profileMobileBackgroundImageURL,
+    profileLargeBackgroundImageURL,
     skills,
     languages,
     professionalInterests,
@@ -196,6 +202,7 @@ const CreateUpdateProfile = ({
       profilePicURL !== "" ||
       profileBackgroundImageURL !== "" ||
       profileMobileBackgroundImageURL !== "" ||
+      profileLargeBackgroundImageURL !== "" ||
       location !== "" ||
       bio !== "" ||
       generateResumeURL !== "" ||
@@ -282,6 +289,15 @@ const CreateUpdateProfile = ({
                     id="profileMobileBackgroundImageURL"
                     label="Profile Background Image URL for Mobile devices"
                     value={profileMobileBackgroundImageURL}
+                    onChange={(e) => handleValueChange(e)}
+                  />
+                </Box>
+                <Box className={classes.editModeTextInputContainers}>
+                  <TextField
+                    fullWidth
+                    id="profileLargeBackgroundImageURL"
+                    label="Profile Background Image URL for Large devices"
+                    value={profileLargeBackgroundImageURL}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>

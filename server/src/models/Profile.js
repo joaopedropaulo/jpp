@@ -27,6 +27,9 @@ const ProfileSchema = new mongoose.Schema(
     profileMobileBackgroundImageURL: {
       type: String,
     },
+    profileLargeBackgroundImageURL: {
+      type: String,
+    },
     professionalInterests: [
       {
         type: String,
