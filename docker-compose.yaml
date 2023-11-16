@@ -46,4 +46,4 @@ services:
 
 volumes:
   db_volume:  
-    name: "mongodb_mern_volume"
+    name: "mongodb_jpp"
