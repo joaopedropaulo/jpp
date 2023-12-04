@@ -11,12 +11,12 @@ jobs:
     steps:
     - name: Checkout project
       uses: actions/checkout@v4
-    - name: Setup Nodej.js
+    - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: 20
-    # - name: Clean install and test
-    #   run: |
-    #     cd server
-    #     npm ci
-    #     npm run test
+    - name: Clean install and test
+      run: |
+        cd server
+        npm ci
+        npm run test
