@@ -15,7 +15,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 20
-    - name: Clean install and test
+    - name: Clean install and test ./server
       run: |
         cd server
         npm ci
