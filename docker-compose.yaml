@@ -9,9 +9,12 @@ services:
       - db
     ports:
       - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PROD=true
     volumes:
       - ./server/src:/usr/server/src
-    command: npm run server
+    # command: npm run server
   client:
     build:
       context: ./client
@@ -39,10 +42,6 @@ services:
       - "8081:8081"
     environment:
       ME_CONFIG_MONGODB_SERVER: db
-  resume-template-generator:
-    image: resume-generator_server
-    ports:
-      - "8000:5000"
 
 volumes:
   db_volume:  
