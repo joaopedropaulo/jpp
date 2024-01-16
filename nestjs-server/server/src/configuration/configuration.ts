@@ -5,4 +5,5 @@ export const configuration = () => ({
   },
   jwtSecret: process.env.JWT_SECRET,
   tokenExpirationTime: parseInt(process.env.TOKEN_EXPIRATION_TIME) || 36000,
+  hashSaltRounds: parseInt(process.env.HASH_SALT_ROUNDS) || 10,
 });
