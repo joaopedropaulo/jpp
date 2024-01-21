@@ -4,10 +4,10 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 
-export class InvalidCredentialsException extends HttpException {
+export class UnauthorizedException extends HttpException {
   constructor(
     objectOrError?: string | object | any,
-    descriptionOrOptions: string | HttpExceptionOptions = `Invalid credentials`,
+    descriptionOrOptions: string | HttpExceptionOptions = `Unauthorized.`,
   ) {
     const { description, httpExceptionOptions } =
       HttpException.extractDescriptionAndOptionsFrom(descriptionOrOptions);

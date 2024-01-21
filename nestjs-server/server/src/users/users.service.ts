@@ -44,7 +44,7 @@ export class UsersService {
       },
     };
 
-    return { token: this.authService.signToken(payload) };
+    return { token: await this.authService.signToken(payload) };
   }
 
   async getUserByEmail(email: string) {
