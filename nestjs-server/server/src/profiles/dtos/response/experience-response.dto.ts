@@ -1,4 +1,4 @@
-export class ExperienceGetDto {
+export class ExperienceResponseDto {
   readonly jobTitle: string;
   readonly company: string;
   readonly companyIcon?: string;

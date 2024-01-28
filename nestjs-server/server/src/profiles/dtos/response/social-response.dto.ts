@@ -1,5 +1,4 @@
-
-export class SocialGetDto {
+export class SocialResponseDto {
   readonly youtube?: string;
   readonly twitter?: string;
   readonly facebook?: string;

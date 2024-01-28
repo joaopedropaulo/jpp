@@ -1,4 +1,4 @@
-export class EducationGetDto {
+export class EducationResponseDto {
   readonly school: string;
   readonly degree: string;
   readonly fieldOfStudy: string;
