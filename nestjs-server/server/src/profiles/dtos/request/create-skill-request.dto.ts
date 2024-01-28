@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
-export class SkillCreateUpdateDto {
+export class CreateSkillRequestDto {
   @IsString()
   @IsNotEmpty()
   readonly name: string;

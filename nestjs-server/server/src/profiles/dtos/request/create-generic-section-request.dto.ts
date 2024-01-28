@@ -1,7 +1,7 @@
-import { IsArray, IsNotEmpty, IsOptional, IsString } from "class-validator";
-import { GenericSectionMediaDto } from "./generic-section-media.dto";
+import { IsArray, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { GenericSectionMediaDto } from './generic-section-media.dto';
 
-export class GenericSectionCreateUpdateDto {
+export class CreateGenericSectionRequestDto {
   @IsString()
   @IsNotEmpty()
   readonly title: string;
@@ -9,7 +9,7 @@ export class GenericSectionCreateUpdateDto {
   @IsString()
   @IsOptional()
   readonly subtitle?: string;
-  
+
   @IsString()
   @IsNotEmpty()
   readonly body: string;

@@ -6,7 +6,7 @@ import {
   IsString,
 } from 'class-validator';
 
-export class EducationCreateUpdateDto {
+export class CreateEducationRequestDto {
   @IsString()
   @IsNotEmpty()
   readonly school: string;

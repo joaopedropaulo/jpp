@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Schema as MongooseSchema } from 'mongoose';
-import { Skill } from './skill.schema';
-import { Language } from './language.schema';
-import { Experience } from './experience.schema';
-import { Education } from './education.schema';
-import { Social } from './social.schema';
-import { GenericSection } from './generic-section.schema';
+import { Skill, SkillSchema } from './skill.schema';
+import { Language, LanguageSchema } from './language.schema';
+import { Experience, ExperienceSchema } from './experience.schema';
+import { Education, EducationSchema } from './education.schema';
+import { Social, SocialSchema } from './social.schema';
+import { GenericSection, GenericSectionSchema } from './generic-section.schema';
 import { User } from 'src/users/schemas/user.schema';
 
 export type ProfileDocument = HydratedDocument<Profile>;
@@ -45,25 +45,25 @@ export class Profile {
   @Prop()
   personalInterests: string[];
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Skill' })
+  @Prop({ type: SkillSchema })
   skills: Skill[];
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Language' })
+  @Prop({ type: LanguageSchema })
   languages: Language[];
 
   @Prop()
   bio: string;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Experience' })
+  @Prop({ type: ExperienceSchema })
   experience: Experience[];
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Education' })
+  @Prop({ type: EducationSchema })
   education: Education[];
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Social' })
+  @Prop({ type: SocialSchema })
   social: Social;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'GenericSection' })
+  @Prop({ type: GenericSectionSchema })
   genericSections: GenericSection[];
 
   @Prop()

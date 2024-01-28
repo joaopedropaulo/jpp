@@ -22,7 +22,6 @@ export class Social {
 
   @Prop()
   github: string;
-
 }
 
 export const SocialSchema = SchemaFactory.createForClass(Social);

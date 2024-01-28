@@ -1,6 +1,6 @@
 import { IsOptional, IsString } from 'class-validator';
 
-export class SocialCreateUpdateDto {
+export class CreateSocialRequestDto {
   @IsString()
   @IsOptional()
   readonly youtube?: string;
