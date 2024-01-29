@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
-export type SkillDocument = HydratedDocument<Language>;
+export type LanguageDocument = HydratedDocument<Language>;
 
 @Schema()
 export class Language {
@@ -10,5 +10,3 @@ export class Language {
   @Prop({ required: true })
   level: number;
 }
-
-export const LanguageSchema = SchemaFactory.createForClass(Language);

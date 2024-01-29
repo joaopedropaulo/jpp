@@ -1,4 +1,4 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
 export type SocialDocument = HydratedDocument<Social>;
@@ -23,5 +23,3 @@ export class Social {
   @Prop()
   github: string;
 }
-
-export const SocialSchema = SchemaFactory.createForClass(Social);

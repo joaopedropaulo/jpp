@@ -14,7 +14,7 @@ export class ProfilesController {
   }
 
   @Post()
-  @UseGuards(AuthGuard)
+  //   @UseGuards(AuthGuard)
   async create(
     @Req() request: any,
     @Body()

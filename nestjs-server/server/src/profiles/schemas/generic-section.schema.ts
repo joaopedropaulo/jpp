@@ -1,4 +1,4 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 
 export type GenericSectionDocument = HydratedDocument<GenericSection>;
@@ -23,6 +23,3 @@ export class GenericSection {
     },
   ];
 }
-
-export const GenericSectionSchema =
-  SchemaFactory.createForClass(GenericSection);
