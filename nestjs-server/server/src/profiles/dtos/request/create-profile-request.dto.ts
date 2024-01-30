@@ -1,10 +1,10 @@
 import { IsArray, IsOptional, IsString } from 'class-validator';
-import { CreateEducationRequestDto } from './create-education-request.dto';
-import { CreateExperienceRequestDto } from './create-experience-request.dto';
-import { CreateSkillRequestDto } from './create-skill-request.dto';
-import { CreateLanguageRequestDto } from './create-language-request.dto';
-import { CreateSocialRequestDto } from './create-social-request.dto';
-import { CreateGenericSectionRequestDto } from './create-generic-section-request.dto';
+import { EducationRequestDto } from './education-request.dto';
+import { ExperienceRequestDto } from './experience-request.dto';
+import { SkillRequestDto } from './skill-request.dto';
+import { LanguageRequestDto } from './language-request.dto';
+import { SocialRequestDto } from './social-request.dto';
+import { GenericSectionRequestDto } from './generic-section-request.dto';
 
 export class CreateProfileRequestDto {
   @IsString()
@@ -18,10 +18,6 @@ export class CreateProfileRequestDto {
   @IsString()
   @IsOptional()
   readonly currentJobTitle?: string;
-
-  @IsString()
-  @IsOptional()
-  readonly email?: string;
 
   @IsString()
   @IsOptional()
@@ -49,11 +45,11 @@ export class CreateProfileRequestDto {
 
   @IsArray()
   @IsOptional()
-  readonly skills?: CreateSkillRequestDto[];
+  readonly skills?: SkillRequestDto[];
 
   @IsArray()
   @IsOptional()
-  readonly languages?: CreateLanguageRequestDto[];
+  readonly languages?: LanguageRequestDto[];
 
   @IsString()
   @IsOptional()
@@ -61,18 +57,18 @@ export class CreateProfileRequestDto {
 
   @IsArray()
   @IsOptional()
-  readonly experience?: CreateExperienceRequestDto[];
+  readonly experience?: ExperienceRequestDto[];
 
   @IsArray()
   @IsOptional()
-  readonly education?: CreateEducationRequestDto[];
+  readonly education?: EducationRequestDto[];
 
   @IsOptional()
-  readonly social?: CreateSocialRequestDto;
+  readonly social?: SocialRequestDto;
 
   @IsArray()
   @IsOptional()
-  readonly genericSections?: CreateGenericSectionRequestDto[];
+  readonly genericSections?: GenericSectionRequestDto[];
 
   @IsString()
   @IsOptional()

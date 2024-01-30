@@ -6,18 +6,22 @@ import {
   IsString,
 } from 'class-validator';
 
-export class CreateEducationRequestDto {
+export class ExperienceRequestDto {
   @IsString()
   @IsNotEmpty()
-  readonly school: string;
+  readonly jobTitle: string;
 
   @IsString()
   @IsNotEmpty()
-  readonly degree: string;
+  readonly company: string;
 
   @IsString()
-  @IsNotEmpty()
-  readonly fieldOfStudy: string;
+  @IsOptional()
+  readonly companyIcon?: string;
+
+  @IsString()
+  @IsOptional()
+  readonly location?: string;
 
   @IsDate()
   readonly from: Date;

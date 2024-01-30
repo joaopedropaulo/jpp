@@ -1,11 +1,11 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
-export class CreateLanguageRequestDto {
+export class SkillRequestDto {
   @IsString()
   @IsNotEmpty()
   readonly name: string;
 
   @IsNumber()
   @IsNotEmpty()
-  readonly level: number;
+  readonly experienceLevel: number;
 }

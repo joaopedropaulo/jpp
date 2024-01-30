@@ -1,8 +1,8 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Put, Delete } from '@nestjs/common';
 import { ProfilesService } from './profiles.service';
 import { ProfileResponseDto } from './dtos/response/profile-response.dto';
-import { AuthGuard } from 'src/auth/auth.guard';
 import { CreateProfileRequestDto } from './dtos/request/create-profile-request.dto';
+import { UpdateProfileRequestDto } from './dtos/request/update-profile-request.dto';
 
 @Controller('profile')
 export class ProfilesController {
@@ -21,5 +21,19 @@ export class ProfilesController {
     profileDto: CreateProfileRequestDto,
   ): Promise<ProfileResponseDto> {
     return this.profilesService.create(request.user, profileDto);
+  }
+
+  @Put()
+  //   @UseGuards(AuthGuard)
+  async update(
+    @Body() profileDto: UpdateProfileRequestDto,
+  ): Promise<ProfileResponseDto> {
+    return this.profilesService.update(profileDto);
+  }
+
+  @Delete()
+  //   @UseGuards(AuthGuard)
+  async delete() {
+    return this.profilesService.delete();
   }
 }

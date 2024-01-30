@@ -3,13 +3,13 @@ import { IsOptional, IsString } from 'class-validator';
 export class GenericSectionMediaDto {
   @IsString()
   @IsOptional()
-  readonly mediaType: string;
+  readonly mediaType?: string;
 
   @IsString()
   @IsOptional()
-  readonly contentUrl: string;
+  readonly contentUrl?: string;
 
   @IsString()
   @IsOptional()
-  readonly description: string;
+  readonly description?: string;
 }

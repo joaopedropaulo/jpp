@@ -1,7 +1,7 @@
 import { Inject, Injectable, forwardRef } from '@nestjs/common';
 import { CreateUserDto } from './dtos/request/create-user.dto';
 import { CreateUserResponseDto } from './dtos/response/create-user-response.dto';
-import { User } from './schemas/user.schema';
+import { User, UserDocument } from './schemas/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
@@ -49,5 +49,9 @@ export class UsersService {
 
   async getUserByEmail(email: string) {
     return await this.userModel.findOne({ email });
+  }
+
+  async getUserById(id: string): Promise<UserDocument> {
+    return await this.userModel.findById(id);
   }
 }
