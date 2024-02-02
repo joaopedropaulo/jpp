@@ -5,6 +5,7 @@ import { Profile, ProfileSchema } from './schemas/profile.schema';
 import { ProfilesService } from './profiles.service';
 import { ProfilesController } from './profiles.controller';
 import { UsersModule } from 'src/users/users.module';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { UsersModule } from 'src/users/users.module';
     UsersModule,
   ],
   controllers: [ProfilesController],
-  providers: [ProfilesService],
+  providers: [JwtService, ProfilesService],
   exports: [ProfilesService],
 })
 export class ProfilesModule {}

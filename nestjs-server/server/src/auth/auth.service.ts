@@ -1,4 +1,4 @@
-import { Inject, Injectable, forwardRef } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
@@ -12,13 +12,12 @@ export class AuthService {
   constructor(
     private readonly configService: ConfigService,
 
-    @Inject(forwardRef(() => UsersService))
     private readonly usersService: UsersService,
 
-    private jwtService: JwtService,
+    private readonly jwtService: JwtService,
   ) {}
 
-  async signToken(payload: Record<string, any>): Promise<string> {
+  signToken(payload: Record<string, any>): Promise<string> {
     return this.jwtService.signAsync(payload);
   }
 

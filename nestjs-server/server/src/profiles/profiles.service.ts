@@ -28,14 +28,14 @@ export class ProfilesService {
   }
 
   async create(
-    userId: string,
+    context,
     profileDto: CreateProfileRequestDto,
   ): Promise<ProfileResponseDto> {
     const existingProfile = await this.profileModel.findOne();
 
     if (existingProfile) throw new ProfileAlreadyExistsException();
 
-    const user = await this.usersService.getUserById(userId);
+    const user = await this.usersService.getUserById(context.user.id);
     const profileToCreate = {
       user: user._id,
       email: user.email,
@@ -48,6 +48,7 @@ export class ProfilesService {
     profileDto: UpdateProfileRequestDto,
   ): Promise<ProfileResponseDto> {
     return await this.profileModel.findOneAndUpdate(
+      {},
       {
         $set: profileDto,
       },

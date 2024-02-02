@@ -13,8 +13,8 @@ import { ProfilesModule } from './profiles/profiles.module';
       load: [configuration],
     }),
     DatabaseModule,
-    ProfilesModule,
     AuthModule,
+    ProfilesModule,
     UsersModule,
   ],
 })
