@@ -1,16 +1,7 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpCode,
-  Post,
-  Request,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateTokenDto } from './dtos/request/create-token.dto';
 import { CreateTokenResponseDto } from './dtos/response/create-token-response.dto';
-import { AuthGuard } from './auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -22,12 +13,5 @@ export class AuthController {
     @Body() payload: CreateTokenDto,
   ): Promise<CreateTokenResponseDto> {
     return this.authService.createToken(payload);
-  }
-
-  // example on using guards
-  @UseGuards(AuthGuard)
-  @Get('profile')
-  getProfile(@Request() req) {
-    return req.user;
   }
 }

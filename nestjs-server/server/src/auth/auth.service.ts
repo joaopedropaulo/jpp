@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from '../users/users.service';
 import { CreateTokenResponseDto } from './dtos/response/create-token-response.dto';
 import { CreateTokenDto } from './dtos/request/create-token.dto';
 import { UnauthorizedException } from './exceptions/unauthorized.exception';
