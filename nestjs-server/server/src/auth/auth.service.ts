@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 import { CreateTokenResponseDto } from './dtos/response/create-token-response.dto';
@@ -10,8 +9,6 @@ import * as bcrypt from 'bcrypt';
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly configService: ConfigService,
-
     private readonly usersService: UsersService,
 
     private readonly jwtService: JwtService,
