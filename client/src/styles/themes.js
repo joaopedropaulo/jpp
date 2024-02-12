@@ -1,7 +1,7 @@
 import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
-import merriweather from "typeface-merriweather";
-import opensans from "typeface-open-sans";
-import playfair from "typeface-playfair-display";
+import merriweather from "@fontsource/merriweather";
+import opensans from "@fontsource/open-sans";
+import playfair from "@fontsource/playfair-display";
 
 const darkTheme = createMuiTheme({
   palette: {

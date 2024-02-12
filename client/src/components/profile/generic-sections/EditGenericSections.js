@@ -32,7 +32,7 @@ const EditGenericSections = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, [loading]);
+  }, [getCurrentProfile, loading]);
 
   const classes = useStyles();
 

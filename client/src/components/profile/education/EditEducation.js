@@ -31,7 +31,7 @@ const EditEducation = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, [loading]);
+  }, [getCurrentProfile, loading]);
 
   const classes = useStyles();
 

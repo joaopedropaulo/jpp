@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => styles(theme));
 const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, [loading]);
+  }, [getCurrentProfile, loading]);
 
   const classes = useStyles();
 

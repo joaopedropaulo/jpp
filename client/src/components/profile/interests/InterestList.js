@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Typography, List } from "@material-ui/core";
+import { List } from "@material-ui/core";
 import InterestListItem from "./InterestListItem";
 
 const InterestList = (props) => {

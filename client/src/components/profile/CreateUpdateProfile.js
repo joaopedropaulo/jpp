@@ -87,7 +87,7 @@ const CreateUpdateProfile = ({
     } else {
       setIsUpdate(false);
     }
-  }, [loading]);
+  }, [getCurrentProfile, loading, profile]);
 
   const classes = useStyles();
 

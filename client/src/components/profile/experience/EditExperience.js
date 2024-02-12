@@ -31,7 +31,7 @@ const EditExperience = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, [loading]);
+  }, [getCurrentProfile, loading]);
 
   const classes = useStyles();
 
