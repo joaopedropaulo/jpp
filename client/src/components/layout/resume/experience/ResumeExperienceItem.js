@@ -8,8 +8,8 @@ const useStyles = makeStyles((theme) => styles(theme));
 const ResumeExperienceItem = (props) => {
   const classes = useStyles();
 
-  const descriptionLines = props.value.description.split("\n");
-  const descComp = descriptionLines.map((descriptionItem, index) => {
+  const descriptionLines = props.value.description?.split("\n");
+  const descComp = descriptionLines?.map((descriptionItem, index) => {
     return (
       <div key={`${index}-exp-desc`}>
         <Typography

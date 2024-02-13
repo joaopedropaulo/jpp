@@ -1,0 +1,22 @@
+events {
+    worker_connections 1024;
+}
+
+http {
+    server {
+        listen 80;
+        root /usr/share/nginx/html;
+        index index.html;
+
+        location /api/ {
+            rewrite ^/api(/.*)$ $1 break;
+            # Use the environment variable as the base URL
+            proxy_pass ${JPP_SRV_BASE_URL};
+            # Additional proxy settings as needed
+        }
+
+        location / {
+            try_files $uri $uri/ /index.html;
+        }
+    }
+}

@@ -1,21 +1,21 @@
-FROM node:10.18.1-alpine3.11
+FROM node:lts-slim as build
 
-# Create app directory
-WORKDIR /usr/client
+WORKDIR /app
 
-# Copy 
 COPY package*.json ./
+RUN npm ci
 
-# Install dependencies
-RUN npm install
+COPY . .
 
-# Copy client app code
-COPY ./src ./src
+RUN npm run build
 
-# Copy static files
-COPY ./public ./public
+FROM nginx:alpine
 
-EXPOSE 3000
+COPY --from=build /app/build /usr/share/nginx/html
 
-# Run development script
-CMD [ "npm", "start" ]
+COPY nginx.conf.template /etc/nginx/nginx.conf.template
+
+COPY entrypoint.sh /docker-entrypoint.d/entrypoint.sh
+RUN chmod +x /docker-entrypoint.d/entrypoint.sh
+
+CMD ["nginx", "-g", "daemon off;"]
