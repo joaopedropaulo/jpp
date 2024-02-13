@@ -13,8 +13,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import {
-  addEducation,
-  removeEducation,
+  updateProfile,
   getCurrentProfile,
 } from "../../../actions/profile";
 import EducationTable from "./EducationTable";
@@ -23,8 +22,7 @@ import styles from "../../../styles/Styles";
 const useStyles = makeStyles((theme) => styles(theme));
 
 const EditEducation = ({
-  addEducation,
-  removeEducation,
+  updateProfile,
   getCurrentProfile,
   profile: { profile, loading },
   history,
@@ -76,12 +74,15 @@ const EditEducation = ({
 
   // Actions that take it to the backend
   const onRemoveEducation = (index) => {
-    removeEducation(profile.education[index]._id);
+    profile.education.splice(index, 1);
+    updateProfile(profile, history);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addEducation(formData, history);
+    const newEduc = [...profile.education, formData];
+    const updatedProfile = { ...profile, education: newEduc };
+    updateProfile(updatedProfile, history);
     cleanUpForm();
   };
 
@@ -234,8 +235,7 @@ const EditEducation = ({
 };
 
 EditEducation.propTypes = {
-  addEducation: PropTypes.func.isRequired,
-  removeEducation: PropTypes.func.isRequired,
+  updateProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
 };
 
@@ -244,7 +244,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addEducation,
-  removeEducation,
+  updateProfile,
   getCurrentProfile,
 })(EditEducation);

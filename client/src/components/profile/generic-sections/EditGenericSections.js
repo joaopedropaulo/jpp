@@ -12,9 +12,8 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import {
-  addGenericSection,
-  removeGenericSection,
   getCurrentProfile,
+  updateProfile
 } from "../../../actions/profile";
 import GenericSectionsTable from "./GenericSectionsTable";
 import AddMediaItemForm from "./media/AddMediaItemForm";
@@ -24,8 +23,7 @@ import styles from "../../../styles/Styles";
 const useStyles = makeStyles((theme) => styles(theme));
 
 const EditGenericSections = ({
-  addGenericSection,
-  removeGenericSection,
+  updateProfile,
   getCurrentProfile,
   profile: { profile, loading },
   history,
@@ -78,12 +76,15 @@ const EditGenericSections = ({
 
   // Actions that take it to the backend
   const onRemoveGenericSection = (index) => {
-    removeGenericSection(profile.genericSections[index]._id);
+    profile.genericSections.splice(index, 1);
+    updateProfile(profile, history);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addGenericSection(formData, history);
+    const newGenSection = [...profile.genericSections, formData];
+    const updatedProfile = { ...profile, genericSections: newGenSection };
+    updateProfile(updatedProfile, history);
     cleanUpForm();
   };
 
@@ -195,8 +196,7 @@ const EditGenericSections = ({
 };
 
 EditGenericSections.propTypes = {
-  addGenericSection: PropTypes.func.isRequired,
-  removeGenericSection: PropTypes.func.isRequired,
+  updateProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
 };
 
@@ -205,7 +205,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addGenericSection,
-  removeGenericSection,
+  updateProfile,
   getCurrentProfile,
 })(EditGenericSections);

@@ -13,9 +13,8 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import {
-  addExperience,
-  removeExperience,
   getCurrentProfile,
+  updateProfile
 } from "../../../actions/profile";
 import ExperienceTable from "./ExperienceTable";
 import styles from "../../../styles/Styles";
@@ -23,8 +22,7 @@ import styles from "../../../styles/Styles";
 const useStyles = makeStyles((theme) => styles(theme));
 
 const EditExperience = ({
-  addExperience,
-  removeExperience,
+  updateProfile,
   getCurrentProfile,
   profile: { profile, loading },
   history,
@@ -73,7 +71,8 @@ const EditExperience = ({
   };
 
   const onRemoveExperience = (index) => {
-    removeExperience(profile.experience[index]._id);
+    profile.experience.splice(index, 1);
+    updateProfile(profile, history);
   };
 
   const handleValueChange = (e) => {
@@ -82,7 +81,9 @@ const EditExperience = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addExperience(formData, history);
+    const newExp = [...profile.experience, formData];
+    const updatedProfile = { ...profile, experience: newExp };
+    updateProfile(updatedProfile, history);
     cleanUpForm();
   };
 
@@ -245,8 +246,7 @@ const EditExperience = ({
 };
 
 EditExperience.propTypes = {
-  addExperience: PropTypes.func.isRequired,
-  removeExperience: PropTypes.func.isRequired,
+  updateProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
 };
@@ -256,7 +256,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addExperience,
-  removeExperience,
+  updateProfile,
   getCurrentProfile,
 })(EditExperience);
