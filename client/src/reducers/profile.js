@@ -3,7 +3,7 @@ import {
   PROFILE_ERROR,
   CLEAR_PROFILE,
   UPDATE_PROFILE,
-} from "../actions/types";
+} from '../actions/types';
 
 const initialState = {
   profile: null,
@@ -26,6 +26,6 @@ const profileActions = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
 
 export default profileActions;

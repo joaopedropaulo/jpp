@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
-import { Typography, List } from "@material-ui/core";
-import SkillListItem from "./SkillListItem";
+import React, { Fragment } from 'react';
+import { Typography, List } from '@material-ui/core';
+import SkillListItem from './SkillListItem';
 
 class SkillList extends React.Component {
   render() {

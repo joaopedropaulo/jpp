@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
-import { Box, List, makeStyles } from "@material-ui/core";
-import MediaListItem from "./MediaListItem";
-import styles from "../../../../styles/Styles";
+import React, { Fragment } from 'react';
+import { Box, List, makeStyles } from '@material-ui/core';
+import MediaListItem from './MediaListItem';
+import styles from '../../../../styles/Styles';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
@@ -12,7 +12,7 @@ const MediaList = (props) => {
       className={`${
         props.mediaList.length > 0
           ? classes.editModeGenericSectionsMediaListContainer
-          : "none"
+          : 'none'
       } `}
     >
       {props.mediaList.length > 0 ? (

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 import {
   USER_LOADED,
@@ -7,9 +7,9 @@ import {
   LOGIN_SUCCESS,
   LOGOUT,
   CLEAR_PROFILE,
-} from "./types";
-import { setAlert } from "./alert";
-import setAuthToken from "../utils/setAuthToken";
+} from './types';
+import { setAlert } from './alert';
+import setAuthToken from '../utils/setAuthToken';
 
 // Load user information
 export const loadUser = () => async (dispatch) => {
@@ -18,7 +18,7 @@ export const loadUser = () => async (dispatch) => {
   }
 
   try {
-    const res = await axios.get("/api/auth/user");
+    const res = await axios.get('/api/auth/user');
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -33,14 +33,14 @@ export const loadUser = () => async (dispatch) => {
 export const login = (email, password) => async (dispatch) => {
   const config = {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
 
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.post("/api/auth", body, config);
+    const res = await axios.post('/api/auth', body, config);
 
     dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     dispatch(loadUser());
@@ -48,7 +48,7 @@ export const login = (email, password) => async (dispatch) => {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "error")));
+      errors.forEach((e) => dispatch(setAlert(e.msg, 'error')));
     }
 
     dispatch({ type: LOGIN_FAIL });

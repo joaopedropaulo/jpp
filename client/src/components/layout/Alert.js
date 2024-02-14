@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import Snackbar from "@material-ui/core/Snackbar";
-import { Alert as MuiAlert } from "@material-ui/lab";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Snackbar from '@material-ui/core/Snackbar';
+import { Alert as MuiAlert } from '@material-ui/lab';
 
 const Alert = ({ alerts }) => {
   if (alerts !== null && alerts.length > 0) {
@@ -11,7 +11,7 @@ const Alert = ({ alerts }) => {
       msg.push(
         <MuiAlert key={alert.id} severity={alert.alertType}>
           {alert.msg}
-        </MuiAlert>
+        </MuiAlert>,
       );
     });
     return (

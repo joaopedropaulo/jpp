@@ -1,16 +1,16 @@
-import React, { Fragment, useState } from "react";
-import { TextField, Button } from "@material-ui/core";
+import React, { Fragment, useState } from 'react';
+import { TextField, Button } from '@material-ui/core';
 
 const AddInterestForm = (props) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
 
   const onAddClick = (e) => {
     e.preventDefault();
-    if (value.trim() === "") {
+    if (value.trim() === '') {
       return;
     }
     props.onAddInterest(value);
-    setValue("");
+    setValue('');
   };
 
   const handleValueChange = (e) => {

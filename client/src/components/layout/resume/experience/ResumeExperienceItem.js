@@ -1,14 +1,14 @@
-import React, { Fragment } from "react";
-import Moment from "react-moment";
-import { Typography, Box, Grid, makeStyles } from "@material-ui/core";
-import styles from "../../../../styles/Styles";
+import React, { Fragment } from 'react';
+import Moment from 'react-moment';
+import { Typography, Box, Grid, makeStyles } from '@material-ui/core';
+import styles from '../../../../styles/Styles';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
 const ResumeExperienceItem = (props) => {
   const classes = useStyles();
 
-  const descriptionLines = props.value.description?.split("\n");
+  const descriptionLines = props.value.description?.split('\n');
   const descComp = descriptionLines?.map((descriptionItem, index) => {
     return (
       <div key={`${index}-exp-desc`}>
@@ -46,16 +46,16 @@ const ResumeExperienceItem = (props) => {
             variant="subtitle1"
             className={classes.experienceItemJobTitleCompanyLocation}
           >
-            {props.value.jobTitle}, {props.value.company} -{" "}
+            {props.value.jobTitle}, {props.value.company} -{' '}
             {props.value.location}
           </Typography>
           <Typography
             variant="subtitle2"
             className={classes.experienceItemDates}
           >
-            <Moment format="MMMM YYYY">{props.value.from}</Moment> -{" "}
+            <Moment format="MMMM YYYY">{props.value.from}</Moment> -{' '}
             {props.value.to === null ? (
-              "Present"
+              'Present'
             ) : (
               <Moment format="MMMM YYYY">{props.value.to}</Moment>
             )}

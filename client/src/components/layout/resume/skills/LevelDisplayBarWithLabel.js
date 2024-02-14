@@ -1,6 +1,6 @@
-import React from "react";
-import { Box, Typography } from "@material-ui/core";
-import CustomLevelDisplayBar from "./CustomLevelDisplayBar";
+import React from 'react';
+import { Box, Typography } from '@material-ui/core';
+import CustomLevelDisplayBar from './CustomLevelDisplayBar';
 
 const LevelDisplayBarWithLabel = (props) => {
   return (
@@ -10,7 +10,7 @@ const LevelDisplayBarWithLabel = (props) => {
       </Box>
       <Box minWidth={35}>
         <Typography variant="body2" color="textSecondary">{`${Math.round(
-          props.value
+          props.value,
         )}%`}</Typography>
       </Box>
     </Box>

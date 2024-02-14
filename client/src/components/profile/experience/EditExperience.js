@@ -1,6 +1,6 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React, { Fragment, useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   Typography,
   TextField,
@@ -11,13 +11,10 @@ import {
   Box,
   Paper,
   makeStyles,
-} from "@material-ui/core";
-import {
-  getCurrentProfile,
-  updateProfile
-} from "../../../actions/profile";
-import ExperienceTable from "./ExperienceTable";
-import styles from "../../../styles/Styles";
+} from '@material-ui/core';
+import { getCurrentProfile, updateProfile } from '../../../actions/profile';
+import ExperienceTable from './ExperienceTable';
+import styles from '../../../styles/Styles';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
@@ -34,14 +31,14 @@ const EditExperience = ({
   const classes = useStyles();
 
   const [formData, setFormData] = useState({
-    company: "",
-    companyIcon: "",
-    jobTitle: "",
-    location: "",
-    from: "",
-    to: "",
+    company: '',
+    companyIcon: '',
+    jobTitle: '',
+    location: '',
+    from: '',
+    to: '',
     current: false,
-    description: "",
+    description: '',
   });
 
   const [isCurrentJob, toggleIsCurrentJob] = useState(false);
@@ -59,14 +56,14 @@ const EditExperience = ({
 
   const cleanUpForm = () => {
     setFormData({
-      company: "",
-      companyIcon: "",
-      jobTitle: "",
-      location: "",
-      from: "",
-      to: "",
+      company: '',
+      companyIcon: '',
+      jobTitle: '',
+      location: '',
+      from: '',
+      to: '',
       current: false,
-      description: "",
+      description: '',
     });
   };
 

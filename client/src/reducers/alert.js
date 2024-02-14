@@ -1,7 +1,6 @@
-import { SET_ALERT, REMOVE_ALERT } from "../actions/types";
+import { SET_ALERT, REMOVE_ALERT } from '../actions/types';
 
 const initialState = [];
-
 
 const alertActions = (state = initialState, action) => {
   const { type, payload } = action;
@@ -10,11 +9,11 @@ const alertActions = (state = initialState, action) => {
       return [...state, payload];
 
     case REMOVE_ALERT:
-      return state.filter(alert => alert.id !== payload);
+      return state.filter((alert) => alert.id !== payload);
 
     default:
       return state;
   }
-}
+};
 
 export default alertActions;

@@ -1,19 +1,19 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 
-import { TextField, Box } from "@material-ui/core";
-import YouTubeIcon from "@material-ui/icons/YouTube";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import InstagramIcon from "@material-ui/icons/Instagram";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import TwitterIcon from "@material-ui/icons/Twitter";
+import { TextField, Box } from '@material-ui/core';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import TwitterIcon from '@material-ui/icons/Twitter';
 
 class CreateUpdateSocialMediaInputs extends React.Component {
   render() {
     const { youtube, instagram, linkedin, twitter, github, facebook } = this
       .props.social
       ? this.props.social
-      : "";
+      : '';
 
     return (
       <Fragment>

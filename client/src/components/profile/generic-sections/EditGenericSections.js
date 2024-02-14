@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   Grid,
   Button,
@@ -10,15 +10,12 @@ import {
   Box,
   Container,
   makeStyles,
-} from "@material-ui/core";
-import {
-  getCurrentProfile,
-  updateProfile
-} from "../../../actions/profile";
-import GenericSectionsTable from "./GenericSectionsTable";
-import AddMediaItemForm from "./media/AddMediaItemForm";
-import MediaList from "./media/MediaList";
-import styles from "../../../styles/Styles";
+} from '@material-ui/core';
+import { getCurrentProfile, updateProfile } from '../../../actions/profile';
+import GenericSectionsTable from './GenericSectionsTable';
+import AddMediaItemForm from './media/AddMediaItemForm';
+import MediaList from './media/MediaList';
+import styles from '../../../styles/Styles';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
@@ -35,9 +32,9 @@ const EditGenericSections = ({
   const classes = useStyles();
 
   const [formData, setFormData] = useState({
-    title: "",
-    subtitle: "",
-    body: "",
+    title: '',
+    subtitle: '',
+    body: '',
     media: [],
   });
 
@@ -67,9 +64,9 @@ const EditGenericSections = ({
 
   const cleanUpForm = () => {
     setFormData({
-      title: "",
-      subtitle: "",
-      body: "",
+      title: '',
+      subtitle: '',
+      body: '',
       media: [],
     });
   };

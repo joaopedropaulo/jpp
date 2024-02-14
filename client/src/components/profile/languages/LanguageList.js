@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
-import { Typography, List } from "@material-ui/core";
-import LanguageListItem from "./LanguageListItem";
+import React, { Fragment } from 'react';
+import { Typography, List } from '@material-ui/core';
+import LanguageListItem from './LanguageListItem';
 
 class LanguageList extends React.Component {
   render() {

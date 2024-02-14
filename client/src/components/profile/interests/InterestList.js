@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
-import { List } from "@material-ui/core";
-import InterestListItem from "./InterestListItem";
+import React, { Fragment } from 'react';
+import { List } from '@material-ui/core';
+import InterestListItem from './InterestListItem';
 
 const InterestList = (props) => {
   return (

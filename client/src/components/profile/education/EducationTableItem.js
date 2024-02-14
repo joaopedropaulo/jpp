@@ -1,7 +1,7 @@
-import React from "react";
-import Moment from "react-moment";
-import { Button, TableRow, TableCell, makeStyles } from "@material-ui/core";
-import styles from "../../../styles/Styles";
+import React from 'react';
+import Moment from 'react-moment';
+import { Button, TableRow, TableCell, makeStyles } from '@material-ui/core';
+import styles from '../../../styles/Styles';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
@@ -21,7 +21,7 @@ const EducationTableItem = (props) => {
       <TableCell>
         <Moment format="YYYY/MM/DD">{props.value.from}</Moment> -
         {props.value.to === null ? (
-          " Now"
+          ' Now'
         ) : (
           <Moment format="YYYY/MM/DD">{props.value.to}</Moment>
         )}

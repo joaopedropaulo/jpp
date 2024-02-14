@@ -1,7 +1,7 @@
-import React, { useState, useEffect, Fragment } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
+import React, { useState, useEffect, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   Typography,
   TextField,
@@ -11,17 +11,17 @@ import {
   Box,
   Paper,
   makeStyles,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { createUpdateProfile, getCurrentProfile } from "../../actions/profile";
-import AddSkillForm from "./skills/AddSkillForm";
-import AddLanguageForm from "./languages/AddLanguageForm";
-import AddInterestForm from "./interests/AddInterestForm";
-import SkillList from "./skills/SkillList";
-import LanguageList from "./languages/LanguageList";
-import CreateUpdateSocialMediaInputs from "./social-media/CreateUpdateSocialMediaInputs";
-import styles from "../../styles/Styles";
-import InterestList from "./interests/InterestList";
+} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { createUpdateProfile, getCurrentProfile } from '../../actions/profile';
+import AddSkillForm from './skills/AddSkillForm';
+import AddLanguageForm from './languages/AddLanguageForm';
+import AddInterestForm from './interests/AddInterestForm';
+import SkillList from './skills/SkillList';
+import LanguageList from './languages/LanguageList';
+import CreateUpdateSocialMediaInputs from './social-media/CreateUpdateSocialMediaInputs';
+import styles from '../../styles/Styles';
+import InterestList from './interests/InterestList';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
@@ -37,23 +37,23 @@ const CreateUpdateProfile = ({
     if (profile !== null) {
       setFormData({
         currentCompany:
-          loading || !profile.currentCompany ? "" : profile.currentCompany,
-        location: loading || !profile.location ? "" : profile.location,
+          loading || !profile.currentCompany ? '' : profile.currentCompany,
+        location: loading || !profile.location ? '' : profile.location,
         currentJobTitle:
-          loading || !profile.currentJobTitle ? "" : profile.currentJobTitle,
+          loading || !profile.currentJobTitle ? '' : profile.currentJobTitle,
         profilePicURL:
-          loading || !profile.profilePicURL ? "" : profile.profilePicURL,
+          loading || !profile.profilePicURL ? '' : profile.profilePicURL,
         profileBackgroundImageURL:
           loading || !profile.profileBackgroundImageURL
-            ? ""
+            ? ''
             : profile.profileBackgroundImageURL,
         profileMobileBackgroundImageURL:
           loading || !profile.profileMobileBackgroundImageURL
-            ? ""
+            ? ''
             : profile.profileMobileBackgroundImageURL,
         profileLargeBackgroundImageURL:
           loading || !profile.profileLargeBackgroundImageURL
-            ? ""
+            ? ''
             : profile.profileLargeBackgroundImageURL,
         skills: loading || !profile.skills ? [] : profile.skills,
         languages: loading || !profile.languages ? [] : profile.languages,
@@ -65,23 +65,23 @@ const CreateUpdateProfile = ({
           loading || !profile.personalInterests
             ? []
             : profile.personalInterests,
-        bio: loading || !profile.bio ? "" : profile.bio,
+        bio: loading || !profile.bio ? '' : profile.bio,
         generateResumeURL:
           loading || !profile.generateResumeURL
-            ? ""
+            ? ''
             : profile.generateResumeURL,
         resumeHTMLTemplate:
           loading || !profile.resumeHTMLTemplate
-            ? ""
+            ? ''
             : profile.resumeHTMLTemplate,
         displayTitleName:
-          loading || !profile.displayTitleName ? "" : profile.displayTitleName,
-        youtube: loading || !profile.social ? "" : profile.social.youtube,
-        instagram: loading || !profile.social ? "" : profile.social.instagram,
-        linkedin: loading || !profile.social ? "" : profile.social.linkedin,
-        twitter: loading || !profile.social ? "" : profile.social.twitter,
-        github: loading || !profile.social ? "" : profile.social.github,
-        facebook: loading || !profile.social ? "" : profile.social.facebook,
+          loading || !profile.displayTitleName ? '' : profile.displayTitleName,
+        youtube: loading || !profile.social ? '' : profile.social.youtube,
+        instagram: loading || !profile.social ? '' : profile.social.instagram,
+        linkedin: loading || !profile.social ? '' : profile.social.linkedin,
+        twitter: loading || !profile.social ? '' : profile.social.twitter,
+        github: loading || !profile.social ? '' : profile.social.github,
+        facebook: loading || !profile.social ? '' : profile.social.facebook,
       });
       setIsUpdate(true);
     } else {
@@ -95,27 +95,27 @@ const CreateUpdateProfile = ({
   const [isUpdate, setIsUpdate] = useState(false);
 
   const [formData, setFormData] = useState({
-    currentCompany: "",
-    location: "",
-    currentJobTitle: "",
-    profilePicURL: "",
-    profileBackgroundImageURL: "",
-    profileMobileBackgroundImageURL: "",
-    profileLargeBackgroundImageURL: "",
+    currentCompany: '',
+    location: '',
+    currentJobTitle: '',
+    profilePicURL: '',
+    profileBackgroundImageURL: '',
+    profileMobileBackgroundImageURL: '',
+    profileLargeBackgroundImageURL: '',
     skills: [],
     languages: [],
     professionalInterests: [],
     personalInterests: [],
-    bio: "",
-    generateResumeURL: "",
-    resumeHTMLTemplate: "",
-    displayTitleName: "",
-    youtube: "",
-    instagram: "",
-    linkedin: "",
-    twitter: "",
-    github: "",
-    facebook: "",
+    bio: '',
+    generateResumeURL: '',
+    resumeHTMLTemplate: '',
+    displayTitleName: '',
+    youtube: '',
+    instagram: '',
+    linkedin: '',
+    twitter: '',
+    github: '',
+    facebook: '',
   });
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
@@ -197,17 +197,17 @@ const CreateUpdateProfile = ({
 
   // Helper
   const isProfileUpdate = () => {
-    return currentCompany !== "" ||
-      currentJobTitle !== "" ||
-      profilePicURL !== "" ||
-      profileBackgroundImageURL !== "" ||
-      profileMobileBackgroundImageURL !== "" ||
-      profileLargeBackgroundImageURL !== "" ||
-      location !== "" ||
-      bio !== "" ||
-      generateResumeURL !== "" ||
-      resumeHTMLTemplate !== "" ||
-      displayTitleName !== "" ||
+    return currentCompany !== '' ||
+      currentJobTitle !== '' ||
+      profilePicURL !== '' ||
+      profileBackgroundImageURL !== '' ||
+      profileMobileBackgroundImageURL !== '' ||
+      profileLargeBackgroundImageURL !== '' ||
+      location !== '' ||
+      bio !== '' ||
+      generateResumeURL !== '' ||
+      resumeHTMLTemplate !== '' ||
+      displayTitleName !== '' ||
       (skills && skills.length > 0) ||
       (languages && languages.length > 0) ||
       (professionalInterests && professionalInterests.length > 0) ||

@@ -1,6 +1,6 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React, { Fragment, useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   Typography,
   TextField,
@@ -11,13 +11,10 @@ import {
   Box,
   Paper,
   makeStyles,
-} from "@material-ui/core";
-import {
-  updateProfile,
-  getCurrentProfile,
-} from "../../../actions/profile";
-import EducationTable from "./EducationTable";
-import styles from "../../../styles/Styles";
+} from '@material-ui/core';
+import { updateProfile, getCurrentProfile } from '../../../actions/profile';
+import EducationTable from './EducationTable';
+import styles from '../../../styles/Styles';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
@@ -34,26 +31,19 @@ const EditEducation = ({
   const classes = useStyles();
 
   const [formData, setFormData] = useState({
-    school: "",
-    degree: "",
-    fieldOfStudy: "",
-    from: "",
-    to: "",
+    school: '',
+    degree: '',
+    fieldOfStudy: '',
+    from: '',
+    to: '',
     current: false,
-    description: "",
+    description: '',
   });
 
   const [isCurrentSchool, toggleIsCurrentSchool] = useState(false);
 
-  const {
-    school,
-    degree,
-    fieldOfStudy,
-    from,
-    to,
-    current,
-    description,
-  } = formData;
+  const { school, degree, fieldOfStudy, from, to, current, description } =
+    formData;
 
   // Update state
   const handleValueChange = (e) => {
@@ -62,13 +52,13 @@ const EditEducation = ({
 
   const cleanUpForm = () => {
     setFormData({
-      school: "",
-      degree: "",
-      fieldOfStudy: "",
-      from: "",
-      to: "",
+      school: '',
+      degree: '',
+      fieldOfStudy: '',
+      from: '',
+      to: '',
       current: false,
-      description: "",
+      description: '',
     });
   };
 

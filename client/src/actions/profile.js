@@ -1,10 +1,10 @@
-import axios from "axios";
-import { setAlert } from "./alert";
-import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from "./types";
+import axios from 'axios';
+import { setAlert } from './alert';
+import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from './types';
 
 export const getCurrentProfile = () => async (dispatch) => {
   try {
-    const res = await axios.get("/api/profile");
+    const res = await axios.get('/api/profile');
 
     dispatch({ type: GET_PROFILE, payload: res.data });
   } catch (err) {
@@ -15,67 +15,63 @@ export const getCurrentProfile = () => async (dispatch) => {
   }
 };
 
-export const createUpdateProfile = (formData, history, edit = false) => async (
-  dispatch
-) => {
+export const createUpdateProfile =
+  (formData, history, edit = false) =>
+  async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+
+      let res;
+      if (edit) {
+        res = await axios.put('/api/profile', formData, config);
+        dispatch({ type: GET_PROFILE, payload: res.data });
+        dispatch(setAlert('Profile updated', 'success'));
+      } else {
+        res = await axios.post('/api/profile', formData, config);
+        dispatch({ type: GET_PROFILE, payload: res.data });
+        dispatch(setAlert('Profile created', 'success'));
+      }
+      // const res = await axios.post("/api/profile", formData, config);
+      // dispatch({ type: GET_PROFILE, payload: res.data });
+      // dispatch(setAlert(edit ? "Profile updated" : "Profile created", "success"));
+
+      if (!edit) {
+        history.push('/dashboard');
+      }
+    } catch (err) {
+      const errors = err.response.data.errors;
+
+      if (errors) {
+        errors.forEach((e) => dispatch(setAlert(e.msg, 'warning')));
+      }
+
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
+  };
+
+export const updateProfile = (profile, history) => async (dispatch) => {
   try {
+    console.log('updateProfile');
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
-
-    let res;
-    if (edit) {
-      res = await axios.put("/api/profile", formData, config);
-      dispatch({ type: GET_PROFILE, payload: res.data });
-      dispatch(setAlert("Profile updated", "success"));
-    }
-    else {
-      res = await axios.post("/api/profile", formData, config);
-      dispatch({ type: GET_PROFILE, payload: res.data });
-      dispatch(setAlert("Profile created", "success"));
-    }
-    // const res = await axios.post("/api/profile", formData, config);
-    // dispatch({ type: GET_PROFILE, payload: res.data });
-    // dispatch(setAlert(edit ? "Profile updated" : "Profile created", "success"));
-
-    if (!edit) {
-      history.push("/dashboard");
-    }
-  } catch (err) {
-    const errors = err.response.data.errors;
-
-    if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "warning")));
-    }
-
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-  }
-};
-
-export const updateProfile = (profile, history) => async (
-  dispatch
-) => {
-  try {
-    console.log("updateProfile")
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    // console.log(profile)
-    const res = await axios.put("/api/profile", profile, config);
+    const res = await axios.put('/api/profile', profile, config);
     dispatch({ type: GET_PROFILE, payload: res.data });
-    dispatch(setAlert("Profile updated", "success"));
+    dispatch(setAlert('Profile updated', 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "warning")));
+      errors.forEach((e) => dispatch(setAlert(e.msg, 'warning')));
     }
 
     dispatch({
@@ -85,46 +81,46 @@ export const updateProfile = (profile, history) => async (
   }
 };
 
-export const addExperience = (formData, history, redirect = false) => async (
-  dispatch
-) => {
-  try {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const res = await axios.put("/api/profile/experience", formData, config);
-    dispatch({ type: UPDATE_PROFILE, payload: res.data });
-    dispatch(setAlert("Experience Added.", "success"));
+export const addExperience =
+  (formData, history, redirect = false) =>
+  async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.put('/api/profile/experience', formData, config);
+      dispatch({ type: UPDATE_PROFILE, payload: res.data });
+      dispatch(setAlert('Experience Added.', 'success'));
 
-    if (redirect) {
-      history.push("/dashboard");
+      if (redirect) {
+        history.push('/dashboard');
+      }
+    } catch (err) {
+      const errors = err.response.data.errors;
+
+      if (errors) {
+        errors.forEach((e) => dispatch(setAlert(e.msg, 'warning')));
+      }
+
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
     }
-  } catch (err) {
-    const errors = err.response.data.errors;
-
-    if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "warning")));
-    }
-
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-  }
-};
+  };
 
 export const removeExperience = (itemId) => async (dispatch) => {
   try {
-    const res = await axios.delete("/api/profile/experience/" + itemId);
+    const res = await axios.delete('/api/profile/experience/' + itemId);
     dispatch({ type: UPDATE_PROFILE, payload: res.data });
-    dispatch(setAlert("Experience Item Removed.", "success"));
+    dispatch(setAlert('Experience Item Removed.', 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "warning")));
+      errors.forEach((e) => dispatch(setAlert(e.msg, 'warning')));
     }
 
     dispatch({
@@ -134,46 +130,46 @@ export const removeExperience = (itemId) => async (dispatch) => {
   }
 };
 
-export const addEducation = (formData, history, redirect = false) => async (
-  dispatch
-) => {
-  try {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const res = await axios.put("/api/profile/education", formData, config);
-    dispatch({ type: UPDATE_PROFILE, payload: res.data });
-    dispatch(setAlert("Education Added.", "success"));
+export const addEducation =
+  (formData, history, redirect = false) =>
+  async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.put('/api/profile/education', formData, config);
+      dispatch({ type: UPDATE_PROFILE, payload: res.data });
+      dispatch(setAlert('Education Added.', 'success'));
 
-    if (redirect) {
-      history.push("/dashboard");
+      if (redirect) {
+        history.push('/dashboard');
+      }
+    } catch (err) {
+      const errors = err.response.data.errors;
+
+      if (errors) {
+        errors.forEach((e) => dispatch(setAlert(e.msg, 'warning')));
+      }
+
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
     }
-  } catch (err) {
-    const errors = err.response.data.errors;
-
-    if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "warning")));
-    }
-
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-  }
-};
+  };
 
 export const removeEducation = (itemId) => async (dispatch) => {
   try {
-    const res = await axios.delete("/api/profile/education/" + itemId);
+    const res = await axios.delete('/api/profile/education/' + itemId);
     dispatch({ type: UPDATE_PROFILE, payload: res.data });
-    dispatch(setAlert("Education Item Removed.", "success"));
+    dispatch(setAlert('Education Item Removed.', 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "warning")));
+      errors.forEach((e) => dispatch(setAlert(e.msg, 'warning')));
     }
 
     dispatch({
@@ -183,48 +179,46 @@ export const removeEducation = (itemId) => async (dispatch) => {
   }
 };
 
-export const addGenericSection = (
-  formData,
-  history,
-  redirect = false
-) => async (dispatch) => {
-  try {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const res = await axios.put("/api/profile/generic", formData, config);
-    dispatch({ type: UPDATE_PROFILE, payload: res.data });
-    dispatch(setAlert("Generic Section Item Added.", "success"));
+export const addGenericSection =
+  (formData, history, redirect = false) =>
+  async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const res = await axios.put('/api/profile/generic', formData, config);
+      dispatch({ type: UPDATE_PROFILE, payload: res.data });
+      dispatch(setAlert('Generic Section Item Added.', 'success'));
 
-    if (redirect) {
-      history.push("/dashboard");
+      if (redirect) {
+        history.push('/dashboard');
+      }
+    } catch (err) {
+      const errors = err.response.data.errors;
+
+      if (errors) {
+        errors.forEach((e) => dispatch(setAlert(e.msg, 'warning')));
+      }
+
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
     }
-  } catch (err) {
-    const errors = err.response.data.errors;
-
-    if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "warning")));
-    }
-
-    dispatch({
-      type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
-    });
-  }
-};
+  };
 
 export const removeGenericSection = (itemId) => async (dispatch) => {
   try {
-    const res = await axios.delete("/api/profile/generic/" + itemId);
+    const res = await axios.delete('/api/profile/generic/' + itemId);
     dispatch({ type: UPDATE_PROFILE, payload: res.data });
-    dispatch(setAlert("Generic Section Item Removed.", "success"));
+    dispatch(setAlert('Generic Section Item Removed.', 'success'));
   } catch (err) {
     const errors = err.response.data.errors;
 
     if (errors) {
-      errors.forEach((e) => dispatch(setAlert(e.msg, "warning")));
+      errors.forEach((e) => dispatch(setAlert(e.msg, 'warning')));
     }
 
     dispatch({
