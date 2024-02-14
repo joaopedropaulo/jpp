@@ -54,10 +54,10 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
 
   const resolveBackground = (isSmallScreen, isLargeScreen) => {
     return isSmallScreen
-      ? profile.profileMobileBackgroundImageURL
+      ? profile.profileMobileBackgroundImageUrl
       : isLargeScreen
-        ? profile.profileLargeBackgroundImageURL
-        : profile.profileBackgroundImageURL;
+        ? profile.profileLargeBackgroundImageUrl
+        : profile.profileBackgroundImageUrl;
   };
 
   const [showScroll, setShowScroll] = useState(false);
@@ -76,14 +76,14 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
 
   const onGenerateResume = () => {
     generateResume(
-      profile.resumeHTMLTemplate,
+      profile.resumeHtmlTemplate,
       JSON.stringify(
         Object.assign({}, profile, {
-          resumeHTMLTemplate: '',
-          generateResumeURL: '',
+          resumeHtmlTemplate: '',
+          generateResumeUrl: '',
         }),
       ),
-      profile.generateResumeURL,
+      profile.generateResumeUrl,
     );
   };
 
@@ -92,13 +92,12 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
       <Box
         className={classes.landingTopDiv}
         style={{
-          backgroundImage: `url(${
-            loading
-              ? ''
-              : profile
-                ? resolveBackground(matchesSmallScreen, matchesLargeScreen)
-                : ''
-          })`,
+          backgroundImage: `url(${loading
+            ? ''
+            : profile
+              ? resolveBackground(matchesSmallScreen, matchesLargeScreen)
+              : ''
+            })`,
         }}
       >
         <Navbar
@@ -136,7 +135,7 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
                     loading
                       ? 'https://via.placeholder.com/300'
                       : profile
-                        ? profile.profilePicURL
+                        ? profile.profilePicUrl
                         : 'https://via.placeholder.com/300'
                   }
                   alt="profile"
@@ -214,7 +213,7 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
               <Grid item xs={12} className={classes.generateResumeGrid}>
                 {loading ? (
                   <Fragment></Fragment>
-                ) : profile && profile.generateResumeURL ? (
+                ) : profile && profile.generateResumeUrl ? (
                   <Button
                     variant="outlined"
                     color="primary"

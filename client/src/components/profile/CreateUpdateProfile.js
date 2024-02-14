@@ -41,20 +41,20 @@ const CreateUpdateProfile = ({
         location: loading || !profile.location ? '' : profile.location,
         currentJobTitle:
           loading || !profile.currentJobTitle ? '' : profile.currentJobTitle,
-        profilePicURL:
-          loading || !profile.profilePicURL ? '' : profile.profilePicURL,
-        profileBackgroundImageURL:
-          loading || !profile.profileBackgroundImageURL
+        profilePicUrl:
+          loading || !profile.profilePicUrl ? '' : profile.profilePicUrl,
+        profileBackgroundImageUrl:
+          loading || !profile.profileBackgroundImageUrl
             ? ''
-            : profile.profileBackgroundImageURL,
-        profileMobileBackgroundImageURL:
-          loading || !profile.profileMobileBackgroundImageURL
+            : profile.profileBackgroundImageUrl,
+        profileMobileBackgroundImageUrl:
+          loading || !profile.profileMobileBackgroundImageUrl
             ? ''
-            : profile.profileMobileBackgroundImageURL,
-        profileLargeBackgroundImageURL:
-          loading || !profile.profileLargeBackgroundImageURL
+            : profile.profileMobileBackgroundImageUrl,
+        profileLargeBackgroundImageUrl:
+          loading || !profile.profileLargeBackgroundImageUrl
             ? ''
-            : profile.profileLargeBackgroundImageURL,
+            : profile.profileLargeBackgroundImageUrl,
         skills: loading || !profile.skills ? [] : profile.skills,
         languages: loading || !profile.languages ? [] : profile.languages,
         professionalInterests:
@@ -66,14 +66,14 @@ const CreateUpdateProfile = ({
             ? []
             : profile.personalInterests,
         bio: loading || !profile.bio ? '' : profile.bio,
-        generateResumeURL:
-          loading || !profile.generateResumeURL
+        generateResumeUrl:
+          loading || !profile.generateResumeUrl
             ? ''
-            : profile.generateResumeURL,
-        resumeHTMLTemplate:
-          loading || !profile.resumeHTMLTemplate
+            : profile.generateResumeUrl,
+        resumeHtmlTemplate:
+          loading || !profile.resumeHtmlTemplate
             ? ''
-            : profile.resumeHTMLTemplate,
+            : profile.resumeHtmlTemplate,
         displayTitleName:
           loading || !profile.displayTitleName ? '' : profile.displayTitleName,
         youtube: loading || !profile.social ? '' : profile.social.youtube,
@@ -98,17 +98,17 @@ const CreateUpdateProfile = ({
     currentCompany: '',
     location: '',
     currentJobTitle: '',
-    profilePicURL: '',
-    profileBackgroundImageURL: '',
-    profileMobileBackgroundImageURL: '',
-    profileLargeBackgroundImageURL: '',
+    profilePicUrl: '',
+    profileBackgroundImageUrl: '',
+    profileMobileBackgroundImageUrl: '',
+    profileLargeBackgroundImageUrl: '',
     skills: [],
     languages: [],
     professionalInterests: [],
     personalInterests: [],
     bio: '',
-    generateResumeURL: '',
-    resumeHTMLTemplate: '',
+    generateResumeUrl: '',
+    resumeHtmlTemplate: '',
     displayTitleName: '',
     youtube: '',
     instagram: '',
@@ -124,17 +124,17 @@ const CreateUpdateProfile = ({
     currentCompany,
     location,
     currentJobTitle,
-    profilePicURL,
-    profileBackgroundImageURL,
-    profileMobileBackgroundImageURL,
-    profileLargeBackgroundImageURL,
+    profilePicUrl,
+    profileBackgroundImageUrl,
+    profileMobileBackgroundImageUrl,
+    profileLargeBackgroundImageUrl,
     skills,
     languages,
     professionalInterests,
     personalInterests,
     bio,
-    generateResumeURL,
-    resumeHTMLTemplate,
+    generateResumeUrl,
+    resumeHtmlTemplate,
     displayTitleName,
   } = formData;
 
@@ -199,14 +199,14 @@ const CreateUpdateProfile = ({
   const isProfileUpdate = () => {
     return currentCompany !== '' ||
       currentJobTitle !== '' ||
-      profilePicURL !== '' ||
-      profileBackgroundImageURL !== '' ||
-      profileMobileBackgroundImageURL !== '' ||
-      profileLargeBackgroundImageURL !== '' ||
+      profilePicUrl !== '' ||
+      profileBackgroundImageUrl !== '' ||
+      profileMobileBackgroundImageUrl !== '' ||
+      profileLargeBackgroundImageUrl !== '' ||
       location !== '' ||
       bio !== '' ||
-      generateResumeURL !== '' ||
-      resumeHTMLTemplate !== '' ||
+      generateResumeUrl !== '' ||
+      resumeHtmlTemplate !== '' ||
       displayTitleName !== '' ||
       (skills && skills.length > 0) ||
       (languages && languages.length > 0) ||
@@ -268,36 +268,36 @@ const CreateUpdateProfile = ({
                 <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
-                    id="profilePicURL"
+                    id="profilePicUrl"
                     label="Profile Picture URL"
-                    value={profilePicURL}
+                    value={profilePicUrl}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
                 <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
-                    id="profileBackgroundImageURL"
+                    id="profileBackgroundImageUrl"
                     label="Profile Background Image URL"
-                    value={profileBackgroundImageURL}
+                    value={profileBackgroundImageUrl}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
                 <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
-                    id="profileMobileBackgroundImageURL"
+                    id="profileMobileBackgroundImageUrl"
                     label="Profile Background Image URL for Mobile devices"
-                    value={profileMobileBackgroundImageURL}
+                    value={profileMobileBackgroundImageUrl}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
                 <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
-                    id="profileLargeBackgroundImageURL"
+                    id="profileLargeBackgroundImageUrl"
                     label="Profile Background Image URL for Large devices"
-                    value={profileLargeBackgroundImageURL}
+                    value={profileLargeBackgroundImageUrl}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
@@ -352,22 +352,22 @@ const CreateUpdateProfile = ({
                 <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
-                    id="generateResumeURL"
+                    id="generateResumeUrl"
                     label="URL for Resume Generation"
-                    value={generateResumeURL}
+                    value={generateResumeUrl}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
                 <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
-                    id="resumeHTMLTemplate"
+                    id="resumeHtmlTemplate"
                     label="HTML template for Resume generation"
                     multiline
                     cols={30}
                     rows={5}
                     variant="outlined"
-                    value={resumeHTMLTemplate}
+                    value={resumeHtmlTemplate}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>

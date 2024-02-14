@@ -21,7 +21,7 @@ export class CreateProfileRequestDto {
 
   @IsString()
   @IsOptional()
-  readonly profilePicURL?: string;
+  readonly profilePicUrl?: string;
 
   @IsString()
   @IsOptional()

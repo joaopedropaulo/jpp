@@ -10,7 +10,7 @@ export class ProfileResponseDto {
   readonly location?: string;
   readonly currentJobTitle?: string;
   readonly email?: string;
-  readonly profilePicURL?: string;
+  readonly profilePicUrl?: string;
   readonly profileBackgroundImageUrl?: string;
   readonly profileMobileBackgroundImageUrl?: string;
   readonly profileLargeBackgroundImageUrl?: string;
