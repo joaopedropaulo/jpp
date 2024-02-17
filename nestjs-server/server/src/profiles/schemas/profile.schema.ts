@@ -60,7 +60,7 @@ export class Profile {
   @Prop({ type: [Education] })
   education: Education[];
 
-  @Prop({ type: [Social] })
+  @Prop({ type: Social })
   social: Social;
 
   @Prop({ type: [GenericSection] })

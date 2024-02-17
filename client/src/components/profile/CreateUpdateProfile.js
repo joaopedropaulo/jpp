@@ -13,7 +13,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { createUpdateProfile, getCurrentProfile } from '../../actions/profile';
+import { createProfile, updateProfile, getCurrentProfile } from '../../actions/profile';
 import AddSkillForm from './skills/AddSkillForm';
 import AddLanguageForm from './languages/AddLanguageForm';
 import AddInterestForm from './interests/AddInterestForm';
@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme) => styles(theme));
 
 const CreateUpdateProfile = ({
   profile: { profile, loading },
-  createUpdateProfile,
+  updateProfile,
+  createProfile,
   getCurrentProfile,
   history,
 }) => {
@@ -87,7 +88,8 @@ const CreateUpdateProfile = ({
     } else {
       setIsUpdate(false);
     }
-  }, [getCurrentProfile, loading, profile]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading]);
 
   const classes = useStyles();
 
@@ -219,7 +221,22 @@ const CreateUpdateProfile = ({
   // Actions to be taken to the backend
   const onSubmit = (e) => {
     e.preventDefault();
-    createUpdateProfile(formData, history, isUpdate);
+    const { youtube, instagram, linkedin, twitter, github, facebook, ...updatedFormFields } = formData;
+    const social = {
+      youtube: youtube || "",
+      instagram: instagram || "",
+      linkedin: linkedin || "",
+      twitter: twitter || "",
+      github: github || "",
+      facebook: facebook || "",
+    }
+    const newProfile = { ...profile, ...updatedFormFields, social }
+    if (isUpdate) {
+      updateProfile(newProfile, history);
+    }
+    else {
+      createProfile(newProfile, history);
+    }
   };
 
   return (
@@ -431,7 +448,8 @@ const CreateUpdateProfile = ({
 };
 
 CreateUpdateProfile.propTypes = {
-  createUpdateProfile: PropTypes.func.isRequired,
+  updateProfile: PropTypes.func.isRequired,
+  createProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
 };
@@ -441,6 +459,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  createUpdateProfile,
+  updateProfile,
+  createProfile,
   getCurrentProfile,
 })(withRouter(CreateUpdateProfile));
