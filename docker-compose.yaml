@@ -23,8 +23,6 @@ services:
     depends_on:
       - db
       - server
-    # volumes:
-    #   - ./client/nginx.conf.template:/etc/nginx/nginx.conf
     ports:
       - "3000:80"
   db:

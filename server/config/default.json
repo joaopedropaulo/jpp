@@ -1,5 +1,0 @@
-{
-  "mongoURI": "mongodb://db:27017/test",
-  "jwtSecret": "1234567890abcdefghijklmnopqrstuvwxyz",
-  "tokenExpirationTime": 36000
-}
