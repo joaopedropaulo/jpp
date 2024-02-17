@@ -5,6 +5,7 @@ import { CreateTokenResponseDto } from './dtos/response/create-token-response.dt
 import { CreateTokenDto } from './dtos/request/create-token.dto';
 import { UnauthorizedException } from './exceptions/unauthorized.exception';
 import * as bcrypt from 'bcrypt';
+import { RetrieveUserResponseDto } from './dtos/response/retrieve-user-response.dto';
 
 @Injectable()
 export class AuthService {
@@ -34,5 +35,15 @@ export class AuthService {
       },
     };
     return { token: await this.signToken(tokenInput) };
+  }
+
+  async retrieveUserObj(id: string): Promise<RetrieveUserResponseDto> {
+    const user = await this.usersService.getUserById(id);
+    if (!user) throw new UnauthorizedException();
+
+    return {
+      name: user.name,
+      email: user.email,
+    };
   }
 }

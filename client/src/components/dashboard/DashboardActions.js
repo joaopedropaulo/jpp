@@ -17,7 +17,7 @@ export const DashboardActions = (props) => {
       <Box className={classes.dashboardActionsContainer}>
         <Grid container>
           <Grid item xs={12}>
-            <Grid container justify="center" spacing={5}>
+            <Grid container justifyContent="center" spacing={5}>
               <Grid item>
                 <Button
                   size="large"

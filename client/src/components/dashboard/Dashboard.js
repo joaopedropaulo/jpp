@@ -8,6 +8,8 @@ import Navbar from '../layout/Navbar';
 import DashboardActions from './DashboardActions';
 import Spinner from '../layout/Spinner';
 import styles from '../../styles/Styles';
+import { loadUser } from '../../actions/auth';
+import store from '../../store';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
@@ -18,6 +20,7 @@ const Dashboard = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
+    store.dispatch(loadUser());
   }, [getCurrentProfile]);
 
   const classes = useStyles();

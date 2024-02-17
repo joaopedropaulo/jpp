@@ -15,6 +15,8 @@ import {
 import { getCurrentProfile, updateProfile } from '../../../actions/profile';
 import ExperienceTable from './ExperienceTable';
 import styles from '../../../styles/Styles';
+import { loadUser } from '../../../actions/auth';
+import store from '../../../store';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
@@ -26,6 +28,7 @@ const EditExperience = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
+    store.dispatch(loadUser());
   }, [getCurrentProfile, loading]);
 
   const classes = useStyles();
@@ -86,7 +89,7 @@ const EditExperience = ({
 
   return (
     <Box className={classes.editModeContainers}>
-      <Grid container justify="flex-start" spacing={2}>
+      <Grid container justifyContent="flex-start" spacing={2}>
         <Grid item xs={12}>
           <Box className={classes.editModeHeadersContainers}>
             <Typography variant="h4">Edit Experience</Typography>
@@ -138,7 +141,7 @@ const EditExperience = ({
                 </Box>
                 <Box className={classes.editModeDateInputContainers}>
                   <Grid
-                    justify="space-between"
+                    justifyContent="space-between"
                     alignItems="center"
                     container
                     spacing={2}
@@ -195,14 +198,14 @@ const EditExperience = ({
                     label="Job Description"
                     multiline
                     cols={30}
-                    rows={5}
+                    minRows={5}
                     variant="outlined"
                     value={description}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
                 <Box py={2}>
-                  <Grid justify="space-between" container spacing={2}>
+                  <Grid justifyContent="space-between" container spacing={2}>
                     <Grid item>
                       <Button
                         variant="contained"

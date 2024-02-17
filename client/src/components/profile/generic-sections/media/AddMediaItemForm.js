@@ -54,7 +54,7 @@ const AddMediaItemForm = (props) => {
 
   return (
     <Box className={classes.editModeGenericSectionsAddMediaItemFormContainer}>
-      <Grid justify="space-between" container spacing={2}>
+      <Grid justifyContent="space-between" container spacing={2}>
         <Grid item xs={12}>
           <Box>
             <InputLabel id="mType">Media Type</InputLabel>
@@ -103,7 +103,7 @@ const AddMediaItemForm = (props) => {
             type="text"
             onChange={(e) => handleValueChange(e)}
             multiline
-            rows={3}
+            minRows={3}
             variant="outlined"
           />
         </Grid>

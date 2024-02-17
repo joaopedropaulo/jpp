@@ -13,7 +13,11 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { createProfile, updateProfile, getCurrentProfile } from '../../actions/profile';
+import {
+  createProfile,
+  updateProfile,
+  getCurrentProfile,
+} from '../../actions/profile';
 import AddSkillForm from './skills/AddSkillForm';
 import AddLanguageForm from './languages/AddLanguageForm';
 import AddInterestForm from './interests/AddInterestForm';
@@ -22,6 +26,8 @@ import LanguageList from './languages/LanguageList';
 import CreateUpdateSocialMediaInputs from './social-media/CreateUpdateSocialMediaInputs';
 import styles from '../../styles/Styles';
 import InterestList from './interests/InterestList';
+import { loadUser } from '../../actions/auth';
+import store from '../../store';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
@@ -34,6 +40,7 @@ const CreateUpdateProfile = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
+    store.dispatch(loadUser());
 
     if (profile !== null) {
       setFormData({
@@ -221,27 +228,34 @@ const CreateUpdateProfile = ({
   // Actions to be taken to the backend
   const onSubmit = (e) => {
     e.preventDefault();
-    const { youtube, instagram, linkedin, twitter, github, facebook, ...updatedFormFields } = formData;
+    const {
+      youtube,
+      instagram,
+      linkedin,
+      twitter,
+      github,
+      facebook,
+      ...updatedFormFields
+    } = formData;
     const social = {
-      youtube: youtube || "",
-      instagram: instagram || "",
-      linkedin: linkedin || "",
-      twitter: twitter || "",
-      github: github || "",
-      facebook: facebook || "",
-    }
-    const newProfile = { ...profile, ...updatedFormFields, social }
+      youtube: youtube || '',
+      instagram: instagram || '',
+      linkedin: linkedin || '',
+      twitter: twitter || '',
+      github: github || '',
+      facebook: facebook || '',
+    };
+    const newProfile = { ...profile, ...updatedFormFields, social };
     if (isUpdate) {
       updateProfile(newProfile, history);
-    }
-    else {
+    } else {
       createProfile(newProfile, history);
     }
   };
 
   return (
     <Box className={classes.editModeContainers}>
-      <Grid container justify="flex-start" spacing={2}>
+      <Grid container justifyContent="flex-start" spacing={2}>
         <Grid item xs={12}>
           <Box className={classes.editModeHeadersContainers}>
             {isProfileUpdate() ? (
@@ -329,7 +343,6 @@ const CreateUpdateProfile = ({
                     onRemoveLanguage={onRemoveLanguage}
                   />
                 </Box>
-                {/* Professional interests */}
                 <Box className={classes.editModeTextInputContainers}>
                   <AddInterestForm
                     onAddInterest={onAddProfessionalInterest}
@@ -341,7 +354,6 @@ const CreateUpdateProfile = ({
                     label="Professional Interests"
                   />
                 </Box>
-                {/* Personal interests */}
                 <Box className={classes.editModeTextInputContainers}>
                   <AddInterestForm
                     onAddInterest={onAddPersonalInterest}
@@ -360,7 +372,7 @@ const CreateUpdateProfile = ({
                     label="A short bio"
                     multiline
                     cols={30}
-                    rows={5}
+                    minRows={5}
                     variant="outlined"
                     value={bio}
                     onChange={(e) => handleValueChange(e)}
@@ -382,7 +394,7 @@ const CreateUpdateProfile = ({
                     label="HTML template for Resume generation"
                     multiline
                     cols={30}
-                    rows={5}
+                    minRows={5}
                     variant="outlined"
                     value={resumeHtmlTemplate}
                     onChange={(e) => handleValueChange(e)}
@@ -415,7 +427,7 @@ const CreateUpdateProfile = ({
                   <Fragment></Fragment>
                 )}
                 <Box py={2}>
-                  <Grid justify="space-between" container spacing={2}>
+                  <Grid justifyContent="space-between" container spacing={2}>
                     <Grid item>
                       <Button
                         variant="contained"

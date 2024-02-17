@@ -92,12 +92,13 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
       <Box
         className={classes.landingTopDiv}
         style={{
-          backgroundImage: `url(${loading
-            ? ''
-            : profile
-              ? resolveBackground(matchesSmallScreen, matchesLargeScreen)
-              : ''
-            })`,
+          backgroundImage: `url(${
+            loading
+              ? ''
+              : profile
+                ? resolveBackground(matchesSmallScreen, matchesLargeScreen)
+                : ''
+          })`,
         }}
       >
         <Navbar
@@ -117,7 +118,7 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
       <Box>
         <section id="about_me" className={classes.sectionContainer}>
           <Container>
-            <Grid container justify="center">
+            <Grid container justifyContent="center">
               <Grid item xs={12} className={classes.sectionHeaderDiv}>
                 <Typography
                   variant="h3"
@@ -153,7 +154,7 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
         <Divider />
         <section id="resume" className={classes.sectionContainer}>
           <Container>
-            <Grid container justify="center">
+            <Grid container justifyContent="center">
               <Grid item xs={12} className={classes.sectionHeaderDiv}>
                 <Typography
                   variant="h3"
@@ -232,7 +233,7 @@ const Landing = ({ getCurrentProfile, profile: { profile, loading } }) => {
         <Divider />
         <section id="contact_me" className={classes.sectionContainer}>
           <Container>
-            <Grid container justify="center">
+            <Grid container justifyContent="center">
               <Grid item xs={12} className={classes.sectionHeaderDiv}>
                 <Typography
                   variant="h3"

@@ -37,6 +37,7 @@ const Login = ({ login, isAuthenticated }) => {
                 </Grid>
                 <Grid item xs={10}>
                   <TextField
+                    autoComplete="on"
                     id="email"
                     label="Email"
                     type="email"
@@ -54,6 +55,7 @@ const Login = ({ login, isAuthenticated }) => {
                 </Grid>
                 <Grid item xs={10}>
                   <TextField
+                    autoComplete="on"
                     id="password"
                     label="Password"
                     type="password"

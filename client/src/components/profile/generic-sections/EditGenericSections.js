@@ -16,6 +16,8 @@ import GenericSectionsTable from './GenericSectionsTable';
 import AddMediaItemForm from './media/AddMediaItemForm';
 import MediaList from './media/MediaList';
 import styles from '../../../styles/Styles';
+import { loadUser } from '../../../actions/auth';
+import store from '../../../store';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
@@ -27,6 +29,7 @@ const EditGenericSections = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
+    store.dispatch(loadUser());
   }, [getCurrentProfile, loading]);
 
   const classes = useStyles();
@@ -87,7 +90,7 @@ const EditGenericSections = ({
 
   return (
     <Box className={classes.editModeContainers}>
-      <Grid container justify="flex-start" spacing={2}>
+      <Grid container justifyContent="flex-start" spacing={2}>
         <Grid item xs={12}>
           <Box className={classes.editModeHeadersContainers}>
             <Typography variant="h4">Edit Generic Sections</Typography>
@@ -132,7 +135,7 @@ const EditGenericSections = ({
                     value={body}
                     label="Choose your words wisely =)"
                     multiline
-                    rows={5}
+                    minRows={5}
                     variant="outlined"
                     onChange={(e) => handleValueChange(e)}
                   />
@@ -152,7 +155,7 @@ const EditGenericSections = ({
                   />
                 </Box>
                 <Box py={2}>
-                  <Grid justify="space-between" container spacing={2}>
+                  <Grid justifyContent="space-between" container spacing={2}>
                     <Grid item>
                       <Button
                         variant="contained"
