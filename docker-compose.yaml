@@ -1,4 +1,4 @@
-version: "3.7"
+version: '3.7'
 
 services:
   server:
@@ -7,41 +7,46 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - db
+    restart: always
     ports:
-      - "5000:5000"
+      - '5000:5000'
     environment:
-      - MONGO_URI=mongodb://db:27017/test
-      - JWT_SECRET=mysecretkey
+      - MONGO_URI=${MONGO_URI:-mongodb://db:27017/test}
+      - JWT_SECRET=${JWT_SECRET:-mysecretkey}
   client:
     build:
       context: ./client
       dockerfile: Dockerfile
       args:
-        - JPP_SRV_BASE_URL=http://server:5000
+        - JPP_SRV_BASE_URL=${JPP_SRV_BASE_URL:-http://server:5000}
     environment:
-      - JPP_SRV_BASE_URL=http://server:5000
+      - JPP_SRV_BASE_URL=${JPP_SRV_BASE_URL:-http://server:5000}
     depends_on:
       - db
       - server
+    restart: always
     ports:
-      - "3000:80"
+      - '3000:80'
   db:
     image: mongo
     restart: always
     ports:
-      - "27017:27017"
+      - '27017:27017'
     volumes:
       - db_volume:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME:-}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD:-}
   db-admin:
     image: mongo-express
     depends_on:
       - db
     restart: always
     ports:
-      - "8081:8081"
+      - '8081:8081'
     environment:
-      ME_CONFIG_MONGODB_SERVER: db
+      - ME_CONFIG_MONGODB_SERVER=db
 
 volumes:
   db_volume:
-    name: "mongodb_jpp_e2e"
+    name: 'mongodb_jpp_prod'
