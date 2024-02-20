@@ -1,38 +1,36 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from 'react';
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Landing from "./components/layout/Landing";
-import Alert from "./components/layout/Alert";
+import Landing from './components/layout/Landing';
+import Alert from './components/layout/Alert';
 
-import Login from "./components/auth/Login";
+import Login from './components/auth/Login';
 
-import Dashboard from "./components/dashboard/Dashboard";
-import CreateUpdateProfile from "./components/profile/CreateUpdateProfile";
-import EditExperience from "./components/profile/experience/EditExperience";
-import EditEducation from "./components/profile/education/EditEducation";
-import EditGenericSections from "./components/profile/generic-sections/EditGenericSections";
+import Dashboard from './components/dashboard/Dashboard';
+import CreateUpdateProfile from './components/profile/CreateUpdateProfile';
+import EditExperience from './components/profile/experience/EditExperience';
+import EditEducation from './components/profile/education/EditEducation';
+import EditGenericSections from './components/profile/generic-sections/EditGenericSections';
 
-import PrivateRoute from "./components/routing/PrivateRoute";
+import PrivateRoute from './components/routing/PrivateRoute';
 
-import { Provider } from "react-redux";
-import store from "./store";
+import { Provider } from 'react-redux';
+import store from './store';
+import setAuthToken from './utils/setAuthToken';
 
-import { loadUser } from "./actions/auth";
-import setAuthToken from "./utils/setAuthToken";
-
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from '@material-ui/core/styles';
 import {
   StylesProvider,
   createGenerateClassName,
-} from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import themes from "./styles/themes";
+} from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import themes from './styles/themes';
 
-import "./App.css";
+import './App.css';
 
 const generateClassName = createGenerateClassName({
-  productionPrefix: "caligula",
+  productionPrefix: 'caligula',
 });
 
 if (localStorage.token) {
@@ -40,10 +38,6 @@ if (localStorage.token) {
 }
 
 const App = () => {
-  useEffect(() => {
-    store.dispatch(loadUser());
-  }, []);
-
   return (
     <StylesProvider generateClassName={generateClassName}>
       <ThemeProvider theme={themes}>

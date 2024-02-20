@@ -1,17 +1,13 @@
 FROM node:lts-slim
 
-WORKDIR /usr/server
+WORKDIR /app
 
-COPY entrypoint.sh ./entrypoint.sh
-RUN chmod +x entrypoint.sh
-
+COPY tsconfig*.json ./
 COPY package*.json ./
+RUN npm ci
 
-RUN npm install
+COPY . .
 
-COPY ./src ./src
-COPY ./config ./config
+RUN npm run build
 
-EXPOSE 5000
-
-CMD ["npm", "run", "start"]
+CMD ["node", "dist/main.js"]

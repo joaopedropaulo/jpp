@@ -1,7 +1,7 @@
-import React from "react";
-import { Typography, Box, Grid, Chip, makeStyles } from "@material-ui/core";
-import CustomLevelDisplayBar from "./CustomLevelDisplayBar";
-import styles from "../../../../styles/Styles";
+import React from 'react';
+import { Typography, Box, Grid, Chip, makeStyles } from '@material-ui/core';
+import CustomLevelDisplayBar from './CustomLevelDisplayBar';
+import styles from '../../../../styles/Styles';
 
 const useStyles = makeStyles((theme) => styles(theme));
 

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, Fragment } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
+import React, { useState, useEffect, Fragment } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   Typography,
   TextField,
@@ -11,50 +11,58 @@ import {
   Box,
   Paper,
   makeStyles,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { createUpdateProfile, getCurrentProfile } from "../../actions/profile";
-import AddSkillForm from "./skills/AddSkillForm";
-import AddLanguageForm from "./languages/AddLanguageForm";
-import AddInterestForm from "./interests/AddInterestForm";
-import SkillList from "./skills/SkillList";
-import LanguageList from "./languages/LanguageList";
-import CreateUpdateSocialMediaInputs from "./social-media/CreateUpdateSocialMediaInputs";
-import styles from "../../styles/Styles";
-import InterestList from "./interests/InterestList";
+} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import {
+  createProfile,
+  updateProfile,
+  getCurrentProfile,
+} from '../../actions/profile';
+import AddSkillForm from './skills/AddSkillForm';
+import AddLanguageForm from './languages/AddLanguageForm';
+import AddInterestForm from './interests/AddInterestForm';
+import SkillList from './skills/SkillList';
+import LanguageList from './languages/LanguageList';
+import CreateUpdateSocialMediaInputs from './social-media/CreateUpdateSocialMediaInputs';
+import styles from '../../styles/Styles';
+import InterestList from './interests/InterestList';
+import { loadUser } from '../../actions/auth';
+import store from '../../store';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
 const CreateUpdateProfile = ({
   profile: { profile, loading },
-  createUpdateProfile,
+  updateProfile,
+  createProfile,
   getCurrentProfile,
   history,
 }) => {
   useEffect(() => {
     getCurrentProfile();
+    store.dispatch(loadUser());
 
     if (profile !== null) {
       setFormData({
         currentCompany:
-          loading || !profile.currentCompany ? "" : profile.currentCompany,
-        location: loading || !profile.location ? "" : profile.location,
+          loading || !profile.currentCompany ? '' : profile.currentCompany,
+        location: loading || !profile.location ? '' : profile.location,
         currentJobTitle:
-          loading || !profile.currentJobTitle ? "" : profile.currentJobTitle,
-        profilePicURL:
-          loading || !profile.profilePicURL ? "" : profile.profilePicURL,
-        profileBackgroundImageURL:
-          loading || !profile.profileBackgroundImageURL
-            ? ""
-            : profile.profileBackgroundImageURL,
-        profileMobileBackgroundImageURL:
-          loading || !profile.profileMobileBackgroundImageURL
-            ? ""
-            : profile.profileMobileBackgroundImageURL,
-        profileLargeBackgroundImageURL:
-          loading || !profile.profileLargeBackgroundImageURL
-            ? ""
-            : profile.profileLargeBackgroundImageURL,
+          loading || !profile.currentJobTitle ? '' : profile.currentJobTitle,
+        profilePicUrl:
+          loading || !profile.profilePicUrl ? '' : profile.profilePicUrl,
+        profileBackgroundImageUrl:
+          loading || !profile.profileBackgroundImageUrl
+            ? ''
+            : profile.profileBackgroundImageUrl,
+        profileMobileBackgroundImageUrl:
+          loading || !profile.profileMobileBackgroundImageUrl
+            ? ''
+            : profile.profileMobileBackgroundImageUrl,
+        profileLargeBackgroundImageUrl:
+          loading || !profile.profileLargeBackgroundImageUrl
+            ? ''
+            : profile.profileLargeBackgroundImageUrl,
         skills: loading || !profile.skills ? [] : profile.skills,
         languages: loading || !profile.languages ? [] : profile.languages,
         professionalInterests:
@@ -65,28 +73,29 @@ const CreateUpdateProfile = ({
           loading || !profile.personalInterests
             ? []
             : profile.personalInterests,
-        bio: loading || !profile.bio ? "" : profile.bio,
-        generateResumeURL:
-          loading || !profile.generateResumeURL
-            ? ""
-            : profile.generateResumeURL,
-        resumeHTMLTemplate:
-          loading || !profile.resumeHTMLTemplate
-            ? ""
-            : profile.resumeHTMLTemplate,
+        bio: loading || !profile.bio ? '' : profile.bio,
+        generateResumeUrl:
+          loading || !profile.generateResumeUrl
+            ? ''
+            : profile.generateResumeUrl,
+        resumeHtmlTemplate:
+          loading || !profile.resumeHtmlTemplate
+            ? ''
+            : profile.resumeHtmlTemplate,
         displayTitleName:
-          loading || !profile.displayTitleName ? "" : profile.displayTitleName,
-        youtube: loading || !profile.social ? "" : profile.social.youtube,
-        instagram: loading || !profile.social ? "" : profile.social.instagram,
-        linkedin: loading || !profile.social ? "" : profile.social.linkedin,
-        twitter: loading || !profile.social ? "" : profile.social.twitter,
-        github: loading || !profile.social ? "" : profile.social.github,
-        facebook: loading || !profile.social ? "" : profile.social.facebook,
+          loading || !profile.displayTitleName ? '' : profile.displayTitleName,
+        youtube: loading || !profile.social ? '' : profile.social.youtube,
+        instagram: loading || !profile.social ? '' : profile.social.instagram,
+        linkedin: loading || !profile.social ? '' : profile.social.linkedin,
+        twitter: loading || !profile.social ? '' : profile.social.twitter,
+        github: loading || !profile.social ? '' : profile.social.github,
+        facebook: loading || !profile.social ? '' : profile.social.facebook,
       });
       setIsUpdate(true);
     } else {
       setIsUpdate(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
 
   const classes = useStyles();
@@ -95,27 +104,27 @@ const CreateUpdateProfile = ({
   const [isUpdate, setIsUpdate] = useState(false);
 
   const [formData, setFormData] = useState({
-    currentCompany: "",
-    location: "",
-    currentJobTitle: "",
-    profilePicURL: "",
-    profileBackgroundImageURL: "",
-    profileMobileBackgroundImageURL: "",
-    profileLargeBackgroundImageURL: "",
+    currentCompany: '',
+    location: '',
+    currentJobTitle: '',
+    profilePicUrl: '',
+    profileBackgroundImageUrl: '',
+    profileMobileBackgroundImageUrl: '',
+    profileLargeBackgroundImageUrl: '',
     skills: [],
     languages: [],
     professionalInterests: [],
     personalInterests: [],
-    bio: "",
-    generateResumeURL: "",
-    resumeHTMLTemplate: "",
-    displayTitleName: "",
-    youtube: "",
-    instagram: "",
-    linkedin: "",
-    twitter: "",
-    github: "",
-    facebook: "",
+    bio: '',
+    generateResumeUrl: '',
+    resumeHtmlTemplate: '',
+    displayTitleName: '',
+    youtube: '',
+    instagram: '',
+    linkedin: '',
+    twitter: '',
+    github: '',
+    facebook: '',
   });
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
@@ -124,17 +133,17 @@ const CreateUpdateProfile = ({
     currentCompany,
     location,
     currentJobTitle,
-    profilePicURL,
-    profileBackgroundImageURL,
-    profileMobileBackgroundImageURL,
-    profileLargeBackgroundImageURL,
+    profilePicUrl,
+    profileBackgroundImageUrl,
+    profileMobileBackgroundImageUrl,
+    profileLargeBackgroundImageUrl,
     skills,
     languages,
     professionalInterests,
     personalInterests,
     bio,
-    generateResumeURL,
-    resumeHTMLTemplate,
+    generateResumeUrl,
+    resumeHtmlTemplate,
     displayTitleName,
   } = formData;
 
@@ -197,17 +206,17 @@ const CreateUpdateProfile = ({
 
   // Helper
   const isProfileUpdate = () => {
-    return currentCompany !== "" ||
-      currentJobTitle !== "" ||
-      profilePicURL !== "" ||
-      profileBackgroundImageURL !== "" ||
-      profileMobileBackgroundImageURL !== "" ||
-      profileLargeBackgroundImageURL !== "" ||
-      location !== "" ||
-      bio !== "" ||
-      generateResumeURL !== "" ||
-      resumeHTMLTemplate !== "" ||
-      displayTitleName !== "" ||
+    return currentCompany !== '' ||
+      currentJobTitle !== '' ||
+      profilePicUrl !== '' ||
+      profileBackgroundImageUrl !== '' ||
+      profileMobileBackgroundImageUrl !== '' ||
+      profileLargeBackgroundImageUrl !== '' ||
+      location !== '' ||
+      bio !== '' ||
+      generateResumeUrl !== '' ||
+      resumeHtmlTemplate !== '' ||
+      displayTitleName !== '' ||
       (skills && skills.length > 0) ||
       (languages && languages.length > 0) ||
       (professionalInterests && professionalInterests.length > 0) ||
@@ -219,12 +228,34 @@ const CreateUpdateProfile = ({
   // Actions to be taken to the backend
   const onSubmit = (e) => {
     e.preventDefault();
-    createUpdateProfile(formData, history, isUpdate);
+    const {
+      youtube,
+      instagram,
+      linkedin,
+      twitter,
+      github,
+      facebook,
+      ...updatedFormFields
+    } = formData;
+    const social = {
+      youtube: youtube || '',
+      instagram: instagram || '',
+      linkedin: linkedin || '',
+      twitter: twitter || '',
+      github: github || '',
+      facebook: facebook || '',
+    };
+    const newProfile = { ...profile, ...updatedFormFields, social };
+    if (isUpdate) {
+      updateProfile(newProfile, history);
+    } else {
+      createProfile(newProfile, history);
+    }
   };
 
   return (
     <Box className={classes.editModeContainers}>
-      <Grid container justify="flex-start" spacing={2}>
+      <Grid container justifyContent="flex-start" spacing={2}>
         <Grid item xs={12}>
           <Box className={classes.editModeHeadersContainers}>
             {isProfileUpdate() ? (
@@ -268,36 +299,36 @@ const CreateUpdateProfile = ({
                 <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
-                    id="profilePicURL"
+                    id="profilePicUrl"
                     label="Profile Picture URL"
-                    value={profilePicURL}
+                    value={profilePicUrl}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
                 <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
-                    id="profileBackgroundImageURL"
+                    id="profileBackgroundImageUrl"
                     label="Profile Background Image URL"
-                    value={profileBackgroundImageURL}
+                    value={profileBackgroundImageUrl}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
                 <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
-                    id="profileMobileBackgroundImageURL"
+                    id="profileMobileBackgroundImageUrl"
                     label="Profile Background Image URL for Mobile devices"
-                    value={profileMobileBackgroundImageURL}
+                    value={profileMobileBackgroundImageUrl}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
                 <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
-                    id="profileLargeBackgroundImageURL"
+                    id="profileLargeBackgroundImageUrl"
                     label="Profile Background Image URL for Large devices"
-                    value={profileLargeBackgroundImageURL}
+                    value={profileLargeBackgroundImageUrl}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
@@ -312,7 +343,6 @@ const CreateUpdateProfile = ({
                     onRemoveLanguage={onRemoveLanguage}
                   />
                 </Box>
-                {/* Professional interests */}
                 <Box className={classes.editModeTextInputContainers}>
                   <AddInterestForm
                     onAddInterest={onAddProfessionalInterest}
@@ -324,7 +354,6 @@ const CreateUpdateProfile = ({
                     label="Professional Interests"
                   />
                 </Box>
-                {/* Personal interests */}
                 <Box className={classes.editModeTextInputContainers}>
                   <AddInterestForm
                     onAddInterest={onAddPersonalInterest}
@@ -343,7 +372,7 @@ const CreateUpdateProfile = ({
                     label="A short bio"
                     multiline
                     cols={30}
-                    rows={5}
+                    minRows={5}
                     variant="outlined"
                     value={bio}
                     onChange={(e) => handleValueChange(e)}
@@ -352,22 +381,22 @@ const CreateUpdateProfile = ({
                 <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
-                    id="generateResumeURL"
+                    id="generateResumeUrl"
                     label="URL for Resume Generation"
-                    value={generateResumeURL}
+                    value={generateResumeUrl}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
                 <Box className={classes.editModeTextInputContainers}>
                   <TextField
                     fullWidth
-                    id="resumeHTMLTemplate"
+                    id="resumeHtmlTemplate"
                     label="HTML template for Resume generation"
                     multiline
                     cols={30}
-                    rows={5}
+                    minRows={5}
                     variant="outlined"
-                    value={resumeHTMLTemplate}
+                    value={resumeHtmlTemplate}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
@@ -398,7 +427,7 @@ const CreateUpdateProfile = ({
                   <Fragment></Fragment>
                 )}
                 <Box py={2}>
-                  <Grid justify="space-between" container spacing={2}>
+                  <Grid justifyContent="space-between" container spacing={2}>
                     <Grid item>
                       <Button
                         variant="contained"
@@ -431,7 +460,8 @@ const CreateUpdateProfile = ({
 };
 
 CreateUpdateProfile.propTypes = {
-  createUpdateProfile: PropTypes.func.isRequired,
+  updateProfile: PropTypes.func.isRequired,
+  createProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
 };
@@ -441,6 +471,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  createUpdateProfile,
+  updateProfile,
+  createProfile,
   getCurrentProfile,
 })(withRouter(CreateUpdateProfile));

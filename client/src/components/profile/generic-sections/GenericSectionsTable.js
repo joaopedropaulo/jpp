@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Table,
   TableBody,
@@ -7,9 +7,9 @@ import {
   TableCell,
   TableRow,
   makeStyles,
-} from "@material-ui/core";
-import GenericSectionsTableItem from "./GenericSectionsTableItem";
-import styles from "../../../styles/Styles";
+} from '@material-ui/core';
+import GenericSectionsTableItem from './GenericSectionsTableItem';
+import styles from '../../../styles/Styles';
 
 const useStyles = makeStyles((theme) => styles(theme));
 

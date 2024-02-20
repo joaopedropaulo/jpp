@@ -1,7 +1,7 @@
-import React from "react";
-import { ListItem, Grid, Button, makeStyles } from "@material-ui/core";
-import MediaItem from "./MediaItem";
-import styles from "../../../../styles/Styles";
+import React from 'react';
+import { ListItem, Grid, Button, makeStyles } from '@material-ui/core';
+import MediaItem from './MediaItem';
+import styles from '../../../../styles/Styles';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
@@ -10,7 +10,7 @@ const MediaListItem = (props) => {
 
   return (
     <ListItem>
-      <Grid container justify="flex-start" spacing={2}>
+      <Grid container justifyContent="flex-start" spacing={2}>
         <Grid item xs={9}>
           <MediaItem value={props.value} />
         </Grid>

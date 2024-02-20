@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { TextField, Button } from "@material-ui/core";
+import React, { Fragment } from 'react';
+import { TextField, Button } from '@material-ui/core';
 
 class AddSkillForm extends React.Component {
   constructor(props) {
@@ -13,14 +13,14 @@ class AddSkillForm extends React.Component {
     const name = this.skillName.value;
     const experienceLevel = this.expLevel.value;
 
-    if (name.trim() === "") {
+    if (name.trim() === '') {
       return;
     }
 
     this.props.onAddSkill(name, experienceLevel);
 
-    this.skillName.value = "";
-    this.expLevel.value = "";
+    this.skillName.value = '';
+    this.expLevel.value = '';
   }
   render() {
     return (

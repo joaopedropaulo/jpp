@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 import {
   Button,
   Toolbar,
@@ -7,14 +7,14 @@ import {
   Typography,
   AppBar,
   makeStyles,
-} from "@material-ui/core";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import PersonIcon from "@material-ui/icons/Person";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import AnchorButton from "./AnchorButton";
-import { logout } from "../../actions/auth";
-import styles from "../../styles/Styles";
+} from '@material-ui/core';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import PersonIcon from '@material-ui/icons/Person';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import AnchorButton from './AnchorButton';
+import { logout } from '../../actions/auth';
+import styles from '../../styles/Styles';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
@@ -24,7 +24,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout, name }) => {
   const authLinks = (
     <Box>
       <Button
-        href={"/dashboard"}
+        href={'/dashboard'}
         color="inherit"
         className={classes.navbarAuthLinkButton}
         startIcon={<PersonIcon />}
@@ -34,7 +34,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout, name }) => {
       <Button
         className={classes.navbarAuthLinkButton}
         onClick={logout}
-        href={"/"}
+        href={'/'}
         color="inherit"
         startIcon={<ExitToAppIcon />}
       >
@@ -46,21 +46,21 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout, name }) => {
   const guestLinks = (
     <Box>
       <AnchorButton
-        href={"#about_me"}
+        href={'#about_me'}
         color="inherit"
         className={classes.navbarGuestLinkButton}
       >
         About me
       </AnchorButton>
       <AnchorButton
-        href={"#resume"}
+        href={'#resume'}
         color="inherit"
         className={classes.navbarGuestLinkButton}
       >
         Resume
       </AnchorButton>
       <AnchorButton
-        href={"#contact_me"}
+        href={'#contact_me'}
         color="inherit"
         className={classes.navbarGuestLinkButton}
       >
@@ -72,13 +72,13 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout, name }) => {
   return (
     <AppBar
       position="static"
-      className={!isAuthenticated ? classes.navbarRoot : ""}
+      className={!isAuthenticated ? classes.navbarRoot : ''}
     >
       <Toolbar>
         <Grid container spacing={2}>
           <Grid item xs={7} sm={6} className={classes.navbarHomeGrid}>
             <Button
-              href={"/"}
+              href={'/'}
               color="inherit"
               className={classes.navbarHomeButton}
             >

@@ -1,6 +1,6 @@
-import React from "react";
-import { Box } from "@material-ui/core";
-import ResumeExperienceItem from "./ResumeExperienceItem";
+import React from 'react';
+import { Box } from '@material-ui/core';
+import ResumeExperienceItem from './ResumeExperienceItem';
 
 const ResumeExperienceSection = (props) => {
   return (

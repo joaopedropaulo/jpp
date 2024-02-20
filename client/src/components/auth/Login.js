@@ -1,19 +1,19 @@
-import React from "react";
-import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { PropTypes } from "prop-types";
-import { login } from "../../actions/auth";
-import { Paper, Grid, TextField, Button, makeStyles } from "@material-ui/core";
-import { Face, Fingerprint } from "@material-ui/icons";
-import styles from "../../styles/Styles";
+import React from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+import { login } from '../../actions/auth';
+import { Paper, Grid, TextField, Button, makeStyles } from '@material-ui/core';
+import { Face, Fingerprint } from '@material-ui/icons';
+import styles from '../../styles/Styles';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
 const Login = ({ login, isAuthenticated }) => {
   const classes = useStyles();
 
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -37,6 +37,7 @@ const Login = ({ login, isAuthenticated }) => {
                 </Grid>
                 <Grid item xs={10}>
                   <TextField
+                    autoComplete="on"
                     id="email"
                     label="Email"
                     type="email"
@@ -54,6 +55,7 @@ const Login = ({ login, isAuthenticated }) => {
                 </Grid>
                 <Grid item xs={10}>
                   <TextField
+                    autoComplete="on"
                     id="password"
                     label="Password"
                     type="password"
@@ -68,7 +70,7 @@ const Login = ({ login, isAuthenticated }) => {
               <Button
                 variant="contained"
                 color="primary"
-                style={{ textTransform: "none", marginTop: "24px" }}
+                style={{ textTransform: 'none', marginTop: '24px' }}
                 type="submit"
               >
                 Login

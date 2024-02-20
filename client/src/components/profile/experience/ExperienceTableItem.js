@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import Moment from "react-moment";
+import React, { Fragment } from 'react';
+import Moment from 'react-moment';
 import {
   Button,
   TableRow,
@@ -7,8 +7,8 @@ import {
   Card,
   CardMedia,
   makeStyles,
-} from "@material-ui/core";
-import styles from "../../../styles/Styles";
+} from '@material-ui/core';
+import styles from '../../../styles/Styles';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
@@ -38,7 +38,7 @@ const ExperienceTableItem = (props) => {
       <TableCell>
         <Moment format="YYYY/MM/DD">{props.value.from}</Moment> -
         {props.value.to === null ? (
-          " Now"
+          ' Now'
         ) : (
           <Moment format="YYYY/MM/DD">{props.value.to}</Moment>
         )}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Box,
   TextField,
@@ -9,9 +9,9 @@ import {
   Grid,
   Typography,
   makeStyles,
-} from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
-import styles from "../../../../styles/Styles";
+} from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
+import styles from '../../../../styles/Styles';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
@@ -19,9 +19,9 @@ const AddMediaItemForm = (props) => {
   const classes = useStyles();
 
   const [data, setData] = useState({
-    mediaType: "",
-    contentURL: "",
-    description: "",
+    mediaType: '',
+    contentURL: '',
+    description: '',
   });
 
   const { mediaType, contentURL, description } = data;
@@ -39,22 +39,22 @@ const AddMediaItemForm = (props) => {
   const onAddClick = (e) => {
     e.preventDefault();
 
-    if (contentURL.trim() === "" || mediaType.trim() === "") {
+    if (contentURL.trim() === '' || mediaType.trim() === '') {
       return;
     }
 
     props.onAddMediaItem(mediaType, contentURL, description);
 
     setData({
-      mediaType: "",
-      contentURL: "",
-      description: "",
+      mediaType: '',
+      contentURL: '',
+      description: '',
     });
   };
 
   return (
     <Box className={classes.editModeGenericSectionsAddMediaItemFormContainer}>
-      <Grid justify="space-between" container spacing={2}>
+      <Grid justifyContent="space-between" container spacing={2}>
         <Grid item xs={12}>
           <Box>
             <InputLabel id="mType">Media Type</InputLabel>
@@ -71,9 +71,9 @@ const AddMediaItemForm = (props) => {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={"audio"}>Audio</MenuItem>
-              <MenuItem value={"video"}>Video</MenuItem>
-              <MenuItem value={"image"}>Image</MenuItem>
+              <MenuItem value={'audio'}>Audio</MenuItem>
+              <MenuItem value={'video'}>Video</MenuItem>
+              <MenuItem value={'image'}>Image</MenuItem>
             </Select>
           </Box>
         </Grid>
@@ -103,7 +103,7 @@ const AddMediaItemForm = (props) => {
             type="text"
             onChange={(e) => handleValueChange(e)}
             multiline
-            rows={3}
+            minRows={3}
             variant="outlined"
           />
         </Grid>

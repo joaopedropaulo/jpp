@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { TextField, Button } from "@material-ui/core";
+import React, { Fragment } from 'react';
+import { TextField, Button } from '@material-ui/core';
 
 class AddLanguageForm extends React.Component {
   constructor(props) {
@@ -13,14 +13,14 @@ class AddLanguageForm extends React.Component {
     const name = this.name.value;
     const level = this.level.value;
 
-    if (name.trim() === "") {
+    if (name.trim() === '') {
       return;
     }
 
     this.props.onAddLanguage(name, level);
 
-    this.name.value = "";
-    this.level.value = "";
+    this.name.value = '';
+    this.level.value = '';
   }
   render() {
     return (

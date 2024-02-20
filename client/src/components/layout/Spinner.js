@@ -1,8 +1,12 @@
-import React, { Fragment } from "react";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import React, { Fragment } from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-export default () => (
-  <Fragment>
-    <CircularProgress />
-  </Fragment>
-);
+const Spinner = () => {
+  return (
+    <Fragment>
+      <CircularProgress />
+    </Fragment>
+  );
+};
+
+export default Spinner;

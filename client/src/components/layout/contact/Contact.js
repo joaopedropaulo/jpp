@@ -1,12 +1,12 @@
-import React, { Fragment } from "react";
-import { Box, IconButton, makeStyles } from "@material-ui/core";
-import YouTubeIcon from "@material-ui/icons/YouTube";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import InstagramIcon from "@material-ui/icons/Instagram";
-import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import styles from "../../../styles/Styles";
+import React, { Fragment } from 'react';
+import { Box, IconButton, makeStyles } from '@material-ui/core';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import styles from '../../../styles/Styles';
 
 const useStyles = makeStyles((theme) => styles(theme));
 

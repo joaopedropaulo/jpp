@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 import {
   Card,
   CardMedia,
   CardContent,
   Typography,
   makeStyles,
-} from "@material-ui/core";
-import styles from "../../../../styles/Styles";
+} from '@material-ui/core';
+import styles from '../../../../styles/Styles';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
@@ -22,7 +22,7 @@ const MediaItem = (props) => {
         </Typography>
       </CardContent>
       <CardMedia
-        component={props.value.mediaType !== "image" ? "iframe" : "img"}
+        component={props.value.mediaType !== 'image' ? 'iframe' : 'img'}
         src={props.value.contentURL}
         className={classes.editModeGenericSectionsTableItemMediaCardMedia}
       />

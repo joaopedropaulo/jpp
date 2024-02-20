@@ -1,6 +1,6 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React, { Fragment, useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   Typography,
   TextField,
@@ -11,39 +11,37 @@ import {
   Box,
   Paper,
   makeStyles,
-} from "@material-ui/core";
-import {
-  addExperience,
-  removeExperience,
-  getCurrentProfile,
-} from "../../../actions/profile";
-import ExperienceTable from "./ExperienceTable";
-import styles from "../../../styles/Styles";
+} from '@material-ui/core';
+import { getCurrentProfile, updateProfile } from '../../../actions/profile';
+import ExperienceTable from './ExperienceTable';
+import styles from '../../../styles/Styles';
+import { loadUser } from '../../../actions/auth';
+import store from '../../../store';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
 const EditExperience = ({
-  addExperience,
-  removeExperience,
+  updateProfile,
   getCurrentProfile,
   profile: { profile, loading },
   history,
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, [loading]);
+    store.dispatch(loadUser());
+  }, [getCurrentProfile, loading]);
 
   const classes = useStyles();
 
   const [formData, setFormData] = useState({
-    company: "",
-    companyIcon: "",
-    jobTitle: "",
-    location: "",
-    from: "",
-    to: "",
+    company: '',
+    companyIcon: '',
+    jobTitle: '',
+    location: '',
+    from: '',
+    to: '',
     current: false,
-    description: "",
+    description: '',
   });
 
   const [isCurrentJob, toggleIsCurrentJob] = useState(false);
@@ -61,19 +59,20 @@ const EditExperience = ({
 
   const cleanUpForm = () => {
     setFormData({
-      company: "",
-      companyIcon: "",
-      jobTitle: "",
-      location: "",
-      from: "",
-      to: "",
+      company: '',
+      companyIcon: '',
+      jobTitle: '',
+      location: '',
+      from: '',
+      to: '',
       current: false,
-      description: "",
+      description: '',
     });
   };
 
   const onRemoveExperience = (index) => {
-    removeExperience(profile.experience[index]._id);
+    profile.experience.splice(index, 1);
+    updateProfile(profile, history);
   };
 
   const handleValueChange = (e) => {
@@ -82,13 +81,15 @@ const EditExperience = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addExperience(formData, history);
+    const newExp = [...profile.experience, formData];
+    const updatedProfile = { ...profile, experience: newExp };
+    updateProfile(updatedProfile, history);
     cleanUpForm();
   };
 
   return (
     <Box className={classes.editModeContainers}>
-      <Grid container justify="flex-start" spacing={2}>
+      <Grid container justifyContent="flex-start" spacing={2}>
         <Grid item xs={12}>
           <Box className={classes.editModeHeadersContainers}>
             <Typography variant="h4">Edit Experience</Typography>
@@ -140,7 +141,7 @@ const EditExperience = ({
                 </Box>
                 <Box className={classes.editModeDateInputContainers}>
                   <Grid
-                    justify="space-between"
+                    justifyContent="space-between"
                     alignItems="center"
                     container
                     spacing={2}
@@ -197,14 +198,14 @@ const EditExperience = ({
                     label="Job Description"
                     multiline
                     cols={30}
-                    rows={5}
+                    minRows={5}
                     variant="outlined"
                     value={description}
                     onChange={(e) => handleValueChange(e)}
                   />
                 </Box>
                 <Box py={2}>
-                  <Grid justify="space-between" container spacing={2}>
+                  <Grid justifyContent="space-between" container spacing={2}>
                     <Grid item>
                       <Button
                         variant="contained"
@@ -245,8 +246,7 @@ const EditExperience = ({
 };
 
 EditExperience.propTypes = {
-  addExperience: PropTypes.func.isRequired,
-  removeExperience: PropTypes.func.isRequired,
+  updateProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
 };
@@ -256,7 +256,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addExperience,
-  removeExperience,
+  updateProfile,
   getCurrentProfile,
 })(EditExperience);

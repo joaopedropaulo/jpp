@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   Grid,
   Button,
@@ -10,36 +10,34 @@ import {
   Box,
   Container,
   makeStyles,
-} from "@material-ui/core";
-import {
-  addGenericSection,
-  removeGenericSection,
-  getCurrentProfile,
-} from "../../../actions/profile";
-import GenericSectionsTable from "./GenericSectionsTable";
-import AddMediaItemForm from "./media/AddMediaItemForm";
-import MediaList from "./media/MediaList";
-import styles from "../../../styles/Styles";
+} from '@material-ui/core';
+import { getCurrentProfile, updateProfile } from '../../../actions/profile';
+import GenericSectionsTable from './GenericSectionsTable';
+import AddMediaItemForm from './media/AddMediaItemForm';
+import MediaList from './media/MediaList';
+import styles from '../../../styles/Styles';
+import { loadUser } from '../../../actions/auth';
+import store from '../../../store';
 
 const useStyles = makeStyles((theme) => styles(theme));
 
 const EditGenericSections = ({
-  addGenericSection,
-  removeGenericSection,
+  updateProfile,
   getCurrentProfile,
   profile: { profile, loading },
   history,
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, [loading]);
+    store.dispatch(loadUser());
+  }, [getCurrentProfile, loading]);
 
   const classes = useStyles();
 
   const [formData, setFormData] = useState({
-    title: "",
-    subtitle: "",
-    body: "",
+    title: '',
+    subtitle: '',
+    body: '',
     media: [],
   });
 
@@ -69,27 +67,30 @@ const EditGenericSections = ({
 
   const cleanUpForm = () => {
     setFormData({
-      title: "",
-      subtitle: "",
-      body: "",
+      title: '',
+      subtitle: '',
+      body: '',
       media: [],
     });
   };
 
   // Actions that take it to the backend
   const onRemoveGenericSection = (index) => {
-    removeGenericSection(profile.genericSections[index]._id);
+    profile.genericSections.splice(index, 1);
+    updateProfile(profile, history);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addGenericSection(formData, history);
+    const newGenSection = [...profile.genericSections, formData];
+    const updatedProfile = { ...profile, genericSections: newGenSection };
+    updateProfile(updatedProfile, history);
     cleanUpForm();
   };
 
   return (
     <Box className={classes.editModeContainers}>
-      <Grid container justify="flex-start" spacing={2}>
+      <Grid container justifyContent="flex-start" spacing={2}>
         <Grid item xs={12}>
           <Box className={classes.editModeHeadersContainers}>
             <Typography variant="h4">Edit Generic Sections</Typography>
@@ -134,7 +135,7 @@ const EditGenericSections = ({
                     value={body}
                     label="Choose your words wisely =)"
                     multiline
-                    rows={5}
+                    minRows={5}
                     variant="outlined"
                     onChange={(e) => handleValueChange(e)}
                   />
@@ -154,7 +155,7 @@ const EditGenericSections = ({
                   />
                 </Box>
                 <Box py={2}>
-                  <Grid justify="space-between" container spacing={2}>
+                  <Grid justifyContent="space-between" container spacing={2}>
                     <Grid item>
                       <Button
                         variant="contained"
@@ -195,8 +196,7 @@ const EditGenericSections = ({
 };
 
 EditGenericSections.propTypes = {
-  addGenericSection: PropTypes.func.isRequired,
-  removeGenericSection: PropTypes.func.isRequired,
+  updateProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
 };
 
@@ -205,7 +205,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addGenericSection,
-  removeGenericSection,
+  updateProfile,
   getCurrentProfile,
 })(EditGenericSections);
