@@ -8,6 +8,8 @@ services:
     depends_on:
       - db
     restart: always
+    networks:
+      - global
     ports:
       - '5000:5000'
     environment:
@@ -25,11 +27,15 @@ services:
       - db
       - server
     restart: always
+    networks:
+      - global
     ports:
       - '3000:80'
   db:
     image: mongo
     restart: always
+    networks:
+      - global
     ports:
       - '27017:27017'
     volumes:
@@ -42,6 +48,8 @@ services:
     depends_on:
       - db
     restart: always
+    networks:
+      - global
     ports:
       - '8081:8081'
     environment:
@@ -50,3 +58,8 @@ services:
 volumes:
   db_volume:
     name: 'mongodb_jpp_prod'
+
+networks:
+  global:
+    name: global_pi_network
+    external: true
