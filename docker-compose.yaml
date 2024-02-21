@@ -31,8 +31,20 @@ services:
       - global
     ports:
       - '3000:80'
+  # db-dev:
+  #   image: mongo
+  #   restart: always
+  #   networks:
+  #     - global
+  #   ports:
+  #     - '27017:27017'
+  #   volumes:
+  #     - db_volume:/data/db
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME:-}
+  #     - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD:-}
   db:
-    image: mongo
+    image: mongo-pi
     restart: always
     networks:
       - global
