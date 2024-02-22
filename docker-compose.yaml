@@ -55,6 +55,7 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME:-}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD:-}
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE:-test}
   db-admin:
     image: mongo-express
     depends_on:
