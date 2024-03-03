@@ -1,7 +1,4 @@
 import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
-import merriweather from '@fontsource/merriweather';
-import opensans from '@fontsource/open-sans';
-import playfair from '@fontsource/playfair-display';
 
 const darkTheme = createTheme({
   palette: {
@@ -58,13 +55,6 @@ const darkTheme = createTheme({
     },
     body2: {
       // fontFamily: "'Open Sans', serif",
-    },
-  },
-  overrides: {
-    MuiCssBaseline: {
-      '@global': {
-        '@font-face': [merriweather, opensans, playfair],
-      },
     },
   },
 });
